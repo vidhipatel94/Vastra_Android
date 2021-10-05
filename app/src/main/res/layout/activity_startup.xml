@@ -26,6 +26,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
             android:gravity="center"
             android:text="@string/welcome_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
@@ -35,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat_light"
             android:gravity="center"
             android:text="@string/welcome_msg"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -46,6 +48,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
             android:background="@drawable/bg_button_filled"
+            android:fontFamily="@font/montserrat_medium"
             android:text="@string/btn_login"
             android:textColor="@color/white" />
 
@@ -55,6 +58,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="12dp"
             android:background="@drawable/bg_button_outline"
+            android:fontFamily="@font/montserrat_medium"
             android:text="@string/btn_create_account"
             android:textColor="@color/primary_dark" />
     </LinearLayout>
