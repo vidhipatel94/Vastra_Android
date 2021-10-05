@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Button.Filled" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/bg_button_filled</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Button.Outline" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/bg_button_outline</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textColor">@color/primary_dark</item>
+    </style>
+</resources>
