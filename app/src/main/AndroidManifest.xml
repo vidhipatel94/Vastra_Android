@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vastra">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name" />
-        <activity
             android:name=".ui.SplashScreenActivity"
             android:theme="@style/Theme.Vastra.NoActionBar">
             <intent-filter>

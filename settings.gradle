@@ -1,2 +1,3 @@
 rootProject.name = "Vastra"
 include ':app'
+include ':vastrafashiondesigner'

@@ -1,16 +1,16 @@
-package com.esolution.vastra.ui.notifications;
+package com.esolution.vastrafashiondesigner.ui.products;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+public class ProductsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public ProductsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mText.setValue("This is products fragment");
     }
 
     public LiveData<String> getText() {

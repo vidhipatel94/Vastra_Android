@@ -7,8 +7,8 @@ import android.os.Handler;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.esolution.vastra.MainActivity;
 import com.esolution.vastra.R;
+import com.esolution.vastrafashiondesigner.ui.MainActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 

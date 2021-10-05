@@ -1,4 +1,4 @@
-package com.esolution.vastra.ui.home;
+package com.esolution.vastrafashiondesigner.ui.products;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.esolution.vastra.R;
-import com.esolution.vastra.databinding.FragmentHomeBinding;
+import com.esolution.vastrafashiondesigner.databinding.FragmentProductsBinding;
 
-public class HomeFragment extends Fragment {
+public class ProductsFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private FragmentHomeBinding binding;
+    private ProductsViewModel productsViewModel;
+    private FragmentProductsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        productsViewModel =
+                new ViewModelProvider(this).get(ProductsViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentProductsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.text;
+        productsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

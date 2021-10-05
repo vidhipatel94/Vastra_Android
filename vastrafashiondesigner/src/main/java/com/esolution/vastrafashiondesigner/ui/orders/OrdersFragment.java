@@ -1,4 +1,4 @@
-package com.esolution.vastra.ui.notifications;
+package com.esolution.vastrafashiondesigner.ui.orders;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.esolution.vastra.R;
-import com.esolution.vastra.databinding.FragmentNotificationsBinding;
+import com.esolution.vastrafashiondesigner.databinding.FragmentOrdersBinding;
 
-public class NotificationsFragment extends Fragment {
+public class OrdersFragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
-    private FragmentNotificationsBinding binding;
+    private OrdersViewModel ordersViewModel;
+    private FragmentOrdersBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
+        ordersViewModel =
+                new ViewModelProvider(this).get(OrdersViewModel.class);
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentOrdersBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textNotifications;
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.text;
+        ordersViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
