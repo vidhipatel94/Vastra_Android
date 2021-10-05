@@ -17,7 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.registration.StartupActivity" />
+        <activity
+            android:name=".ui.registration.StartupActivity"
+            android:theme="@style/Theme.Vastra.NoActionBar" />
         <activity android:name=".ui.registration.RegisterUserTypeActivity" />
         <activity android:name=".ui.registration.RegistrationFormActivity" />
     </application>

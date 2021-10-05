@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.esolution.vastra.R;
+import com.esolution.vastra.ui.registration.StartupActivity;
 import com.esolution.vastrafashiondesigner.ui.MainActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
@@ -26,7 +27,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     private void openNextScreen() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, StartupActivity.class);
         startActivity(intent);
         finish();
     }
