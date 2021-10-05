@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Button.Filled" parent="Widget.AppCompat.Button">
+
+    <style name="Vastra.Button.Filled" parent="Widget.AppCompat.Button">
         <item name="android:background">@drawable/bg_button_filled</item>
         <item name="android:fontFamily">@font/montserrat_medium</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="Button.Outline" parent="Widget.AppCompat.Button">
+    <style name="Vastra.Button.Outline" parent="Widget.AppCompat.Button">
         <item name="android:background">@drawable/bg_button_outline</item>
         <item name="android:fontFamily">@font/montserrat_medium</item>
         <item name="android:textColor">@color/primary_dark</item>
+    </style>
+
+    <style name="Vastra.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="hintTextColor">@color/text_secondary_black</item>
+    </style>
+
+    <style name="Vastra.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/bg_edittext</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:paddingTop">28dp</item>
+        <item name="android:textColor">@color/text_primary_black</item>
+        <item name="android:textSize">16sp</item>
     </style>
 </resources>

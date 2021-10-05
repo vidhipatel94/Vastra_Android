@@ -8,7 +8,10 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
 
-    <color name="text_primary_black">#DB000000</color>
-    <color name="text_secondary_black">#99000000</color>
+    <color name="text_primary_black">#DB09101d</color>
+    <color name="text_secondary_black">#9909101d</color>
+
+    <color name="bg_edittext">#eef2fa</color>
 </resources>
