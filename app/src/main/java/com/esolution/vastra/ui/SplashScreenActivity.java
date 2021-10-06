@@ -21,7 +21,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                SplashScreenActivity.this.runOnUiThread(() -> openNextScreen());
+                SplashScreenActivity.this.runOnUiThread(() -> {
+                    openNextScreen();
+                });
             }
         },2000);
     }

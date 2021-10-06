@@ -19,6 +19,7 @@
         <activity android:name=".ui.registration.LoginActivity" />
         <activity android:name=".ui.registration.RegisterUserTypeActivity" />
         <activity android:name=".ui.registration.RegistrationFormActivity" />
+        <activity android:name=".ui.registration.EmailVerificationFormActivity" />
     </application>
 
 </manifest>

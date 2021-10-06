@@ -14,4 +14,10 @@
     <string name="role_fashion_designer_desc">Meet shoppers, sell your unique designed clothes and accessories and take your career or business to the next heights.</string>
     <string name="role_shopper">I\'m a Shopper</string>
     <string name="role_shopper_desc">Find and buy unique collection of clothes or accessories, interact with fashion designers and get customized apparels of your choice.</string>
+    <string name="signup_msg">Signup to continue</string>
+    <string name="label_first_name">First Name</string>
+    <string name="label_last_name">Last Name</string>
+    <string name="label_city">City</string>
+    <string name="btn_next">Next</string>
+    <string name="label_province">Province</string>
 </resources>
