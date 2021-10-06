@@ -1,8 +1,10 @@
 package com.esolution.vastra.ui.registration;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,7 +39,21 @@ public class RegistrationFormActivity extends AppCompatActivity {
             }
         });
 
+        binding.parentLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeKeyboard(RegistrationFormActivity.this);
+            }
+        });
+
         fillAutoCompleteTextView();
+    }
+
+    private void closeKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if(inputMethodManager.isAcceptingText()) {
+            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(),0);
+        }
     }
 
     private void fillAutoCompleteTextView() {

@@ -24,6 +24,7 @@
         android:fillViewport="true">
 
         <LinearLayout
+            android:id="@+id/parentLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -152,6 +153,7 @@
                     style="@style/Vastra.AutoCompleteTextView"
                     android:imeOptions="actionNext"
                     android:completionThreshold="2"
+                    android:maxLength="20"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

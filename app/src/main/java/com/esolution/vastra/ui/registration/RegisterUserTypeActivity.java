@@ -20,6 +20,7 @@ public class RegisterUserTypeActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.btnBack.setOnClickListener((View v) -> {
+            startActivity(new Intent(RegisterUserTypeActivity.this,StartupActivity.class));
             finish();
         });
 
