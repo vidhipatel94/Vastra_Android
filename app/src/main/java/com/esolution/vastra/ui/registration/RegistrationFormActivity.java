@@ -27,7 +27,7 @@ public class RegistrationFormActivity extends AppCompatActivity {
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegistrationFormActivity.this,EmailVerificationFormActivity.class));
+                startActivity(new Intent(RegistrationFormActivity.this, EmailRegistrationActivity.class));
                 finish();
             }
         });
@@ -35,7 +35,8 @@ public class RegistrationFormActivity extends AppCompatActivity {
         binding.btnCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(RegistrationFormActivity.this,EmailVerificationActivity.class));
+                finish();
             }
         });
 

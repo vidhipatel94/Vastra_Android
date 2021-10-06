@@ -5,33 +5,35 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.esolution.vastra.R;
-import com.esolution.vastra.databinding.ActivityEmailVerificationFormBinding;
+import com.esolution.vastra.databinding.ActivityEmailRegistrationBinding;
 
-public class EmailVerificationFormActivity extends AppCompatActivity {
+public class EmailRegistrationActivity extends AppCompatActivity {
 
-    private ActivityEmailVerificationFormBinding binding;
+    private ActivityEmailRegistrationBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityEmailVerificationFormBinding.inflate(getLayoutInflater());
+        binding = ActivityEmailRegistrationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(EmailVerificationFormActivity.this,RegistrationFormActivity.class));
+                if(validation()){
+                    startActivity(new Intent(EmailRegistrationActivity.this,RegistrationFormActivity.class));
+                };
             }
         });
 
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(EmailVerificationFormActivity.this,StartupActivity.class));
+                startActivity(new Intent(EmailRegistrationActivity.this,RegisterUserTypeActivity.class));
                 finish();
             }
         });
@@ -39,7 +41,7 @@ public class EmailVerificationFormActivity extends AppCompatActivity {
         binding.parentLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                closeKeyboard(EmailVerificationFormActivity.this);
+                closeKeyboard(EmailRegistrationActivity.this);
             }
         });
     }
@@ -49,5 +51,13 @@ public class EmailVerificationFormActivity extends AppCompatActivity {
         if(inputMethodManager.isAcceptingText()) {
             inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(),0);
         }
+    }
+
+    private boolean validation() {
+        if(binding.inputEmail.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Email address is mandatory.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }

@@ -24,17 +24,17 @@ public class RegisterUserTypeActivity extends AppCompatActivity {
             finish();
         });
 
-        binding.btnNextFashionDesigner.setOnClickListener(new View.OnClickListener() {
+        binding.layoutFashionDesigner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegisterUserTypeActivity.this,EmailVerificationFormActivity.class));
+                startActivity(new Intent(RegisterUserTypeActivity.this, EmailRegistrationActivity.class));
             }
         });
 
-        binding.btnNextShopper.setOnClickListener(new View.OnClickListener() {
+        binding.layoutShopper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegisterUserTypeActivity.this,EmailVerificationFormActivity.class));
+                startActivity(new Intent(RegisterUserTypeActivity.this, EmailRegistrationActivity.class));
             }
         });
     }
