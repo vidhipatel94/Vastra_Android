@@ -28,5 +28,13 @@ public class StartupActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        binding.btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StartupActivity.this, RegisterUserTypeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

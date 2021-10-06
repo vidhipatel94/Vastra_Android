@@ -20,7 +20,7 @@
     </style>
 
     <style name="Vastra.EditText" parent="Widget.AppCompat.EditText">
-        <item name="android:background">@drawable/bg_edittext</item>
+        <item name="android:background">@drawable/bg_grey_box</item>
         <item name="android:fontFamily">@font/montserrat_medium</item>
         <item name="android:paddingTop">28dp</item>
         <item name="android:textColor">@color/text_primary_black</item>
