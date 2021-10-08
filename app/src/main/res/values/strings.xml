@@ -26,4 +26,9 @@
     <string name="btn_verify"><![CDATA[Verify & Proceed]]></string>
     <string name="link_resend_code">Resend Code</string>
     <string name="link_did_not_received_code">Didn\'t receive code?</string>
+    <string name="label_email_msg">Enter your email</string>
+    <string name="email_confirmation_msg">We will send you a confirmation code</string>
+    <string name="registration_msg">Let us know about you</string>
+    <string name="dialog_province_msg">Select province</string>
+    <string name="ok">Ok</string>
 </resources>

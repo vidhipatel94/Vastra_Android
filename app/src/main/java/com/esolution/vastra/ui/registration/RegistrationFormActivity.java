@@ -1,6 +1,8 @@
 package com.esolution.vastra.ui.registration;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,13 +11,14 @@ import android.widget.ArrayAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.esolution.vastra.R;
 import com.esolution.vastra.databinding.ActivityRegistrationFormBinding;
 
 public class RegistrationFormActivity extends AppCompatActivity {
 
     private ActivityRegistrationFormBinding binding;
-    private static final String[] PROVINCES = new String[] {
-            "Ontario","New Brunswick","Sasketchwan","British Columbia", "Nova Scotia", "Quebec","Alberta"
+    private static final String[] PROVINCES = new String[]{
+            "Ontario", "New Brunswick", "Sasketchwan", "British Columbia", "Nova Scotia", "Quebec", "Alberta"
     };
 
     @Override
@@ -35,7 +38,7 @@ public class RegistrationFormActivity extends AppCompatActivity {
         binding.btnCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegistrationFormActivity.this,EmailVerificationActivity.class));
+                startActivity(new Intent(RegistrationFormActivity.this, EmailVerificationActivity.class));
                 finish();
             }
         });
@@ -47,19 +50,31 @@ public class RegistrationFormActivity extends AppCompatActivity {
             }
         });
 
-        fillAutoCompleteTextView();
+        binding.inputProvince.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openProvinceDialog();
+            }
+        });
+    }
+
+    private void openProvinceDialog() {
+        new AlertDialog.Builder(this)
+                .setSingleChoiceItems(PROVINCES, 0, null)
+                .setTitle(R.string.dialog_province_msg)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                    }
+                }).show();
     }
 
     private void closeKeyboard(Activity activity) {
         InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        if(inputMethodManager.isAcceptingText()) {
-            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(),0);
+        if (inputMethodManager.isAcceptingText()) {
+            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
         }
-    }
-
-    private void fillAutoCompleteTextView() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, PROVINCES);
-        binding.inputProvince.setAdapter(adapter);
     }
 }

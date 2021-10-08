@@ -22,40 +22,33 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5" />
+        android:layout_weight="0.3" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="@string/label_email_verification"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:textColor="@color/primary"
-                android:textSize="32sp" />
-        </LinearLayout>
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center_horizontal"
-            android:text="@string/email_verification_msg"
+            android:layout_marginLeft="2dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/label_email_verification"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/text_primary_black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/montserrat_light"
+            android:text="@string/email_verification_msg"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/text_secondary_black" />
 
         <com.google.android.material.textfield.TextInputLayout
