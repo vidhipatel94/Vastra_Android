@@ -6,17 +6,6 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="@string/get_started"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textColor="@color/text_primary_black"
-        android:textSize="28sp" />
-
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -51,22 +40,12 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/text_secondary_black" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/montserrat_medium"
-            android:text="@string/msg_create_catalogue"
-            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-            android:textColor="@color/text_primary_black" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayoutLastName"
             style="@style/Vastra.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="40dp"
             android:hint="@string/label_catalogue">
 
             <EditText

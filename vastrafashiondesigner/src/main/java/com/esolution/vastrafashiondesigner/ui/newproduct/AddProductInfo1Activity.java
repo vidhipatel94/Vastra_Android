@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.ActivityAddProductInfo1Binding;
-import com.esolution.vastrafashiondesigner.ui.startup.RegisterCreateCatalogueActivity;
 
 public class AddProductInfo1Activity extends AppCompatActivity {
 
@@ -26,6 +25,8 @@ public class AddProductInfo1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAddProductInfo1Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.toolbarLayout.title.setText(R.string.catalogue_name);
 
         binding.inputProductType.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,10 +42,9 @@ public class AddProductInfo1Activity extends AppCompatActivity {
             }
         });
 
-        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+        binding.toolbarLayout.iconBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AddProductInfo1Activity.this, RegisterCreateCatalogueActivity.class));
                 finish();
             }
         });

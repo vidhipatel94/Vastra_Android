@@ -14,4 +14,6 @@
     <color name="text_secondary_black">#9909101d</color>
 
     <color name="bg_edittext">#eef2fa</color>
+
+    <color name="separator">#F1F2F5</color>
 </resources>
