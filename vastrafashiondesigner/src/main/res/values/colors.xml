@@ -15,5 +15,8 @@
 
     <color name="bg_edittext">#eef2fa</color>
 
+    <color name="bg_screen_dark">#eef2fa</color>
+    <color name="icon">#b5b7bb</color>
+
     <color name="separator">#F1F2F5</color>
 </resources>
