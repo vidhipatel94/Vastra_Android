@@ -27,5 +27,6 @@
     <string name="label_product">Product type</string>
     <string name="title_product_alert_dialog">Select product type</string>
     <string name="ok">Ok</string>
+    <string name="label_product_name">Product Name</string>
 
 </resources>
