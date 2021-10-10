@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.esolution.vastra.databinding.ActivityEmailVerificationBinding;
+import com.esolution.vastrafashiondesigner.ui.startup.RegisterCreateCatalogueActivity;
 
 public class EmailVerificationActivity extends AppCompatActivity {
 
@@ -25,8 +26,24 @@ public class EmailVerificationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(validation()){
-                    startActivity(new Intent(EmailVerificationActivity.this,RegistrationFormActivity.class));
+                    startActivity(new Intent(EmailVerificationActivity.this, RegisterCreateCatalogueActivity.class));
+                    finish();
                 };
+            }
+        });
+
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(EmailVerificationActivity.this,RegisterUserTypeActivity.class));
+                finish();
+            }
+        });
+
+        binding.parentLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeKeyboard(EmailVerificationActivity.this);
             }
         });
     }
@@ -37,5 +54,12 @@ public class EmailVerificationActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    private void closeKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if(inputMethodManager.isAcceptingText()) {
+            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(),0);
+        }
     }
 }

@@ -11,12 +11,13 @@
         android:id="@+id/btnBack"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
         android:background="?selectableItemBackground"
         android:padding="8dp"
         android:src="@drawable/ic_back_gray_500_24dp"
-        app:tint="@color/primary" />
+        app:tint="@color/primary"
+        android:contentDescription="@string/btn_back"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -36,7 +37,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
+                android:layout_marginStart="2dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="@string/registration_msg"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
@@ -139,7 +140,7 @@
                     android:singleLine="true"
                     android:paddingTop="20dp"
                     android:paddingBottom="16dp"
-                    android:drawableRight="@drawable/ic_down_arrow_gray_500_24"/>
+                    android:drawableEnd="@drawable/ic_down_arrow_gray_500_24"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

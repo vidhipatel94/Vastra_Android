@@ -5,6 +5,13 @@
     <color name="primary_light">#213b6c</color>
     <color name="accent">#908565</color>
     <color name="accent_dark">#726950</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
+
+    <color name="text_primary_black">#DB09101d</color>
+    <color name="text_secondary_black">#9909101d</color>
+
+    <color name="bg_edittext">#eef2fa</color>
 </resources>

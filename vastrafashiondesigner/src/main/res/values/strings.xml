@@ -3,4 +3,29 @@
     <string name="title_orders">Orders</string>
     <string name="title_products">Products</string>
     <string name="title_profile">Profile</string>
+    <string name="btn_next">Next</string>
+    <string name="get_started">Let&apos;s start by</string>
+    <string name="create_catalogue_msg">A catalogue will have one or more products, will be visible to shoppers to sell them</string>
+    <string name="label_create_catalogue">Creating a catalogue</string>
+    <string name="msg_create_catalogue">Enter title of catalogue</string>
+    <string name="label_catalogue">Catalogue Title</string>
+    <string name="catalogue_name">Catalogue Name</string>
+    <string name="product_desc_msg">What product you are ready to sell?</string>
+    <string name="add_product_msg">Add product into the catalogue.</string>
+    <string name="btn_back">back</string>
+    <string name="que_product_one">* What the product is for?</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="both">Both</string>
+    <string name="que_product_two">* Select age group</string>
+    <string name="kids">Kids</string>
+    <string name="adult">Adult</string>
+    <string name="label_min_age">* Minimum age</string>
+    <string name="label_max_age">* Maximum age</string>
+    <string name="label_age">age</string>
+    <string name="label_product_type">* Select product type</string>
+    <string name="label_product">Product type</string>
+    <string name="title_product_alert_dialog">Select product type</string>
+    <string name="ok">Ok</string>
+
 </resources>
