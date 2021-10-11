@@ -60,5 +60,28 @@
     <string name="btn_done">Done</string>
     <string name="add">Add</string>
     <string name="btn_add_more">Add More</string>
+    <string name="title_add_sizes">Add Sizes</string>
+    <string name="desc_add_sizes">Select all available sizes for this product.</string>
+    <string name="one_size">One size</string>
+    <string name="letter_size">Letter size</string>
+    <string name="size_by_weight">Size by weight (g)</string>
+    <string name="size_by_volume">Size by volume (ml)</string>
+    <string name="custom_size">Custom size</string>
+    <string name="size_xs">XS</string>
+    <string name="size_s">S</string>
+    <string name="size_m">M</string>
+    <string name="size_l">L</string>
+    <string name="size_xl">XL</string>
+    <string name="size_2xl">2XL</string>
+    <string name="size_3xl">3XL</string>
+    <string name="size_4xl">4XL</string>
+    <string name="size_5xl">5XL</string>
+    <string name="size_6xl">6XL</string>
+    <string name="size_7xl">7XL</string>
+    <string name="size_8xl">8XL</string>
+    <string name="size_9xl">9XL</string>
+    <string name="hint_weight">Enter weight (g)</string>
+    <string name="hint_volume">Enter volume (ml)</string>
+    <string name="hint_custom_size">Enter custom size</string>
 
 </resources>

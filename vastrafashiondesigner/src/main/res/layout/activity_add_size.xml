@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_screen_dark"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/layout_toolbar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_medium"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        android:text="@string/desc_add_sizes"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:textColor="@color/text_primary_black" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
+
+                <RadioButton
+                    android:id="@+id/radioOneSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:paddingStart="8dp"
+                    android:text="@string/one_size"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
+
+                <RadioButton
+                    android:id="@+id/radioLetterSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:paddingStart="8dp"
+                    android:text="@string/letter_size"
+                    android:textSize="16sp" />
+
+                <GridLayout
+                    android:id="@+id/letterSizeOptionsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:columnCount="2"
+                    android:paddingBottom="8dp"
+                    android:visibility="gone">
+
+                    <CheckBox
+                        android:id="@+id/cbSizeXS"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="@string/size_xs" />
+
+                    <CheckBox
+                        android:id="@+id/cbSizeS"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="@string/size_s" />
+
+                    <CheckBox
+                        android:id="@+id/cbSizeM"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="@string/size_m" />
+
+                    <CheckBox
+                        android:id="@+id/cbSizeL"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="@string/size_l" />
+
+                    <CheckBox
+                        android:id="@+id/cbSizeXL"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="@string/size_xl" />
+
+                    <CheckBox
+                        android:id="@+id/cbSize2XL"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="@string/size_2xl" />
+
+                    <CheckBox
+                        android:id="@+id/cbSize3XL"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="@string/size_3xl" />
+
+                    <CheckBox
+                        android:id="@+id/cbSize4XL"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="@string/size_4xl" />
+
+                    <CheckBox
+                        android:id="@+id/cbSize5XL"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="@string/size_5xl" />
+
+                    <CheckBox
+                        android:id="@+id/cbSize6XL"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="@string/size_6xl" />
+
+                    <CheckBox
+                        android:id="@+id/cbSize7XL"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="@string/size_7xl" />
+
+                    <CheckBox
+                        android:id="@+id/cbSize8XL"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="@string/size_8xl" />
+
+                    <CheckBox
+                        android:id="@+id/cbSize9XL"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:text="@string/size_9xl" />
+                </GridLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
+
+                <RadioButton
+                    android:id="@+id/radioSizeByWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:paddingStart="8dp"
+                    android:text="@string/size_by_weight"
+                    android:textSize="16sp" />
+
+                <include
+                    android:id="@+id/layoutSizeByWeight1"
+                    layout="@layout/row_add_product_size"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/layoutAddSizeByWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:orientation="vertical"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/btnAddMoreSizeWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="?selectableItemBackground"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/btn_add_more"
+                    android:textAllCaps="true"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
+
+                <RadioButton
+                    android:id="@+id/radioSizeByVolume"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:paddingStart="8dp"
+                    android:text="@string/size_by_volume"
+                    android:textSize="16sp" />
+
+                <include
+                    android:id="@+id/layoutSizeByVolume1"
+                    layout="@layout/row_add_product_size"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/layoutAddSizeByVolume"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:orientation="vertical"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/btnAddMoreSizeVolume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="?selectableItemBackground"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/btn_add_more"
+                    android:textAllCaps="true"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
+
+                <RadioButton
+                    android:id="@+id/radioCustomSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:paddingStart="8dp"
+                    android:text="@string/custom_size"
+                    android:textSize="16sp" />
+
+                <include
+                    android:id="@+id/layoutCustomSize1"
+                    layout="@layout/row_add_product_size"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/layoutAddCustomSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:orientation="vertical"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/btnAddMoreCustomSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="?selectableItemBackground"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/btn_add_more"
+                    android:textAllCaps="true"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <android.widget.Button
+        android:id="@+id/btnNext"
+        style="@style/Vastra.Button.Filled"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/btn_next" />
+</LinearLayout>

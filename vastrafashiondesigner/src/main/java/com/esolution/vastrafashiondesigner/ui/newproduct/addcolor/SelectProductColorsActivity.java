@@ -14,6 +14,7 @@ import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.ActivitySelectProductColorsBinding;
 import com.esolution.vastrafashiondesigner.databinding.LayoutToolbarMenuItemBinding;
 import com.esolution.vastrafashiondesigner.databinding.LayoutToolbarMenuItemTextBinding;
+import com.esolution.vastrafashiondesigner.ui.newproduct.addsize.AddSizeActivity;
 
 public class SelectProductColorsActivity extends AppCompatActivity {
 
@@ -33,6 +34,11 @@ public class SelectProductColorsActivity extends AppCompatActivity {
 
         binding.btnAdd.setOnClickListener((v) -> {
             Intent intent = new Intent(SelectProductColorsActivity.this, SelectColorActivity.class);
+            startActivity(intent);
+        });
+
+        binding.btnNext.setOnClickListener((v) -> {
+            Intent intent = new Intent(SelectProductColorsActivity.this, AddSizeActivity.class);
             startActivity(intent);
         });
     }

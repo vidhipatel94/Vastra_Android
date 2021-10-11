@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="40dp"
+    android:paddingBottom="8dp">
+
+    <EditText
+        android:id="@+id/inputBox"
+        style="@style/Vastra.EditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:imeOptions="actionDone"
+        android:maxLength="8"
+        android:padding="12dp"
+        android:singleLine="true" />
+
+    <ImageView
+        android:id="@+id/iconDelete"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:background="?selectableItemBackground"
+        android:padding="4dp"
+        android:src="@drawable/ic_close_grey_500_24dp"
+        app:tint="@color/icon" />
+</LinearLayout>
