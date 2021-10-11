@@ -6,11 +6,14 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.ActivitySelectProductColorsBinding;
+import com.esolution.vastrafashiondesigner.databinding.LayoutToolbarMenuItemBinding;
+import com.esolution.vastrafashiondesigner.databinding.LayoutToolbarMenuItemTextBinding;
 
 public class SelectProductColorsActivity extends AppCompatActivity {
 
@@ -22,19 +25,20 @@ public class SelectProductColorsActivity extends AppCompatActivity {
         binding = ActivitySelectProductColorsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.toolbarLayout.iconBack.setOnClickListener((view) -> onBackPressed());
-        binding.toolbarLayout.title.setText(R.string.title_available_Colors);
+        setToolbarLayout();
 
         ProductColorAdapter adapter = new ProductColorAdapter();
         binding.colorsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.colorsRecyclerView.setAdapter(adapter);
 
-        binding.btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SelectProductColorsActivity.this, SelectColorActivity.class);
-                startActivity(intent);
-            }
+        binding.btnAdd.setOnClickListener((v) -> {
+            Intent intent = new Intent(SelectProductColorsActivity.this, SelectColorActivity.class);
+            startActivity(intent);
         });
+    }
+
+    private void setToolbarLayout() {
+        binding.toolbarLayout.iconBack.setOnClickListener((view) -> onBackPressed());
+        binding.toolbarLayout.title.setText(R.string.title_available_colors);
     }
 }

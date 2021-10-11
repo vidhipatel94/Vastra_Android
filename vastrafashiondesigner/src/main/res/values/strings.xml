@@ -26,7 +26,8 @@
     <string name="label_product">Product type</string>
     <string name="ok">Ok</string>
     <string name="label_product_name">Product Name</string>
-    <string name="title_available_Colors">Available Product Colors</string>
+    <string name="title_available_colors">Product Colors</string>
+    <string name="desc_available_colors">Select all available colors for this product.</string>
     <string name="label_product_title">Product Title</string>
     <string name="label_product_price">Price (CAD)</string>
     <string name="label_product_multipack_set">Qty</string>
@@ -57,5 +58,7 @@
     <string name="title_secondary_color">Select Secondary Color</string>
     <string name="title_tertiary_color">Select Tertiary Color</string>
     <string name="btn_done">Done</string>
+    <string name="add">Add</string>
+    <string name="btn_add_more">Add More</string>
 
 </resources>
