@@ -181,7 +181,7 @@
                     android:cursorVisible="false"
                     android:drawableEnd="@drawable/ic_down_arrow_gray_500_24"
                     android:focusable="false"
-                    android:imeOptions="actionNext"
+                    android:imeOptions="actionDone"
                     android:paddingTop="20dp"
                     android:paddingBottom="16dp"
                     android:singleLine="true" />

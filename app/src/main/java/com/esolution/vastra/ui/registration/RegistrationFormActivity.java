@@ -67,6 +67,7 @@ public class RegistrationFormActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                        binding.inputProvince.setText(PROVINCES[selectedPosition]);
                     }
                 }).show();
     }

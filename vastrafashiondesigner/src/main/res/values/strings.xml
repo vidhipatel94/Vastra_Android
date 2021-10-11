@@ -24,9 +24,34 @@
     <string name="label_age">age</string>
     <string name="label_product_type">Select product type</string>
     <string name="label_product">Product type</string>
-    <string name="title_product_alert_dialog">Select product type</string>
     <string name="ok">Ok</string>
     <string name="label_product_name">Product Name</string>
     <string name="title_available_Colors">Available Product Colors</string>
+    <string name="label_product_title">Product Title</string>
+    <string name="label_product_price">Price (CAD)</string>
+    <string name="label_product_multipack_set">Qty</string>
+    <string name="label_product_weight">Weight (lb)</string>
+    <string name="label_product_material">Material</string>
+    <string name="label_product_percentage">Percentage</string>
+    <string name="link_add_more">Add more</string>
+    <string name="label_occassion">Occasion</string>
+    <string name="label_pattern">Pattern</string>
+    <string name="label_select_season">Select season</string>
+    <string name="season_winter">Winter</string>
+    <string name="season_spring">Spring</string>
+    <string name="season_summer">Summer</string>
+    <string name="season_fall">Fall</string>
+    <string name="label_wash_care">Wash care</string>
+    <string name="label_trend">Trend</string>
+    <string name="knit">Knit</string>
+    <string name="woven">Woven</string>
+    <string name="btn_decrement">-</string>
+    <string name="btn_increment">+</string>
+    <string name="label_select_qty">Select quantity</string>
+    <string name="label_one">1</string>
+    <string name="select_occassion">Select occassion</string>
+    <string name="select_pattern">Select pattern</string>
+    <string name="select_province">Select Province</string>
+    <string name="select_washcare">Select Washcare</string>
 
 </resources>

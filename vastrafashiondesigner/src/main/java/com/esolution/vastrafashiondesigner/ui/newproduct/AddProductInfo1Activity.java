@@ -31,7 +31,7 @@ public class AddProductInfo1Activity extends AppCompatActivity {
         binding.inputProductType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openProvinceDialog();
+                openProductTypesDialog();
             }
         });
 
@@ -57,15 +57,16 @@ public class AddProductInfo1Activity extends AppCompatActivity {
         });
     }
 
-    private void openProvinceDialog() {
+    private void openProductTypesDialog() {
         new AlertDialog.Builder(this)
                 .setSingleChoiceItems(PRODUCT_TYPES, 0, null)
-                .setTitle(R.string.title_product_alert_dialog)
+                .setTitle(R.string.label_product_type)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                        binding.inputProductType.setText(PRODUCT_TYPES[selectedPosition]);
                     }
                 }).show();
     }

@@ -13,6 +13,7 @@
         <activity android:name=".ui.newproduct.AddProductInfo1Activity" />
         <activity android:name=".ui.newproduct.AddProductInfo2Activity" />
         <activity android:name=".ui.newproduct.AddProductInfo3Activity" />
+        <activity android:name=".ui.newproduct.AddProductImagesActivity" />
         <activity android:name=".ui.newproduct.addcolor.SelectProductColorsActivity" />
         <activity android:name=".ui.newproduct.AddProductSizeActivity" />
         <activity android:name=".ui.newproduct.AddProductInventoryActivity" />

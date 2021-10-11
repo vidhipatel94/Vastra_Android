@@ -1,7 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/layout_toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/parentLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="24dp"
+            android:paddingTop="16dp"
+            android:paddingRight="24dp"
+            android:paddingBottom="20dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayoutProductTitle"
+                style="@style/Vastra.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_product_title">
+
+                <EditText
+                    android:id="@+id/inputProductTitle"
+                    style="@style/Vastra.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:imeOptions="actionNext"
+                    android:maxLength="50"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayoutOccassion"
+                style="@style/Vastra.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:hint="@string/label_occassion">
+
+                <EditText
+                    android:id="@+id/inputOccassion"
+                    style="@style/Vastra.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:drawableEnd="@drawable/ic_down_arrow_gray_500_24"
+                    android:focusable="false"
+                    android:imeOptions="actionNext"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="16dp"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/label_select_season"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/text_primary_black" />
+
+            <TableLayout
+                android:id="@+id/selectSeasonTableLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TableRow
+                    android:id="@+id/firstRow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:id="@+id/chk_winter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/primary_dark"
+                        android:fontFamily="@font/montserrat_light"
+                        android:text="@string/season_winter" />
+
+                    <CheckBox
+                        android:id="@+id/chk_spring"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/primary_dark"
+                        android:fontFamily="@font/montserrat_light"
+                        android:text="@string/season_spring" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/secondRow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:id="@+id/chk_summer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/primary_dark"
+                        android:fontFamily="@font/montserrat_light"
+                        android:text="@string/season_summer" />
+
+                    <CheckBox
+                        android:id="@+id/chk_fall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/primary_dark"
+                        android:fontFamily="@font/montserrat_light"
+                        android:text="@string/season_fall" />
+
+                </TableRow>
+
+            </TableLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayoutPattern"
+                style="@style/Vastra.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/label_pattern">
+
+                <EditText
+                    android:id="@+id/inputPattern"
+                    style="@style/Vastra.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:drawableEnd="@drawable/ic_down_arrow_gray_500_24"
+                    android:focusable="false"
+                    android:imeOptions="actionNext"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="16dp"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <RadioGroup
+                android:id="@+id/rg_pattern"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/rb_knit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/primary_dark"
+                    android:fontFamily="@font/montserrat_light"
+                    android:text="@string/knit" />
+
+                <RadioButton
+                    android:id="@+id/rb_woven"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/primary_dark"
+                    android:fontFamily="@font/montserrat_light"
+                    android:text="@string/woven" />
+
+            </RadioGroup>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayoutWashCare"
+                style="@style/Vastra.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/label_wash_care">
+
+                <EditText
+                    android:id="@+id/inputWashCare"
+                    style="@style/Vastra.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:drawableEnd="@drawable/ic_down_arrow_gray_500_24"
+                    android:focusable="false"
+                    android:imeOptions="actionNext"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="16dp"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayoutTrend"
+                style="@style/Vastra.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:hint="@string/label_trend">
+
+                <EditText
+                    android:id="@+id/inputTrend"
+                    style="@style/Vastra.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:maxLength="50"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <android.widget.Button
+                android:id="@+id/btnNext"
+                style="@style/Vastra.Button.Filled"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:text="@string/btn_next" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
