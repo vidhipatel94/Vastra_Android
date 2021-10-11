@@ -17,6 +17,7 @@
 
     <color name="bg_screen_dark">#eef2fa</color>
     <color name="icon">#b5b7bb</color>
+    <color name="icon_light">#eeefef</color>
 
     <color name="separator">#F1F2F5</color>
 </resources>

@@ -83,5 +83,23 @@
     <string name="hint_weight">Enter weight (g)</string>
     <string name="hint_volume">Enter volume (ml)</string>
     <string name="hint_custom_size">Enter custom size</string>
+    <string name="title_product_sizes">Product Sizes</string>
+    <string name="desc_product_sizes_1">Fill this size chart</string>
+    <string name="desc_product_sizes_2">Enter all applicable measurements of all available sizes of the product.</string>
+    <string name="label_US_size">US Size</string>
+    <string name="label_head_circumference">Head Circumference</string>
+    <string name="label_neck">Neck</string>
+    <string name="label_bust">Bust</string>
+    <string name="label_waist">Waist</string>
+    <string name="label_hip">Hip</string>
+    <string name="label_inseam_length">Inseam Length</string>
+    <string name="label_outseam_length">Outseam Length</string>
+    <string name="label_sleeve_length">Sleeve Length</string>
+    <string name="label_wrist">Wrist</string>
+    <string name="label_foot_length">Foot Length</string>
+    <string name="label_front_length">Front Length</string>
+    <string name="label_back_length">Back Length</string>
+    <string name="label_width">Width</string>
+    <string name="btn_update_sizes">Edit Sizes</string>
 
 </resources>

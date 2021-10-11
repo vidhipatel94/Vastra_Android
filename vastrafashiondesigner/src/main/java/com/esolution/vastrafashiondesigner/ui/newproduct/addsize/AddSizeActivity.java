@@ -1,5 +1,7 @@
 package com.esolution.vastrafashiondesigner.ui.newproduct.addsize;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -12,6 +14,11 @@ import com.esolution.vastrafashiondesigner.databinding.ActivityAddSizeBinding;
 import com.esolution.vastrafashiondesigner.databinding.RowAddProductSizeBinding;
 
 public class AddSizeActivity extends AppCompatActivity {
+
+    public static Intent createIntent(Context context) {
+        Intent intent = new Intent(context, AddSizeActivity.class);
+        return intent;
+    }
 
     private ActivityAddSizeBinding binding;
 
@@ -28,6 +35,10 @@ public class AddSizeActivity extends AppCompatActivity {
         setSizeByWeightLayout();
         setSizeByVolumeLayout();
         setCustomSizeLayout();
+
+        binding.btnDone.setOnClickListener((v) -> {
+            finish();
+        });
     }
 
     private void setToolbarLayout() {
