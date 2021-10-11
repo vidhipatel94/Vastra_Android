@@ -54,5 +54,8 @@
     <string name="select_province">Select Province</string>
     <string name="select_washcare">Select Washcare</string>
     <string name="title_prominent_color">Select Prominent Color</string>
+    <string name="title_secondary_color">Select Secondary Color</string>
+    <string name="title_tertiary_color">Select Tertiary Color</string>
+    <string name="btn_done">Done</string>
 
 </resources>
