@@ -2,9 +2,14 @@ package com.esolution.vastrafashiondesigner.ui.newproduct;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -54,7 +59,7 @@ public class AddProductInfo2Activity extends AppCompatActivity {
         binding.linkAddMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO
+                binding.addMoreLinearLayout.addView(getLayoutInflater().inflate(R.layout.row_add_product_material,null,false));
             }
         });
     }

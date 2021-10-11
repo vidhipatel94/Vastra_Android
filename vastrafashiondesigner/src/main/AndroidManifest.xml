@@ -11,13 +11,17 @@
         <activity android:name=".ui.startup.RegisterCreateCatalogueActivity" />
         <activity android:name=".ui.newproduct.SelectProductTypeActivity" />
         <activity android:name=".ui.newproduct.AddProductInfo1Activity" />
-        <activity android:name=".ui.newproduct.AddProductInfo2Activity" />
+        <activity android:name=".ui.newproduct.AddProductInfo2Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.newproduct.AddProductInfo3Activity" />
         <activity android:name=".ui.newproduct.AddProductImagesActivity" />
         <activity android:name=".ui.newproduct.addcolor.SelectProductColorsActivity" />
         <activity android:name=".ui.newproduct.addcolor.SelectColorActivity" />
         <activity android:name=".ui.newproduct.AddProductSizeActivity" />
         <activity android:name=".ui.newproduct.AddProductInventoryActivity" />
-
     </application>
 </manifest>
