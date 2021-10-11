@@ -53,5 +53,6 @@
     <string name="select_pattern">Select pattern</string>
     <string name="select_province">Select Province</string>
     <string name="select_washcare">Select Washcare</string>
+    <string name="title_prominent_color">Select Prominent Color</string>
 
 </resources>

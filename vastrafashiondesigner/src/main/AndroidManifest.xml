@@ -15,6 +15,7 @@
         <activity android:name=".ui.newproduct.AddProductInfo3Activity" />
         <activity android:name=".ui.newproduct.AddProductImagesActivity" />
         <activity android:name=".ui.newproduct.addcolor.SelectProductColorsActivity" />
+        <activity android:name=".ui.newproduct.addcolor.SelectColorActivity" />
         <activity android:name=".ui.newproduct.AddProductSizeActivity" />
         <activity android:name=".ui.newproduct.AddProductInventoryActivity" />
 
