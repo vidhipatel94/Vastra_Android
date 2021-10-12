@@ -101,5 +101,10 @@
     <string name="label_back_length">Back Length</string>
     <string name="label_width">Width</string>
     <string name="btn_update_sizes">Edit Sizes</string>
+    <string name="fix_size">Fix size</string>
+    <string name="fix_size_hint">Enter size in inches</string>
+    <string name="size_range">Size range</string>
+    <string name="min_size_hint">Min size in inches</string>
+    <string name="max_size_hint">Max size in inches</string>
 
 </resources>

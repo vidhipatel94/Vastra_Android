@@ -2,10 +2,14 @@ package com.esolution.vastrafashiondesigner.ui.newproduct.addsize;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.ActivityProductSizesBinding;
@@ -19,7 +23,7 @@ public class ProductSizesActivity extends AppCompatActivity {
     private ActivityProductSizesBinding binding;
     private final int totalParameters = 14;
 
-    private int totalSizes = 5;
+    private ArrayList<String> sizes;
 
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -41,7 +45,7 @@ public class ProductSizesActivity extends AppCompatActivity {
     }
 
     private void setSizesTitleLayout() {
-        ArrayList<String> sizes = new ArrayList<>();
+        sizes = new ArrayList<>();
         sizes.add("");
         sizes.add("S");
         sizes.add("M");
@@ -77,7 +81,7 @@ public class ProductSizesActivity extends AppCompatActivity {
 
         // totalColumn = list.size() =  14
 
-        for (int i = 0; i < (totalSizes - 2) * totalParameters; i++) {
+        for (int i = 0; i < (sizes.size() - 3) * totalParameters; i++) {
             list.add("888.88\" - 888.88\"");
         }
         for (int i = 0; i < totalParameters * 2; i++) {
@@ -86,6 +90,27 @@ public class ProductSizesActivity extends AppCompatActivity {
 
         SizeAdapter adapter = new SizeAdapter(list, totalParameters);
         binding.gridView.setAdapter(adapter);
+
+        binding.gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position < totalParameters) {
+                    return;
+                }
+
+                int column = position % totalParameters;
+                String parameter = list.get(column);
+
+                int row = (int) Math.floor(position / (float) totalParameters);
+                String size = sizes.get(row);
+
+                Log.d("------", "onItemClick: "+ parameter + " - "+size);
+
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                SizeMeasurementDialog dialog = SizeMeasurementDialog.newInstance(parameter, size);
+                dialog.show(fragmentManager, SizeMeasurementDialog.class.getName());
+            }
+        });
     }
 
     private void onClickEditSizes() {

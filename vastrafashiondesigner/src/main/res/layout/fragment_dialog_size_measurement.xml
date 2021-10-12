@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/text_primary_black"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/radioFixSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:paddingStart="8dp"
+            android:text="@string/fix_size"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/inputFixSize"
+            style="@style/Vastra.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/fix_size_hint"
+            android:imeOptions="actionDone"
+            android:maxLength="8"
+            android:padding="12dp"
+            android:singleLine="true"
+            android:visibility="gone" />
+
+        <RadioButton
+            android:id="@+id/radioSizeRange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:fontFamily="@font/montserrat_medium"
+            android:paddingStart="8dp"
+            android:text="@string/size_range"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/inputMinSize"
+            style="@style/Vastra.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:hint="@string/min_size_hint"
+            android:imeOptions="actionDone"
+            android:maxLength="8"
+            android:padding="12dp"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/inputMaxSize"
+            style="@style/Vastra.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/max_size_hint"
+            android:imeOptions="actionDone"
+            android:maxLength="8"
+            android:padding="12dp"
+            android:singleLine="true" />
+
+        <android.widget.Button
+            android:id="@+id/btnDone"
+            style="@style/Vastra.Button.Outline"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/btn_done" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iconClose"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="4dp"
+        android:background="?selectableItemBackground"
+        android:padding="6dp"
+        android:src="@drawable/ic_close_grey_500_24dp"
+        app:tint="@color/primary_dark" />
+</FrameLayout>
