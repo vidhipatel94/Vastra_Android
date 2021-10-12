@@ -1,34 +1,40 @@
 package com.esolution.vastrafashiondesigner.ui.newproduct.addsize;
 
-import android.content.Context;
-import android.content.Intent;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.CompoundButton;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
 
 import com.esolution.vastrafashiondesigner.R;
-import com.esolution.vastrafashiondesigner.databinding.ActivityAddSizeBinding;
+import com.esolution.vastrafashiondesigner.databinding.FragmentDialogAddSizesBinding;
 import com.esolution.vastrafashiondesigner.databinding.RowAddProductSizeBinding;
 
-public class AddSizeActivity extends AppCompatActivity {
+import org.jetbrains.annotations.NotNull;
 
-    public static Intent createIntent(Context context) {
-        Intent intent = new Intent(context, AddSizeActivity.class);
-        return intent;
+public class AddSizesDialog extends DialogFragment {
+
+    private FragmentDialogAddSizesBinding binding;
+
+    @NotNull
+    @Override
+    public Dialog onCreateDialog(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        binding = FragmentDialogAddSizesBinding.inflate(getLayoutInflater());
+        initView();
+        AlertDialog alertDialog = new AlertDialog.Builder(requireActivity())
+                .setView(binding.getRoot())
+                .create();
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        return alertDialog;
     }
 
-    private ActivityAddSizeBinding binding;
-
-    @Override
-    protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActivityAddSizeBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        setToolbarLayout();
+    private void initView() {
+        binding.iconClose.setOnClickListener((v) -> dismiss());
 
         setAllRadioButtonsUI();
 
@@ -37,13 +43,8 @@ public class AddSizeActivity extends AppCompatActivity {
         setCustomSizeLayout();
 
         binding.btnDone.setOnClickListener((v) -> {
-            finish();
+            dismiss();
         });
-    }
-
-    private void setToolbarLayout() {
-        binding.toolbarLayout.iconBack.setOnClickListener((view) -> onBackPressed());
-        binding.toolbarLayout.title.setText(R.string.title_add_sizes);
     }
 
     private void setAllRadioButtonsUI() {

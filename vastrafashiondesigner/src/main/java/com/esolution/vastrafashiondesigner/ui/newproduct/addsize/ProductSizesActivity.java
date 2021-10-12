@@ -1,6 +1,5 @@
 package com.esolution.vastrafashiondesigner.ui.newproduct.addsize;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -141,7 +140,8 @@ public class ProductSizesActivity extends AppCompatActivity {
     }
 
     private void onClickEditSizes() {
-        Intent intent = AddSizeActivity.createIntent(this);
-        startActivity(intent);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        AddSizesDialog dialog = new AddSizesDialog();
+        dialog.show(fragmentManager, AddSizesDialog.class.getName());
     }
 }

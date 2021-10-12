@@ -23,7 +23,6 @@
         <activity android:name=".ui.newproduct.addcolor.SelectColorActivity" />
         <activity android:name=".ui.newproduct.AddProductSizeActivity" />
         <activity android:name=".ui.newproduct.AddProductInventoryActivity" />
-        <activity android:name=".ui.newproduct.addsize.AddSizeActivity" />
         <activity android:name=".ui.newproduct.addsize.ProductSizesActivity" />
     </application>
 </manifest>

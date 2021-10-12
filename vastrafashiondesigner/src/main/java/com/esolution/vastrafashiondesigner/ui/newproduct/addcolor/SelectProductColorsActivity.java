@@ -2,19 +2,13 @@ package com.esolution.vastrafashiondesigner.ui.newproduct.addcolor;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.ActivitySelectProductColorsBinding;
-import com.esolution.vastrafashiondesigner.databinding.LayoutToolbarMenuItemBinding;
-import com.esolution.vastrafashiondesigner.databinding.LayoutToolbarMenuItemTextBinding;
-import com.esolution.vastrafashiondesigner.ui.newproduct.addsize.AddSizeActivity;
 import com.esolution.vastrafashiondesigner.ui.newproduct.addsize.ProductSizesActivity;
 
 public class SelectProductColorsActivity extends AppCompatActivity {
