@@ -2,7 +2,6 @@ package com.esolution.vastrafashiondesigner.ui.newproduct.addsize;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,7 +12,6 @@ import androidx.fragment.app.FragmentManager;
 
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.ActivityProductSizesBinding;
-import com.esolution.vastrafashiondesigner.databinding.GridSizeMeasurementBinding;
 import com.esolution.vastrafashiondesigner.databinding.ListSizeTitleBinding;
 
 import java.util.ArrayList;
@@ -32,6 +30,8 @@ public class ProductSizesActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setToolbarLayout();
+
+        openSelectPrevAddedSizesDialog();
 
         setSizesTitleLayout();
         setGridLayout();
@@ -104,13 +104,40 @@ public class ProductSizesActivity extends AppCompatActivity {
                 int row = (int) Math.floor(position / (float) totalParameters);
                 String size = sizes.get(row);
 
-                Log.d("------", "onItemClick: "+ parameter + " - "+size);
-
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 SizeMeasurementDialog dialog = SizeMeasurementDialog.newInstance(parameter, size);
                 dialog.show(fragmentManager, SizeMeasurementDialog.class.getName());
             }
         });
+    }
+
+    private void openSelectPrevAddedSizesDialog() {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Title 1");
+        list.add("Title 2");
+        list.add("Title 3");
+        list.add("Title 4");
+        list.add("Title 5");
+        list.add("Title 6");
+        list.add("Title 7");
+        list.add("Title 8");
+        list.add("Title 9");
+        list.add("Title 10");
+        list.add("Title 11");
+        list.add("Title 12");
+        list.add("Title 13");
+        list.add("Title 14");
+        list.add("Title 15");
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        SelectPrevAddedSizesDialog dialog = SelectPrevAddedSizesDialog.newInstance(list,
+                new SelectPrevAddedSizesDialog.PrevAddedSizesListener() {
+            @Override
+            public void onClickAddCustomSizes() {
+                onClickEditSizes();
+            }
+        });
+        dialog.show(fragmentManager, SelectPrevAddedSizesDialog.class.getName());
     }
 
     private void onClickEditSizes() {

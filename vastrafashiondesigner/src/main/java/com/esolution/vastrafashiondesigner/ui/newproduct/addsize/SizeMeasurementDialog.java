@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
@@ -47,9 +48,11 @@ public class SizeMeasurementDialog extends DialogFragment {
         binding = FragmentDialogSizeMeasurementBinding.inflate(getLayoutInflater());
         binding.title.setText(parameter + " - " + size);
         initView();
-        return new AlertDialog.Builder(requireActivity())
+        AlertDialog alertDialog = new AlertDialog.Builder(requireActivity())
                 .setView(binding.getRoot())
                 .create();
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        return alertDialog;
     }
 
     private void initView() {

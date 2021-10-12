@@ -55,4 +55,15 @@
         <item name="android:fontFamily">@font/montserrat_medium</item>
     </style>
 
+    <style name="Vastra.AlertDialog" parent="@android:style/Theme.Material.Light.Dialog.Alert">
+        <item name="buttonBarPositiveButtonStyle">@style/Vastra.AlertDialog.Button</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Vastra.AlertDialog.Button</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Vastra.AlertDialog.Button</item>
+    </style>
+
+    <style name="Vastra.AlertDialog.Button" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/accent_dark</item>
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+    </style>
+
 </resources>

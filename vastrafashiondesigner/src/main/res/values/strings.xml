@@ -117,4 +117,7 @@
     <string name="cancel">Cancel</string>
     <string name="gallery_access_msg">Please allow access to Vastra for upload an image from Gallary.</string>
     <string name="gallery_permission_title">"Media permission is required in order to provide photo upload feature. "</string>
+    <string name="btn_add_custom_sizes">Add Custom Sizes</string>
+    <string name="title_select_prev_addded_sizes">Select sizes from previously added products</string>
+
 </resources>
