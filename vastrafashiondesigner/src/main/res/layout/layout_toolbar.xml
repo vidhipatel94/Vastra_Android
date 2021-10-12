@@ -27,7 +27,8 @@
                 android:layout_marginStart="12dp"
                 android:padding="6dp"
                 android:src="@drawable/ic_back_gray_500_24dp"
-                app:tint="@color/primary_dark" />
+                app:tint="@color/primary_dark"
+                android:contentDescription="@string/btn_back"/>
 
             <TextView
                 android:id="@+id/title"

@@ -106,5 +106,15 @@
     <string name="size_range">Size range</string>
     <string name="min_size_hint">Min size in inches</string>
     <string name="max_size_hint">Max size in inches</string>
-
+    <string name="label_description">Description</string>
+    <string name="label_product_images">Upload product images</string>
+    <string name="add_image">Image</string>
+    <string name="image_1">Image1</string>
+    <string name="image_2">Image2</string>
+    <string name="image_3">Image3</string>
+    <string name="btn_add">Add</string>
+    <string name="select_photo_option">Select Options</string>
+    <string name="cancel">Cancel</string>
+    <string name="gallery_access_msg">Please allow access to Vastra for upload an image from Gallary.</string>
+    <string name="gallery_permission_title">"Media permission is required in order to provide photo upload feature. "</string>
 </resources>

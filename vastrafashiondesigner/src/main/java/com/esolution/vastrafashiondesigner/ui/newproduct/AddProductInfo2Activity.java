@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.ActivityAddProductInfo2Binding;
+import com.esolution.vastrafashiondesigner.databinding.RowAddProductMaterialBinding;
 
 public class AddProductInfo2Activity extends AppCompatActivity {
 
@@ -59,7 +60,12 @@ public class AddProductInfo2Activity extends AppCompatActivity {
         binding.linkAddMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.addMoreLinearLayout.addView(getLayoutInflater().inflate(R.layout.row_add_product_material,null,false));
+                RowAddProductMaterialBinding materialBinding = RowAddProductMaterialBinding.inflate(getLayoutInflater());
+                binding.addMoreLinearLayout.addView(materialBinding.getRoot());
+
+                materialBinding.iconDelete.setOnClickListener((v1)-> {
+                    binding.addMoreLinearLayout.removeView(materialBinding.getRoot());
+                });
             }
         });
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/addMoreMaterialRow"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -9,7 +10,7 @@
         android:id="@+id/inputLayoutProductMaterial"
         style="@style/Vastra.TextInputLayout"
         android:layout_width="0dp"
-        android:layout_weight="0.7"
+        android:layout_weight="0.5"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:hint="@string/label_product_material">
@@ -30,7 +31,7 @@
         android:id="@+id/inputLayoutProductPercentage"
         style="@style/Vastra.TextInputLayout"
         android:layout_width="wrap_content"
-        android:layout_weight="0.3"
+        android:layout_weight="0.2"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
@@ -47,4 +48,15 @@
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ImageView
+        android:id="@+id/iconDelete"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:background="?selectableItemBackground"
+        android:layout_marginTop="12dp"
+        android:padding="4dp"
+        android:src="@drawable/ic_close_grey_500_24dp"
+        app:tint="@color/icon" />
 </LinearLayout>
