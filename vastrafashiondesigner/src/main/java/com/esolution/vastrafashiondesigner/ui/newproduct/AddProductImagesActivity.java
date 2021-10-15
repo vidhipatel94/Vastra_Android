@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ import androidx.core.content.ContextCompat;
 
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.ActivityAddProductImagesBinding;
+import com.esolution.vastrafashiondesigner.databinding.RowAddProductImageBinding;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -76,6 +78,21 @@ public class AddProductImagesActivity extends AppCompatActivity {
             }
         });
 
+        binding.productImage2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chooseImage();
+            }
+        });
+
+        binding.productImage3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chooseImage();
+            }
+        });
+
+
         binding.parentLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,8 +112,7 @@ public class AddProductImagesActivity extends AppCompatActivity {
     }
 
     private void chooseImage() {
-        final String[] pictureOptions = new String[]{"Choose from Gallary"};
-        openPictureOptionsDialog(pictureOptions);
+        openPictureOptionsDialog();
     }
 
     @Override
@@ -123,37 +139,20 @@ public class AddProductImagesActivity extends AppCompatActivity {
                 }).show();
     }
 
-    private void openPictureOptionsDialog(String[] options) {
-        new AlertDialog.Builder(AddProductImagesActivity.this)
-                .setTitle(R.string.select_photo_option)
-                .setSingleChoiceItems(options, 0, null)
-                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                        if (selectedPosition == 0) {
-                            if (ContextCompat.checkSelfPermission(AddProductImagesActivity.this,
-                                    Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                                activityResultLauncherGallery.launch(intent);
-                            } else if (ActivityCompat.shouldShowRequestPermissionRationale(AddProductImagesActivity.this,
-                                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                                Toast.makeText(AddProductImagesActivity.this, R.string.gallery_access_msg,
-                                        Toast.LENGTH_LONG).show();
-                            } else {
-                                ActivityCompat.requestPermissions(AddProductImagesActivity.this,
-                                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
-                                                Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_GALLARY);
-                            }
-                        }
-                    }
-                })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).show();
+    private void openPictureOptionsDialog() {
+        if (ContextCompat.checkSelfPermission(AddProductImagesActivity.this,
+                Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            activityResultLauncherGallery.launch(intent);
+        } else if (ActivityCompat.shouldShowRequestPermissionRationale(AddProductImagesActivity.this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            Toast.makeText(AddProductImagesActivity.this, R.string.gallery_access_msg,
+                    Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(AddProductImagesActivity.this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_GALLARY);
+        }
     }
 
     private void closeKeyboard(Activity activity) {
