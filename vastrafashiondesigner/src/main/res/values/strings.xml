@@ -30,7 +30,7 @@
     <string name="desc_available_colors">Select all available colors for this product.</string>
     <string name="label_product_title">Product Title</string>
     <string name="label_product_price">Price (CAD)</string>
-    <string name="label_product_multipack_set">Qty</string>
+    <string name="label_product_multipack_set">Multipack Set</string>
     <string name="label_product_weight">Weight (lb)</string>
     <string name="label_product_material">Material</string>
     <string name="label_product_percentage">Percentage</string>
@@ -119,5 +119,16 @@
     <string name="gallery_permission_title">"Media permission is required in order to provide photo upload feature. "</string>
     <string name="btn_add_custom_sizes">Add Custom Sizes</string>
     <string name="title_select_prev_addded_sizes">Select sizes from previously added products</string>
+    <string name="label_name">Name</string>
+    <string name="label_email">Email</string>
+    <string name="label_address">Address</string>
+    <string name="label_postal_code">Postal Code</string>
+    <string name="label_province">Province</string>
+    <string name="label_city">City</string>
+    <string name="label_brand_name">Brand Name</string>
+    <string name="label_tagline">Tagline</string>
+    <string name="link_change_password">Change password?</string>
+    <string name="btn_save">Save</string>
+    <string name="dialog_province_msg">Select Province</string>
 
 </resources>
