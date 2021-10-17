@@ -20,4 +20,7 @@
     <color name="icon_light">#eeefef</color>
 
     <color name="separator">#F1F2F5</color>
+
+    <color name="link_color">#726950</color>
+    <color name="bg_rating">#f2898e</color>
 </resources>

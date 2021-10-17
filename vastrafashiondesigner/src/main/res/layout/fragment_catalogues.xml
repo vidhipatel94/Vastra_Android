@@ -1,22 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="48dp"
     tools:context=".ui.products.CataloguesFragment">
 
-    <TextView
-        android:id="@+id/text"
+    <LinearLayout
+        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="center"
+            android:padding="24dp"
+            android:text="@string/title_catalogues"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <EditText
+            android:id="@+id/searchBox"
+            style="@style/Vastra.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:drawableStart="@drawable/ic_search_grey_500_24dp"
+            android:drawablePadding="12dp"
+            android:hint="@string/hint_search_product"
+            android:imeOptions="actionSearch"
+            android:maxLength="8"
+            android:padding="12dp"
+            android:singleLine="true" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/cataloguesLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:clipToPadding="false"
+                android:orientation="vertical" />
+
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add_white_24dp"
+        app:layout_anchor="@id/mainLayout"
+        app:layout_anchorGravity="bottom|right|end"
+        app:tint="@color/white" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

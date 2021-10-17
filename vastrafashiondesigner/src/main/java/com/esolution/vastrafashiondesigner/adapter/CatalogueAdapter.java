@@ -1,12 +1,12 @@
 package com.esolution.vastrafashiondesigner.adapter;
+
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.esolution.vastrafashiondesigner.databinding.RowCatalogueItemBinding;
+
+import com.esolution.vastrafashiondesigner.databinding.RowCatalogueBinding;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -20,9 +20,9 @@ public class CatalogueAdapter extends RecyclerView.Adapter<CatalogueAdapter.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private RowCatalogueItemBinding rowCatalogueItemBinding;
+        private RowCatalogueBinding rowCatalogueItemBinding;
 
-        public ViewHolder(RowCatalogueItemBinding catalogueItemBinding) {
+        public ViewHolder(RowCatalogueBinding catalogueItemBinding) {
             super(catalogueItemBinding.getRoot());
             this.rowCatalogueItemBinding = catalogueItemBinding;
         }
@@ -32,21 +32,14 @@ public class CatalogueAdapter extends RecyclerView.Adapter<CatalogueAdapter.View
     @NotNull
     @Override
     public CatalogueAdapter.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        RowCatalogueItemBinding catalogueItemBinding = RowCatalogueItemBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
+        RowCatalogueBinding catalogueItemBinding = RowCatalogueBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
         return new ViewHolder(catalogueItemBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull CatalogueAdapter.ViewHolder holder, int position) {
         String str = stringArrayList.get(position);
-        holder.rowCatalogueItemBinding.textName.setText("Catalogue " + str);
-        holder.rowCatalogueItemBinding.textNoOfProducts.setText(str + " Products");
-        holder.rowCatalogueItemBinding.textName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), "Catalogue: " + position + " Clicked.", Toast.LENGTH_SHORT).show();
-            }
-        });
+
     }
 
     @Override

@@ -4,15 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.esolution.vastrafashiondesigner.databinding.FragmentCataloguesBinding;
+import com.esolution.vastrafashiondesigner.databinding.RowCatalogueBinding;
 
 public class CataloguesFragment extends Fragment {
 
@@ -25,16 +23,20 @@ public class CataloguesFragment extends Fragment {
                 new ViewModelProvider(this).get(CataloguesViewModel.class);
 
         binding = FragmentCataloguesBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        final TextView textView = binding.text;
-        cataloguesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+        initView();
+
+        return binding.getRoot();
+    }
+
+    private void initView() {
+        int totalCatalogues = 4;
+
+        binding.cataloguesLayout.removeAllViews();
+        for (int i = 0; i < totalCatalogues; i++) {
+            RowCatalogueBinding catalogueBinding = RowCatalogueBinding.inflate(getLayoutInflater());
+            binding.cataloguesLayout.addView(catalogueBinding.getRoot());
+        }
     }
 
     @Override
