@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_screen_dark"
     android:orientation="vertical"
     android:paddingBottom="48dp"
     tools:context=".ui.products.CataloguesFragment">
@@ -15,34 +16,35 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
-            android:gravity="center"
-            android:padding="24dp"
-            android:text="@string/title_catalogues"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/searchBox"
-            style="@style/Vastra.EditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:drawableStart="@drawable/ic_search_grey_500_24dp"
-            android:drawablePadding="12dp"
-            android:hint="@string/hint_search_product"
-            android:imeOptions="actionSearch"
-            android:maxLength="8"
-            android:padding="12dp"
-            android:singleLine="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center"
+                android:padding="24dp"
+                android:text="@string/title_catalogues"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <ImageView
+                android:id="@+id/searchIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginRight="8dp"
+                android:background="?selectableItemBackground"
+                android:padding="6dp"
+                android:src="@drawable/ic_search_grey_500_24dp"
+                app:tint="@color/primary_dark" />
+        </FrameLayout>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
             android:fillViewport="true">
 
             <LinearLayout

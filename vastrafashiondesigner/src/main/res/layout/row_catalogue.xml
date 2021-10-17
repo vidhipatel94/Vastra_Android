@@ -18,7 +18,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/montserrat_medium"
             android:maxLines="2"
-            android:text="Catalogue Name"
+            android:text="M.M. Spring &amp; Summer 2021"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textSize="16sp" />
 
