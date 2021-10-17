@@ -1,4 +1,4 @@
-package com.esolution.vastrafashiondesigner;
+package com.esolution.vastrafashiondesigner.ui.profile;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.ActivityUpdateFashiondesignerProfileBinding;
 
 public class UpdateFashionDesignerProfileActivity extends AppCompatActivity {
