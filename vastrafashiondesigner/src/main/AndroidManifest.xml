@@ -26,5 +26,6 @@
         <activity android:name=".ui.newproduct.addsize.ProductSizesActivity" />
         <activity android:name=".UpdateFashionDesignerProfileActivity" />
         <activity android:name=".FashionDesignerProfileActivity" />
+        <activity android:name=".ui.products.CatalogueProductsActivity" />
     </application>
 </manifest>

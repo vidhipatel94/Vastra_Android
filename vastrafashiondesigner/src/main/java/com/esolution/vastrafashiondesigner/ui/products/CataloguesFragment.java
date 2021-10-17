@@ -1,5 +1,6 @@
 package com.esolution.vastrafashiondesigner.ui.products;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.esolution.vastrafashiondesigner.databinding.FragmentCataloguesBinding;
 import com.esolution.vastrafashiondesigner.databinding.RowCatalogueBinding;
+import com.esolution.vastrafashiondesigner.ui.startup.RegisterCreateCatalogueActivity;
 
 public class CataloguesFragment extends Fragment {
 
@@ -36,7 +38,17 @@ public class CataloguesFragment extends Fragment {
         for (int i = 0; i < totalCatalogues; i++) {
             RowCatalogueBinding catalogueBinding = RowCatalogueBinding.inflate(getLayoutInflater());
             binding.cataloguesLayout.addView(catalogueBinding.getRoot());
+
+            catalogueBinding.linkShowAll.setOnClickListener((v) -> {
+                Intent intent = new Intent(getContext(), CatalogueProductsActivity.class);
+                startActivity(intent);
+            });
         }
+
+        binding.btnAdd.setOnClickListener((v) -> {
+            Intent intent = new Intent(getContext(), RegisterCreateCatalogueActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override
