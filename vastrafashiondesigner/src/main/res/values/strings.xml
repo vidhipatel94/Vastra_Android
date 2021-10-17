@@ -130,5 +130,8 @@
     <string name="link_change_password">Change password?</string>
     <string name="btn_save">Save</string>
     <string name="dialog_province_msg">Select Province</string>
+    <string name="desc_available_quantity">Add available quantity of the product.</string>
+    <string name="title_product_inventory">Product Inventory</string>
+    <string name="hint_qty">Qty</string>
 
 </resources>

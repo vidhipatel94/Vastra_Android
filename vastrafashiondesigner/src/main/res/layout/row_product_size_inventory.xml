@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="8dp">
+
+    <TextView
+        android:id="@+id/sizeText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/montserrat_regular"
+        android:gravity="end"
+        android:maxLines="1"
+        android:text="Size"
+        android:textColor="@color/text_primary_black"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/qtyBox"
+        style="@style/Vastra.EditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_weight="1"
+        android:hint="@string/hint_qty"
+        android:imeOptions="actionDone"
+        android:inputType="number"
+        android:maxLength="8"
+        android:padding="12dp"
+        android:singleLine="true" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+</LinearLayout>

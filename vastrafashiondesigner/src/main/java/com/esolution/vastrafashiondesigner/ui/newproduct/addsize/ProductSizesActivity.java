@@ -1,5 +1,6 @@
 package com.esolution.vastrafashiondesigner.ui.newproduct.addsize;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.ActivityProductSizesBinding;
 import com.esolution.vastrafashiondesigner.databinding.ListSizeTitleBinding;
+import com.esolution.vastrafashiondesigner.ui.newproduct.inventory.AddProductInventoryActivity;
 
 import java.util.ArrayList;
 
@@ -36,6 +38,11 @@ public class ProductSizesActivity extends AppCompatActivity {
         setGridLayout();
 
         binding.btnUpdateSizes.setOnClickListener((v) -> onClickEditSizes());
+
+        binding.btnNext.setOnClickListener((v) -> {
+            Intent intent = new Intent(ProductSizesActivity.this, AddProductInventoryActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void setToolbarLayout() {
