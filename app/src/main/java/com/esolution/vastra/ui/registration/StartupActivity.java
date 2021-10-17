@@ -2,15 +2,13 @@ package com.esolution.vastra.ui.registration;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.esolution.vastra.R;
 import com.esolution.vastra.databinding.ActivityStartupBinding;
-import com.esolution.vastrafashiondesigner.ui.newproduct.addcolor.SelectProductColorsActivity;
+import com.esolution.vastrafashiondesigner.ui.MainActivity;
 
 public class StartupActivity extends AppCompatActivity {
 
@@ -25,7 +23,7 @@ public class StartupActivity extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StartupActivity.this, SelectProductColorsActivity.class);
+                Intent intent = new Intent(StartupActivity.this, MainActivity.class);
 //                Intent intent = new Intent(StartupActivity.this, LoginActivity.class);
                 startActivity(intent);
             }

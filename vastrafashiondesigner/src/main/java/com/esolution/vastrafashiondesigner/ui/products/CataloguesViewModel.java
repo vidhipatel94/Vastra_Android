@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ProductsViewModel extends ViewModel {
+public class CataloguesViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ProductsViewModel() {
+    public CataloguesViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is products fragment");
+        mText.setValue("This is catalogues fragment");
     }
 
     public LiveData<String> getText() {

@@ -2,18 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/navigation_catalogues"
+        android:icon="@drawable/ic_products_grey_500_24dp"
+        android:title="@string/title_catalogues" />
+
+    <item
         android:id="@+id/navigation_orders"
         android:icon="@drawable/ic_orders_grey_500_24dp"
         android:title="@string/title_orders" />
-
-    <item
-        android:id="@+id/navigation_products"
-        android:icon="@drawable/ic_products_grey_500_24dp"
-        android:title="@string/title_products" />
 
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_person_black_24dp"
         android:title="@string/title_profile" />
 
+    <item
+        android:id="@+id/navigation_chat"
+        android:icon="@drawable/ic_chat_grey_500_24dp"
+        android:title="@string/title_chat" />
 </menu>

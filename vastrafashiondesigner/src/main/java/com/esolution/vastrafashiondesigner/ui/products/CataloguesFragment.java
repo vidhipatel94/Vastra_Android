@@ -12,23 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.esolution.vastrafashiondesigner.databinding.FragmentProductsBinding;
+import com.esolution.vastrafashiondesigner.databinding.FragmentCataloguesBinding;
 
-public class ProductsFragment extends Fragment {
+public class CataloguesFragment extends Fragment {
 
-    private ProductsViewModel productsViewModel;
-    private FragmentProductsBinding binding;
+    private CataloguesViewModel cataloguesViewModel;
+    private FragmentCataloguesBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        productsViewModel =
-                new ViewModelProvider(this).get(ProductsViewModel.class);
+        cataloguesViewModel =
+                new ViewModelProvider(this).get(CataloguesViewModel.class);
 
-        binding = FragmentProductsBinding.inflate(inflater, container, false);
+        binding = FragmentCataloguesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.text;
-        productsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        cataloguesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

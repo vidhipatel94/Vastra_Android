@@ -133,5 +133,7 @@
     <string name="desc_available_quantity">Add available quantity of the product.</string>
     <string name="title_product_inventory">Product Inventory</string>
     <string name="hint_qty">Qty</string>
+    <string name="title_catalogues">Catalogues</string>
+    <string name="title_chat">Chat</string>
 
 </resources>
