@@ -28,8 +28,6 @@ import com.esolution.vastrafashiondesigner.databinding.RowAddProductImageBinding
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
-
 public class AddProductImagesActivity extends AppCompatActivity {
     private ActivityAddProductImagesBinding binding;
     private ActivityResultLauncher<Intent> activityResultLauncherGallery;
@@ -105,15 +103,16 @@ public class AddProductImagesActivity extends AppCompatActivity {
             @Override
             public void onActivityResult(ActivityResult result) {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                    if(photoIndex == 1) {
-                        Uri imageUrl = result.getData().getData();
-                        binding.productImage1.setImageURI(imageUrl);
-                    } else if(photoIndex == 2) {
-                        Uri imageUrl = result.getData().getData();
-                        binding.productImage2.setImageURI(imageUrl);
-                    } else {
-                        Uri imageUrl = result.getData().getData();
-                        binding.productImage3.setImageURI(imageUrl);
+                    Uri imageUrl = result.getData().getData();
+                    switch (photoIndex) {
+                        case 1:
+                            binding.productImage1.setImageURI(imageUrl);
+                            return;
+                        case 2:
+                            binding.productImage2.setImageURI(imageUrl);
+                            return;
+                        case 3:
+                            binding.productImage3.setImageURI(imageUrl);
                     }
                 }
             }
@@ -137,7 +136,6 @@ public class AddProductImagesActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CODE_GALLARY) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
                 activityResultLauncherGallery.launch(intent);
             } else {
                 openPermissionRequiredDialog();

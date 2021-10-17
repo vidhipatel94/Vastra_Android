@@ -135,5 +135,10 @@
     <string name="hint_qty">Qty</string>
     <string name="title_catalogues">Catalogues</string>
     <string name="title_chat">Chat</string>
+    <string name="noOfFollowers">15K</string>
+    <string name="label_followers">Followers</string>
+    <string name="btn_follow">Follow</string>
+    <string name="label_catalogues">Catalogues</string>
+    <string name="label_product_count">51 Products</string>
 
 </resources>

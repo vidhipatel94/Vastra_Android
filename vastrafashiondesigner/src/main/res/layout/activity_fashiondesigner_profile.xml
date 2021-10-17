@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <include
-        layout="@layout/layout_toolbar"
-        android:id="@+id/toolbarLayout"/>
+        android:id="@+id/toolbarLayout"
+        layout="@layout/layout_toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,201 +19,152 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="24dp"
+            android:paddingLeft="8dp"
             android:paddingTop="16dp"
-            android:paddingRight="24dp"
+            android:paddingRight="8dp"
             android:paddingBottom="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="76dp"
-                    android:layout_height="76dp"
-                    android:src="@drawable/ic_baseline_person_24"
-                    android:scaleType="fitXY"
-                    android:contentDescription="@string/title_profile" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/inputLayoutProfileName"
-                    style="@style/Vastra.TextInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/label_name"
-                    android:layout_marginStart="16dp">
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/imageProfilePic"
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:contentDescription="@string/title_profile"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_person_gray_500_24dp"
+                        app:civ_border_color="@color/primary_dark"
+                        app:civ_border_width="2dp" />
 
-                    <EditText
-                        android:id="@+id/inputProfileName"
-                        style="@style/Vastra.EditText"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/textTagLine"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:cursorVisible="false"
-                        android:focusable="false"
-                        android:maxLength="50"
-                        android:singleLine="true" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:gravity="center_horizontal"
+                        android:padding="8dp"
+                        android:text="@string/label_tagline"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@color/primary" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/userName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:gravity="center_horizontal"
+                        android:padding="8dp"
+                        android:text="@string/label_name"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textColor="@color/primary" />
+
+                    <TextView
+                        android:id="@+id/brandName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:gravity="center_horizontal"
+                        android:padding="8dp"
+                        android:text="@string/label_brand_name"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@color/primary" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/noOfFollowers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:gravity="center_horizontal"
+                        android:padding="8dp"
+                        android:text="@string/noOfFollowers"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textColor="@color/primary" />
+
+                    <TextView
+                        android:id="@+id/textFollowers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:gravity="center_horizontal"
+                        android:text="@string/label_followers"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@color/primary" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <android.widget.Button
+                        android:id="@+id/btnFollow"
+                        style="@style/Vastra.Button.Filled"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_follow" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLayoutEmail"
-                style="@style/Vastra.TextInputLayout"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:hint="@string/label_email">
-
-                <EditText
-                    android:id="@+id/inputEmail"
-                    style="@style/Vastra.EditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress"
-                    android:maxLength="50"
-                    android:singleLine="true" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLayoutProvince"
-                style="@style/Vastra.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:hint="@string/label_province">
-
-                <EditText
-                    android:id="@+id/inputProvince"
-                    style="@style/Vastra.EditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:focusable="false"
-                    android:cursorVisible="false"
-                    android:singleLine="true"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="16dp"
-                    android:drawableEnd="@drawable/ic_down_arrow_gray_500_24"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLayoutCity"
-                style="@style/Vastra.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:hint="@string/label_city">
-
-                <EditText
-                    android:id="@+id/inputCity"
-                    style="@style/Vastra.EditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:inputType="textPersonName"
-                    android:maxLength="50"
-                    android:singleLine="true" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLayoutAddress"
-                style="@style/Vastra.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:hint="@string/label_address">
-
-                <EditText
-                    android:id="@+id/inputAddress"
-                    style="@style/Vastra.EditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:inputType="textPersonName"
-                    android:maxLength="50"
-                    android:singleLine="true" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLayoutPostalCode"
-                style="@style/Vastra.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:hint="@string/label_postal_code">
-
-                <EditText
-                    android:id="@+id/inputPostalCode"
-                    style="@style/Vastra.EditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:inputType="textPersonName"
-                    android:maxLength="7"
-                    android:singleLine="true" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLayoutBrandName"
-                style="@style/Vastra.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:hint="@string/label_brand_name">
-
-                <EditText
-                    android:id="@+id/inputBrandName"
-                    style="@style/Vastra.EditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:inputType="textPersonName"
-                    android:maxLength="50"
-                    android:singleLine="true" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLayoutTagline"
-                style="@style/Vastra.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:hint="@string/label_tagline">
-
-                <EditText
-                    android:id="@+id/inputTagline"
-                    style="@style/Vastra.EditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:inputType="textPersonName"
-                    android:maxLength="50"
-                    android:singleLine="true" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <android.widget.Button
-                android:id="@+id/btnLogin"
-                style="@style/Vastra.Button.Filled"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:background="@color/primary"
                 android:layout_gravity="center"
-                android:layout_marginTop="32dp"
-                android:text="@string/btn_save" />
+                android:paddingStart="8dp"
+                android:paddingEnd="0dp">
 
-            <TextView
-                android:id="@+id/linkForgotPassword"
+                <TextView
+                    android:id="@+id/catalogueTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_catalogues"
+                    android:textSize="18sp"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/catalogueRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:gravity="center_horizontal"
-                android:padding="8dp"
-                android:text="@string/link_change_password"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/primary" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"/>
 
         </LinearLayout>
     </ScrollView>
