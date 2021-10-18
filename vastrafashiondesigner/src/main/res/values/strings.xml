@@ -140,10 +140,12 @@
     <string name="btn_follow">Follow</string>
     <string name="label_catalogues">Catalogues</string>
     <string name="label_product_count">51 Products</string>
-    <string name="hint_search_product">Search for a product...</string>
+    <string name="hint_search_product">Search product title</string>
     <string name="link_show_all">Show All</string>
     <string name="title_follow">Follow</string>
     <string name="label_posts">Posts</string>
     <string name="like">Like</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 
 </resources>
