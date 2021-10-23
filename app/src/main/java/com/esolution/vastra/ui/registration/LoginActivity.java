@@ -1,6 +1,7 @@
 package com.esolution.vastra.ui.registration;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -8,7 +9,10 @@ import android.view.inputmethod.InputMethodManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.esolution.vastra.R;
 import com.esolution.vastra.databinding.ActivityLoginBinding;
+import com.esolution.vastrabasic.utils.Utils;
+import com.esolution.vastrafashiondesigner.ui.MainActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -20,32 +24,31 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        binding.btnBack.setOnClickListener(v -> onBackPressed());
 
         binding.linkForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Utils.showMessage(binding.getRoot(), getString(R.string.todo));
             }
         });
 
-        binding.parentLinearLayout.setOnClickListener(new View.OnClickListener() {
+        binding.parentLinearLayout.setOnClickListener(v -> closeKeyboard(LoginActivity.this));
+
+        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                closeKeyboard(LoginActivity.this);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
     }
 
     private void closeKeyboard(Activity activity) {
         InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        if(inputMethodManager.isAcceptingText()) {
-            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(),0);
+        if (inputMethodManager.isAcceptingText()) {
+            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
         }
     }
 }

@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat;
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.ActivityAddProductImagesBinding;
 import com.esolution.vastrafashiondesigner.databinding.RowAddProductImageBinding;
+import com.esolution.vastrafashiondesigner.ui.newproduct.addcolor.SelectProductColorsActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -88,7 +89,8 @@ public class AddProductImagesActivity extends AppCompatActivity {
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO -- Navigate
+                Intent intent = new Intent(AddProductImagesActivity.this, SelectProductColorsActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -121,7 +123,7 @@ public class AddProductImagesActivity extends AppCompatActivity {
 
     private void chooseImage(int i) {
         boolean granted = checkGalleryPermission();
-        if(granted) {
+        if (granted) {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             photoIndex = i;
             activityResultLauncherGallery.launch(intent);

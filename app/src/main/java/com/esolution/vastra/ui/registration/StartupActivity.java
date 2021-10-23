@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.esolution.vastra.databinding.ActivityStartupBinding;
-import com.esolution.vastrafashiondesigner.ui.MainActivity;
 
 public class StartupActivity extends AppCompatActivity {
 
@@ -23,8 +22,7 @@ public class StartupActivity extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StartupActivity.this, MainActivity.class);
-//                Intent intent = new Intent(StartupActivity.this, LoginActivity.class);
+                Intent intent = new Intent(StartupActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
