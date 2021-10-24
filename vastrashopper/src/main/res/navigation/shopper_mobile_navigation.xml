@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.esolution.vastrashopper.ui.profile.ProfileFragment"
+        android:name="com.esolution.vastrashopper.ui.profile.ShopperProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_shopper_profile" />
 </navigation>

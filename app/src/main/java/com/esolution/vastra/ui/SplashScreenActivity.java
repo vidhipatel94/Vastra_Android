@@ -9,7 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.esolution.vastra.R;
 import com.esolution.vastra.ui.registration.StartupActivity;
+import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
 import com.esolution.vastrafashiondesigner.ui.MainActivity;
+import com.esolution.vastrashopper.data.ShopperLoginPreferences;
+import com.esolution.vastrashopper.ui.ShopperMainActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -25,10 +28,26 @@ public class SplashScreenActivity extends AppCompatActivity {
                     openNextScreen();
                 });
             }
-        },2000);
+        }, 2000);
     }
 
     private void openNextScreen() {
+        ShopperLoginPreferences shopperLoginPreferences = ShopperLoginPreferences.createInstance(this);
+        if (shopperLoginPreferences.isLoggedIn()) {
+            Intent intent = new Intent(this, ShopperMainActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
+        DesignerLoginPreferences designerLoginPreferences = DesignerLoginPreferences.createInstance(this);
+        if (designerLoginPreferences.isLoggedIn()) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         Intent intent = new Intent(this, StartupActivity.class);
         startActivity(intent);
         finish();

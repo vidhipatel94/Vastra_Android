@@ -12,19 +12,19 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.esolution.vastrashopper.databinding.FragmentProfileBinding;
+import com.esolution.vastrashopper.databinding.FragmentShopperProfileBinding;
 
-public class ProfileFragment extends Fragment {
+public class ShopperProfileFragment extends Fragment {
 
-    private ProfileViewModel notificationsViewModel;
-    private FragmentProfileBinding binding;
+    private ShopperProfileViewModel notificationsViewModel;
+    private FragmentShopperProfileBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         notificationsViewModel =
-                new ViewModelProvider(this).get(ProfileViewModel.class);
+                new ViewModelProvider(this).get(ShopperProfileViewModel.class);
 
-        binding = FragmentProfileBinding.inflate(inflater, container, false);
+        binding = FragmentShopperProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textProfile;
