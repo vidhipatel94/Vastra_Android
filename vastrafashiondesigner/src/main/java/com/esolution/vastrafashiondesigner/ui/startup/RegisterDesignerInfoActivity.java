@@ -9,12 +9,9 @@ import android.view.View;
 import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.apis.RestUtils;
 import com.esolution.vastrabasic.apis.request.RegisterDesignerRequest;
-import com.esolution.vastrabasic.apis.request.RegisterShopperRequest;
 import com.esolution.vastrabasic.models.Designer;
 import com.esolution.vastrabasic.models.User;
-import com.esolution.vastrabasic.models.UserType;
 import com.esolution.vastrabasic.ui.BaseActivity;
-import com.esolution.vastrabasic.utils.Utils;
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
 import com.esolution.vastrafashiondesigner.databinding.ActivityRegisterDesignerInfoBinding;
@@ -154,9 +151,6 @@ public class RegisterDesignerInfoActivity extends BaseActivity {
                     progressDialogHandler.setProgress(false);
                     String message = RestUtils.processThrowable(this, throwable);
                     showMessage(binding.getRoot(), message);
-
-                    //TODO remove this
-                    openNextScreen();
                 }));
     }
 

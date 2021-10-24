@@ -1,20 +1,24 @@
 package com.esolution.vastrafashiondesigner.ui.startup;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 
+import com.esolution.vastrabasic.ProgressDialogHandler;
+import com.esolution.vastrabasic.apis.RestUtils;
+import com.esolution.vastrabasic.models.Catalogue;
+import com.esolution.vastrabasic.ui.BaseActivity;
+import com.esolution.vastrafashiondesigner.R;
+import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
 import com.esolution.vastrafashiondesigner.databinding.ActivityRegisterCreateCatalogueBinding;
 import com.esolution.vastrafashiondesigner.ui.newproduct.AddProductInfo1Activity;
 
-public class RegisterCreateCatalogueActivity extends AppCompatActivity {
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
+public class RegisterCreateCatalogueActivity extends BaseActivity {
 
     private ActivityRegisterCreateCatalogueBinding binding;
+    private ProgressDialogHandler progressDialogHandler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -22,35 +26,64 @@ public class RegisterCreateCatalogueActivity extends AppCompatActivity {
         binding = ActivityRegisterCreateCatalogueBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        progressDialogHandler = new ProgressDialogHandler(this);
+
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validation()) {
-                    startActivity(new Intent(RegisterCreateCatalogueActivity.this, AddProductInfo1Activity.class));
+                if (validation()) {
+                    createCatalogue(binding.inputCatalogueTitle.getText().toString().trim());
                 }
             }
         });
 
-        binding.parentLinearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                closeKeyboard(RegisterCreateCatalogueActivity.this);
-            }
-        });
+        binding.parentLinearLayout.setOnClickListener(v -> closeKeyboard());
     }
 
-    private void closeKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        if(inputMethodManager.isAcceptingText()) {
-            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(),0);
-        }
+    @Override
+    protected View getRootView() {
+        return binding.getRoot();
     }
 
     private boolean validation() {
-        if(binding.inputCatalogueTitle.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Please enter catalogue title.", Toast.LENGTH_SHORT).show();
+        String firstName = binding.inputCatalogueTitle.getText().toString().trim();
+        if (firstName.isEmpty()) {
+            binding.inputLayoutCatalogueTitle.setErrorEnabled(true);
+            binding.inputLayoutCatalogueTitle.setError(getString(R.string.error_empty_catalogue));
             return false;
+        } else {
+            binding.inputLayoutCatalogueTitle.setErrorEnabled(false);
         }
         return true;
+    }
+
+    private void createCatalogue(String catalogueName) {
+        progressDialogHandler.setProgress(true);
+        DesignerLoginPreferences preferences = DesignerLoginPreferences.createInstance(this);
+        int designerId = preferences.getDesignerId();
+        Catalogue catalogue = new Catalogue(catalogueName, designerId);
+        subscriptions.add(RestUtils.getAPIs().createCatalogue(preferences.getSessionToken(), catalogue)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    progressDialogHandler.setProgress(false);
+                    if (response.isSuccess()) {
+                        if (response.getData() != null) {
+                            openNextScreen(response.getData());
+                        } else {
+                            showMessage(binding.getRoot(), getString(R.string.server_error));
+                        }
+                    } else {
+                        showMessage(binding.getRoot(), response.getMessage());
+                    }
+                }, throwable -> {
+                    progressDialogHandler.setProgress(false);
+                    String message = RestUtils.processThrowable(this, throwable);
+                    showMessage(binding.getRoot(), message);
+                }));
+    }
+
+    private void openNextScreen(Catalogue catalogue) {
+        startActivity(AddProductInfo1Activity.createIntent(this, catalogue));
     }
 }

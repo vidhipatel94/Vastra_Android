@@ -1,6 +1,10 @@
 package com.esolution.vastrabasic.models;
 
-public class Catalogue {
+import java.io.Serializable;
+
+public class Catalogue implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     int id;
     String name;
     int designerId;

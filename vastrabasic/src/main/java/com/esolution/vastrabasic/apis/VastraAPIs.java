@@ -27,6 +27,7 @@ import okhttp3.MultipartBody;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -56,7 +57,7 @@ public interface VastraAPIs {
     // ------------- Catalogue --------------
 
     @POST("/catalogue")
-    Observable<APIResponse<Catalogue>> createCatalogue(@Body Catalogue catalogue);
+    Observable<APIResponse<Catalogue>> createCatalogue(@Header("token") String token, @Body Catalogue catalogue);
 
     @GET("/catalogue/list")
     Observable<APIResponse<List<Catalogue>>> getCatalogues(@Query("designerId") int designerId);

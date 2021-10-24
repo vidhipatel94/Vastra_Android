@@ -4,7 +4,7 @@
     <string name="title_products">Products</string>
     <string name="title_profile">Profile</string>
     <string name="btn_next">Next</string>
-    <string name="create_catalogue_msg">A catalogue will have one or more products, will be visible to shoppers to sell them</string>
+    <string name="create_catalogue_msg">A catalogue will have one or more products, will be visible to shoppers for selling.</string>
     <string name="label_create_catalogue">Let\'s start by creating a catalogue</string>
     <string name="msg_create_catalogue">Enter title of catalogue</string>
     <string name="label_catalogue">Catalogue Title</string>
@@ -151,5 +151,6 @@
     <string name="btn_create_account">Create Account</string>
     <string name="error_empty_brand_name">Please enter brand name.</string>
     <string name="error_empty_tagline">Please enter tagline.</string>
+    <string name="error_empty_catalogue">Please enter catalogue name.</string>
 
 </resources>

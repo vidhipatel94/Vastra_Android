@@ -78,4 +78,9 @@ public class DesignerLoginPreferences {
         return sharedPreferences.getBoolean(KEY_IS_ANY_CATALOGUE_ADDED, false);
     }
 
+    public int getDesignerId() {
+        Designer designer = getDesigner();
+        return designer != null ? designer.getId() : 0;
+    }
+
 }
