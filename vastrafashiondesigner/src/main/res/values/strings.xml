@@ -22,9 +22,9 @@
     <string name="label_min_age">Minimum age</string>
     <string name="label_max_age">Maximum age</string>
     <string name="label_age">age</string>
-    <string name="label_product_type">Select product type</string>
+    <string name="label_product_type">Select Product Type</string>
     <string name="label_product">Product type</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="label_product_name">Product Name</string>
     <string name="title_available_colors">Product Colors</string>
     <string name="desc_available_colors">Select all available colors for this product.</string>
@@ -152,5 +152,11 @@
     <string name="error_empty_brand_name">Please enter brand name.</string>
     <string name="error_empty_tagline">Please enter tagline.</string>
     <string name="error_empty_catalogue">Please enter catalogue name.</string>
+    <string name="error_empty_product_type">Please select product type.</string>
+    <string name="error_empty_min_age">Please enter min age</string>
+    <string name="error_empty_max_age">Please enter max age.</string>
+    <string name="error_invalid_min_age">Invalid min age.</string>
+    <string name="error_invalid_max_age">Invalid max age.</string>
+    <string name="error_invalid_age_range">Please enter valid age range.</string>
 
 </resources>

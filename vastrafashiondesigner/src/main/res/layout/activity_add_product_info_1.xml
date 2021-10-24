@@ -75,6 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/primary_dark"
+                    android:checked="true"
                     android:fontFamily="@font/montserrat_light"
                     android:text="@string/both" />
 
@@ -109,14 +110,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:buttonTint="@color/primary_dark"
+                    android:checked="true"
                     android:fontFamily="@font/montserrat_light"
                     android:text="@string/adult" />
-
             </RadioGroup>
 
             <LinearLayout
+                android:id="@+id/layoutAge"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/inputLayoutMinAge"
@@ -133,7 +136,9 @@
                         android:layout_height="wrap_content"
                         android:imeOptions="actionNext"
                         android:inputType="number"
-                        android:singleLine="true" />
+                        android:maxLength="2"
+                        android:singleLine="true"
+                        android:text="0" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -150,9 +155,11 @@
                         style="@style/Vastra.EditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:imeOptions="actionNext"
+                        android:imeOptions="actionDone"
                         android:inputType="number"
-                        android:singleLine="true" />
+                        android:maxLength="2"
+                        android:singleLine="true"
+                        android:text="13" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -182,8 +189,6 @@
                     android:drawableEnd="@drawable/ic_down_arrow_gray_500_24"
                     android:focusable="false"
                     android:imeOptions="actionDone"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="16dp"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
