@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/btnBack"
@@ -14,17 +13,16 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
         android:background="?selectableItemBackground"
+        android:contentDescription="@string/btn_back"
         android:padding="8dp"
         android:src="@drawable/ic_back_gray_500_24dp"
-        app:tint="@color/primary"
-        android:contentDescription="@string/btn_back"/>
+        app:tint="@color/primary" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fillViewport="true"
         android:layout_marginTop="20dp"
-        android:paddingBottom="20dp">
+        android:fillViewport="true">
 
         <LinearLayout
             android:id="@+id/parentLinearLayout"
@@ -32,7 +30,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingLeft="24dp"
-            android:paddingRight="24dp">
+            android:paddingRight="24dp"
+            android:paddingBottom="24dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -43,26 +42,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:textColor="@color/text_primary_black"
                 android:textSize="24sp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLayoutEmail"
-                style="@style/Vastra.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:hint="@string/label_email">
-
-                <EditText
-                    android:id="@+id/inputEmail"
-                    style="@style/Vastra.EditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:focusable="false"
-                    android:cursorVisible="false"
-                    android:maxLength="50"
-                    android:singleLine="true" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayoutFirstName"
@@ -88,7 +67,7 @@
                 style="@style/Vastra.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:hint="@string/label_last_name">
 
                 <EditText
@@ -122,11 +101,29 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayoutAddress"
+                style="@style/Vastra.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/label_address">
+
+                <EditText
+                    android:id="@+id/inputAddress"
+                    style="@style/Vastra.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:maxLength="100"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayoutProvince"
                 style="@style/Vastra.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:hint="@string/label_province">
 
                 <EditText
@@ -134,13 +131,11 @@
                     style="@style/Vastra.EditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:focusable="false"
                     android:cursorVisible="false"
-                    android:singleLine="true"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="16dp"
-                    android:drawableEnd="@drawable/ic_down_arrow_gray_500_24"/>
+                    android:drawableEnd="@drawable/ic_down_arrow_gray_500_24"
+                    android:focusable="false"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -148,7 +143,7 @@
                 style="@style/Vastra.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:hint="@string/label_city">
 
                 <EditText
@@ -159,6 +154,24 @@
                     android:imeOptions="actionNext"
                     android:inputType="textPersonName"
                     android:maxLength="50"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayoutPostalCode"
+                style="@style/Vastra.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/label_postal_code">
+
+                <EditText
+                    android:id="@+id/inputPostalCode"
+                    style="@style/Vastra.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:maxLength="7"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 

@@ -6,9 +6,7 @@ import com.esolution.vastrabasic.models.User;
 public class LoginResponse extends Designer {
 
     public User getShopper() {
-        User user = this;
-        super.setId(this.getId());
-        return user;
+        return this;
     }
 
     public Designer getDesigner() {

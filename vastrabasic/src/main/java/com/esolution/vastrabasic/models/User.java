@@ -1,8 +1,11 @@
 package com.esolution.vastrabasic.models;
 
-public class User {
+import java.io.Serializable;
 
-    int id;
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    int userId;
     String email;
     String password;
     String firstName;
@@ -12,21 +15,32 @@ public class User {
     String province;
     String postalCode;
     String avatarURL;
-    UserType type;
+    int type;
 
     protected User() {
     }
 
-    public User(String email) {
+    public User(String email, int userType) {
         this.email = email;
+        this.type = userType;
     }
 
-    public int getId() {
-        return id;
+    public User(String email, String password, String firstName, String lastName, String address,
+                String city, String province, String postalCode, String avatarURL, int type) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.province = province;
+        this.postalCode = postalCode;
+        this.avatarURL = avatarURL;
+        this.type = type;
     }
 
-    protected void setId(int id) {
-        this.id = id;
+    public int getUserId() {
+        return userId;
     }
 
     public String getEmail() {
@@ -101,11 +115,11 @@ public class User {
         this.avatarURL = avatarURL;
     }
 
-    public UserType getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(UserType type) {
+    public void setType(int type) {
         this.type = type;
     }
 }

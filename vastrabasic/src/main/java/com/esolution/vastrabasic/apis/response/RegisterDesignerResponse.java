@@ -6,8 +6,8 @@ public class RegisterDesignerResponse {
     Designer designer;
     String sessionToken;
 
-    public void setDesigner(Designer designer) {
-        this.designer = designer;
+    public Designer getDesigner() {
+        return designer;
     }
 
     public String getSessionToken() {

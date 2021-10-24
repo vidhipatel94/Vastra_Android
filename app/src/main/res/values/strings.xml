@@ -29,8 +29,19 @@
     <string name="label_email_msg">Enter your email</string>
     <string name="email_confirmation_msg">We will send you a confirmation code</string>
     <string name="registration_msg">Let us know about you</string>
-    <string name="dialog_province_msg">Select province</string>
-    <string name="ok">Ok</string>
+    <string name="dialog_province_msg">Select Province</string>
+    <string name="ok">OK</string>
     <string name="btn_back">back</string>
     <string name="todo">Not implemented yet.</string>
+    <string name="error_empty_email">Please enter your email address.</string>
+    <string name="error_invalid_email">Please enter valid email address.</string>
+    <string name="error_empty_first_name">Plese enter your first name.</string>
+    <string name="error_empty_last_name">Please enter your last name.</string>
+    <string name="error_empty_password">Please enter password.</string>
+    <string name="error_empty_province">Please select province</string>
+    <string name="error_empty_city">Please enter city name.</string>
+    <string name="error_empty_address">Please enter address.</string>
+    <string name="error_empty_postal_code">Please enter postal code.</string>
+    <string name="error_invalid_postal_code">Please enter valid postal code.</string>
+    <string name="error_server">Something went wrong!</string>
 </resources>

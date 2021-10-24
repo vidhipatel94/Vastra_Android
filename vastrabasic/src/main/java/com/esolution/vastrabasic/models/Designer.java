@@ -3,7 +3,6 @@ package com.esolution.vastrabasic.models;
 public class Designer extends User {
 
     int id;
-    int userId;
     String brandName;
     String tagline;
 
@@ -11,16 +10,17 @@ public class Designer extends User {
     }
 
     public Designer(String email) {
-        super(email);
+        super(email, UserType.FashionDesigner.getValue());
     }
 
-    @Override
+    public Designer(String email, String password, String firstName, String lastName, String address,
+                    String city, String province, String postalCode, String avatarURL) {
+        super(email, password, firstName, lastName, address, city, province, postalCode, avatarURL,
+                UserType.FashionDesigner.getValue());
+    }
+
     public int getId() {
         return id;
-    }
-
-    public int getUserId() {
-        return userId;
     }
 
     public String getBrandName() {

@@ -5,6 +5,7 @@ import com.esolution.vastrabasic.apis.request.RegisterDesignerRequest;
 import com.esolution.vastrabasic.apis.request.RegisterShopperRequest;
 import com.esolution.vastrabasic.apis.response.APIResponse;
 import com.esolution.vastrabasic.apis.response.LoginResponse;
+import com.esolution.vastrabasic.apis.response.RegisterDesignerResponse;
 import com.esolution.vastrabasic.apis.response.RegisterUserResponse;
 import com.esolution.vastrabasic.models.Catalogue;
 import com.esolution.vastrabasic.models.Designer;
@@ -40,7 +41,7 @@ public interface VastraAPIs {
     Observable<APIResponse<RegisterUserResponse>> registerShopper(@Body RegisterShopperRequest registerShopperRequest);
 
     @POST("/fd/user")
-    Observable<APIResponse<RegisterUserResponse>> registerDesigner(@Body RegisterDesignerRequest registerDesignerRequest);
+    Observable<APIResponse<RegisterDesignerResponse>> registerDesigner(@Body RegisterDesignerRequest registerDesignerRequest);
 
     @POST("/login")
     Observable<APIResponse<LoginResponse>> login(@Body LoginRequest loginRequest);
