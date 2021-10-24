@@ -17,6 +17,8 @@ public class DesignerLoginPreferences {
     private static final String KEY_LOGGED_IN_USER_TYPE = "key_logged_in_user_type";
     private static final String KEY_SESSION_TOKEN = "key_session_token";
 
+    private static final String KEY_IS_ANY_CATALOGUE_ADDED = "key_is_any_catalogue_added";
+
     private final SharedPreferences sharedPreferences;
 
     // Singleton
@@ -50,8 +52,12 @@ public class DesignerLoginPreferences {
     }
 
     public void logout() {
-        sharedPreferences.edit().putString(KEY_LOGGED_IN_USER, null).apply();
-        sharedPreferences.edit().putString(KEY_SESSION_TOKEN, null).apply();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_LOGGED_IN_USER, null);
+        editor.putInt(KEY_LOGGED_IN_USER_TYPE, 0);
+        editor.putString(KEY_SESSION_TOKEN, null);
+        editor.putBoolean(KEY_IS_ANY_CATALOGUE_ADDED, false);
+        editor.apply();
     }
 
     public int getLoggedInUserType() {
@@ -63,4 +69,13 @@ public class DesignerLoginPreferences {
                 && !TextUtils.isEmpty(getSessionToken())
                 && getLoggedInUserType() == UserType.FashionDesigner.getValue();
     }
+
+    public void setAnyCatalogueAdded(boolean isAdded) {
+        sharedPreferences.edit().putBoolean(KEY_IS_ANY_CATALOGUE_ADDED, isAdded).apply();
+    }
+
+    public boolean isAnyCatalogueAdded() {
+        return sharedPreferences.getBoolean(KEY_IS_ANY_CATALOGUE_ADDED, false);
+    }
+
 }

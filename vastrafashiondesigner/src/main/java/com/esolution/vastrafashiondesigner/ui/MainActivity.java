@@ -1,5 +1,6 @@
 package com.esolution.vastrafashiondesigner.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +10,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.esolution.vastrafashiondesigner.R;
+import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
 import com.esolution.vastrafashiondesigner.databinding.ActivityMainBinding;
+import com.esolution.vastrafashiondesigner.ui.startup.RegisterCreateCatalogueActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +22,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (!DesignerLoginPreferences.createInstance(this).isAnyCatalogueAdded()) {
+            Intent intent = new Intent(this, RegisterCreateCatalogueActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            return;
+        }
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
