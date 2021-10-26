@@ -18,7 +18,9 @@ import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.ActivityAddProductInfo1Binding;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -81,18 +83,6 @@ public class AddProductInfo1Activity extends BaseActivity {
     }
 
     private void getProductTypes() {
-//        productTypes.add(new ProductType(1, "Shirt", 0, 0));
-//        productTypes.add(new ProductType(2, "TShirt", 1, 0));
-//        productTypes.add(new ProductType(3, "Skirt", 2, 1));
-//        productTypes.add(new ProductType(4, "Short", 1, 1));
-//        productTypes.add(new ProductType(5, "Pant", 0, 0));
-//        productTypes.add(new ProductType(6, "Jacket", 1, 0));
-//        productTypes.add(new ProductType(7, "Shrug", 2, 0));
-//        productTypes.add(new ProductType(8, "Belt", 0, 1));
-//        productTypes.add(new ProductType(9, "Cap", 2, 0));
-//        productTypes.add(new ProductType(10, "Watch", 0, 0));
-
-
         progressDialogHandler.setProgress(true);
         subscriptions.add(RestUtils.getAPIs().getProductTypes()
                 .subscribeOn(Schedulers.io())
@@ -102,6 +92,7 @@ public class AddProductInfo1Activity extends BaseActivity {
                     if (response.isSuccess()) {
                         if (response.getData() != null) {
                             productTypes = response.getData();
+                            Collections.sort(productTypes);
                         } else {
                             showMessage(binding.getRoot(), getString(R.string.server_error));
                         }
@@ -118,40 +109,29 @@ public class AddProductInfo1Activity extends BaseActivity {
     private void initView() {
         binding.parentLinearLayout.setOnClickListener(v -> closeKeyboard());
 
-        binding.rgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                binding.inputProductType.setText(null);
-                filteredProductTypesMap.clear();
-                selectedProductTypeId = -1;
-                selectedProductTypePos = -1;
-            }
-        });
-
-        binding.rgAgeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                binding.layoutAge.setVisibility(binding.rbKids.isChecked() ? View.VISIBLE : View.GONE);
-                binding.inputProductType.setText(null);
-                filteredProductTypesMap.clear();
-                selectedProductTypeId = -1;
-                selectedProductTypePos = -1;
-            }
-        });
+        binding.rgGender.setOnCheckedChangeListener(onCheckedChangeListener);
+        binding.rgAgeGroup.setOnCheckedChangeListener(onCheckedChangeListener);
 
         binding.inputProductType.setOnClickListener(v -> openProductTypesDialog());
 
-        binding.btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isFormValidated()) {
-                    openNextScreen();
-                }
+        binding.btnNext.setOnClickListener(v -> {
+            if (isFormValidated()) {
+                openNextScreen();
             }
         });
     }
 
-    private Map<String, Integer> filteredProductTypesMap = new HashMap<>();
+    private final RadioGroup.OnCheckedChangeListener onCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+            binding.inputProductType.setText(null);
+            filteredProductTypesMap.clear();
+            selectedProductTypeId = -1;
+            selectedProductTypePos = -1;
+        }
+    };
+
+    private final Map<String, Integer> filteredProductTypesMap = new LinkedHashMap<>();
     private int selectedProductTypePos = -1;
 
     private void openProductTypesDialog() {
@@ -166,6 +146,8 @@ public class AddProductInfo1Activity extends BaseActivity {
             int ageGroup = ProductType.AGE_GROUP_ADULTS;
             if (binding.rbKids.isChecked()) {
                 ageGroup = ProductType.AGE_GROUP_KIDS;
+            } else if (binding.rbBaby.isChecked()) {
+                ageGroup = ProductType.AGE_GROUP_BABY;
             }
 
             for (ProductType productType : productTypes) {
@@ -183,11 +165,16 @@ public class AddProductInfo1Activity extends BaseActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         selectedProductTypePos = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                        String type = entries[selectedProductTypePos];
-                        binding.inputProductType.setText(type);
-                        try {
-                            selectedProductTypeId = filteredProductTypesMap.get(type);
-                        } catch (NullPointerException ignored) {
+                        if (selectedProductTypePos >= 0 && entries.length > 0) {
+                            String type = entries[selectedProductTypePos];
+                            binding.inputProductType.setText(type);
+                            try {
+                                selectedProductTypeId = filteredProductTypesMap.get(type);
+                            } catch (NullPointerException ignored) {
+                            }
+                        } else {
+                            binding.inputProductType.setText(null);
+                            selectedProductTypeId = -1;
                         }
                     }
                 }).show();
@@ -202,51 +189,6 @@ public class AddProductInfo1Activity extends BaseActivity {
         binding.inputLayoutProductType.setErrorEnabled(false);
 
         product = new Product(catalogue.getId(), selectedProductTypeId, null);
-
-        if (binding.rbKids.isChecked()) {
-            String minAgeStr = binding.inputMinAge.getText().toString().trim();
-            if (minAgeStr.isEmpty()) {
-                binding.inputLayoutMinAge.setErrorEnabled(true);
-                binding.inputLayoutMinAge.setError(getString(R.string.error_empty_min_age));
-                return false;
-            }
-            int minAge;
-            try {
-                minAge = Integer.parseInt(minAgeStr);
-            } catch (NumberFormatException e) {
-                binding.inputLayoutMinAge.setErrorEnabled(true);
-                binding.inputLayoutMinAge.setError(getString(R.string.error_invalid_min_age));
-                return false;
-            }
-            binding.inputLayoutMinAge.setErrorEnabled(false);
-
-            String maxAgeStr = binding.inputMaxAge.getText().toString().trim();
-            if (maxAgeStr.isEmpty()) {
-                binding.inputLayoutMaxAge.setErrorEnabled(true);
-                binding.inputLayoutMaxAge.setError(getString(R.string.error_empty_max_age));
-                return false;
-            }
-            int maxAge;
-            try {
-                maxAge = Integer.parseInt(maxAgeStr);
-            } catch (NumberFormatException e) {
-                binding.inputLayoutMinAge.setErrorEnabled(true);
-                binding.inputLayoutMinAge.setError(getString(R.string.error_invalid_max_age));
-                return false;
-            }
-            binding.inputLayoutMaxAge.setErrorEnabled(false);
-
-            if (minAge > maxAge) {
-                showMessage(binding.getRoot(), getString(R.string.error_invalid_age_range));
-                return false;
-            }
-
-            product.setMinAge(minAge);
-            product.setMaxAge(maxAge);
-        } else {
-            product.setMinAge(0);
-            product.setMaxAge(0);
-        }
 
         return true;
     }

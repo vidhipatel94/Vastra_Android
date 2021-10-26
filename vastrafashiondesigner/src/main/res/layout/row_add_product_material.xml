@@ -23,7 +23,7 @@
             android:completionThreshold="2"
             android:imeOptions="actionNext"
             android:inputType="textPersonName"
-            android:maxLength="50" />
+            android:maxLength="30" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -42,9 +42,9 @@
             style="@style/Vastra.EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:imeOptions="actionNext"
+            android:imeOptions="actionDone"
             android:inputType="numberDecimal"
-            android:maxLength="50"
+            android:maxLength="3"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 

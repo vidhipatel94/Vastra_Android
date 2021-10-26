@@ -29,8 +29,6 @@ public class Product implements Serializable {
     int knitOrWoven;
     int washCare;
     String trend;
-    int minAge;
-    int maxAge;
     int totalLikes;
     float overallRating;
 
@@ -167,22 +165,6 @@ public class Product implements Serializable {
 
     public void setTrend(String trend) {
         this.trend = trend;
-    }
-
-    public int getMinAge() {
-        return minAge;
-    }
-
-    public void setMinAge(int minAge) {
-        this.minAge = minAge;
-    }
-
-    public int getMaxAge() {
-        return maxAge;
-    }
-
-    public void setMaxAge(int maxAge) {
-        this.maxAge = maxAge;
     }
 
     public int getTotalLikes() {

@@ -1,12 +1,13 @@
 package com.esolution.vastrabasic.models.product;
 
-public class ProductType {
+public class ProductType implements Comparable<ProductType> {
     public static final int GENDER_BOTH = 0;
     public static final int GENDER_MALE = 1;
     public static final int GENDER_FEMALE = 2;
 
     public static final int AGE_GROUP_ADULTS = 0;
     public static final int AGE_GROUP_KIDS = 1;
+    public static final int AGE_GROUP_BABY = 2;
 
     int id;
     String name;
@@ -34,5 +35,10 @@ public class ProductType {
 
     public int getAgeGroup() {
         return ageGroup;
+    }
+
+    @Override
+    public int compareTo(ProductType o) {
+        return this.name.compareToIgnoreCase(o.name);
     }
 }

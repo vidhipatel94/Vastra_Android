@@ -97,9 +97,18 @@
                 android:orientation="horizontal">
 
                 <RadioButton
+                    android:id="@+id/rb_baby"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/primary_dark"
+                    android:fontFamily="@font/montserrat_light"
+                    android:text="@string/baby" />
+
+                <RadioButton
                     android:id="@+id/rb_kids"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:buttonTint="@color/primary_dark"
                     android:fontFamily="@font/montserrat_light"
                     android:text="@string/kids" />
@@ -114,54 +123,6 @@
                     android:fontFamily="@font/montserrat_light"
                     android:text="@string/adult" />
             </RadioGroup>
-
-            <LinearLayout
-                android:id="@+id/layoutAge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/inputLayoutMinAge"
-                    style="@style/Vastra.TextInputLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="@string/label_min_age">
-
-                    <EditText
-                        android:id="@+id/inputMinAge"
-                        style="@style/Vastra.EditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:imeOptions="actionNext"
-                        android:inputType="number"
-                        android:maxLength="2"
-                        android:singleLine="true"
-                        android:text="0" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/inputLayoutMaxAge"
-                    style="@style/Vastra.TextInputLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:hint="@string/label_max_age">
-
-                    <EditText
-                        android:id="@+id/inputMaxAge"
-                        style="@style/Vastra.EditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:imeOptions="actionDone"
-                        android:inputType="number"
-                        android:maxLength="2"
-                        android:singleLine="true"
-                        android:text="13" />
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"

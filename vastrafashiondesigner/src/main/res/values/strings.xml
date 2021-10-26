@@ -158,5 +158,6 @@
     <string name="error_invalid_min_age">Invalid min age.</string>
     <string name="error_invalid_max_age">Invalid max age.</string>
     <string name="error_invalid_age_range">Please enter valid age range.</string>
+    <string name="baby">Baby (1-2 years)</string>
 
 </resources>
