@@ -24,7 +24,7 @@ public class RestUtils {
         if (vastraAPIs == null) {
             //MAC - ipconfig getifaddr en0
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://10.0.0.58:3000")
+                    .baseUrl("http://10.0.0.114:3000")
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                     .build();

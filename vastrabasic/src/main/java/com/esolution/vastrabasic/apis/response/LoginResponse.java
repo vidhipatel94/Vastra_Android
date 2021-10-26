@@ -3,13 +3,21 @@ package com.esolution.vastrabasic.apis.response;
 import com.esolution.vastrabasic.models.Designer;
 import com.esolution.vastrabasic.models.User;
 
-public class LoginResponse extends Designer {
+public class LoginResponse {
 
-    public User getShopper() {
-        return this;
+    String sessionToken;
+    User user;
+    Designer designer;
+
+    public User getUser() {
+        return user;
     }
 
     public Designer getDesigner() {
-        return this;
+        return designer;
+    }
+
+    public String getSessionToken() {
+        return sessionToken;
     }
 }
