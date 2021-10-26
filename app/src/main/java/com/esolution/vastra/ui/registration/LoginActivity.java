@@ -110,11 +110,9 @@ public class LoginActivity extends BaseActivity {
                             String sessionToken = response.getData().getSessionToken();
                             if (user == null && designer != null && !TextUtils.isEmpty(sessionToken)) {
                                 designerLogin(designer, sessionToken);
-                                Log.i("Designer", "loginUser: ");
                                 openDesignerHomeScreen();
                             } else if (user != null && designer == null && !TextUtils.isEmpty(sessionToken)) {
                                 shopperLogin(user, sessionToken);
-                                Log.i("Shopper", "loginUser: ");
                                 openShopperHomeScreen();
                             } else {
                                 success = false;
