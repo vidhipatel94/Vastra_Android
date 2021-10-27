@@ -1,15 +1,11 @@
 package com.esolution.vastra.ui.registration;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.esolution.vastra.R;
 import com.esolution.vastra.databinding.ActivityLoginBinding;
@@ -26,7 +22,6 @@ import com.esolution.vastrashopper.data.ShopperLoginPreferences;
 import com.esolution.vastrashopper.ui.ShopperMainActivity;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class LoginActivity extends BaseActivity {
@@ -43,20 +38,21 @@ public class LoginActivity extends BaseActivity {
         progressDialogHandler = new ProgressDialogHandler(this);
 
         binding.btnBack.setOnClickListener(v -> onBackPressed());
+        binding.parentLinearLayout.setOnClickListener(v -> closeKeyboard());
 
         binding.linkForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                closeKeyboard();
                 Utils.showMessage(binding.getRoot(), getString(R.string.todo));
             }
         });
 
-        binding.parentLinearLayout.setOnClickListener(v -> closeKeyboard(LoginActivity.this));
-
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isFormValidated()){
+                closeKeyboard();
+                if (isFormValidated()) {
                     userLogin();
                 }
             }
@@ -65,11 +61,11 @@ public class LoginActivity extends BaseActivity {
 
     private boolean isFormValidated() {
         String email = binding.inputEmail.getText().toString().trim();
-        if(email.isEmpty()) {
+        if (email.isEmpty()) {
             binding.inputLayoutEmail.setErrorEnabled(true);
             binding.inputLayoutEmail.setError(getString(R.string.error_empty_email));
             return false;
-        } else if(!Utils.isEmailAddressValid(email)) {
+        } else if (!Utils.isEmailAddressValid(email)) {
             binding.inputLayoutEmail.setErrorEnabled(true);
             binding.inputLayoutEmail.setError(getString(R.string.error_invalid_email));
             return false;
@@ -94,15 +90,15 @@ public class LoginActivity extends BaseActivity {
         String email = binding.inputEmail.getText().toString().trim();
         String password = binding.inputPassword.getText().toString().trim();
 
-        LoginRequest loginRequest = new LoginRequest(this,email,password);
+        LoginRequest loginRequest = new LoginRequest(this, email, password);
         subscriptions.add(RestUtils.getAPIs().login(loginRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
                     progressDialogHandler.setProgress(false);
-                    if(response.isSuccess()) {
+                    if (response.isSuccess()) {
                         boolean success = true;
-                        if(response.getData() == null) {
+                        if (response.getData() == null) {
                             success = false;
                         } else {
                             User user = response.getData().getUser();
@@ -117,17 +113,17 @@ public class LoginActivity extends BaseActivity {
                             } else {
                                 success = false;
                             }
-                            if (!success) {
-                                showMessage(binding.getRoot(), getString(R.string.server_error));
-                            }
+                        }
+                        if (!success) {
+                            showMessage(binding.getRoot(), getString(R.string.server_error));
                         }
                     } else {
-                        showMessage(binding.getRoot(),response.getMessage());
+                        showMessage(binding.getRoot(), response.getMessage());
                     }
-                },throwable -> {
+                }, throwable -> {
                     progressDialogHandler.setProgress(false);
-                    String message = RestUtils.processThrowable(this,throwable);
-                    showMessage(binding.getRoot(),message);
+                    String message = RestUtils.processThrowable(this, throwable);
+                    showMessage(binding.getRoot(), message);
                 }));
 
     }
@@ -145,17 +141,10 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void shopperLogin(User user, String sessionToken) {
-        ShopperLoginPreferences.createInstance(this).login(user,sessionToken);
+        ShopperLoginPreferences.createInstance(this).login(user, sessionToken);
     }
 
     private void designerLogin(Designer designer, String sessionToken) {
-        DesignerLoginPreferences.createInstance(this).login(designer,sessionToken);
-    }
-
-    private void closeKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        if (inputMethodManager.isAcceptingText()) {
-            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
-        }
+        DesignerLoginPreferences.createInstance(this).login(designer, sessionToken);
     }
 }

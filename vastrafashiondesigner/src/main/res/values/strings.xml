@@ -31,9 +31,9 @@
     <string name="label_product_title">Product Title</string>
     <string name="label_product_price">Price (CAD)</string>
     <string name="label_product_multipack_set">Multipack Set</string>
-    <string name="label_product_weight">Weight (lb)</string>
+    <string name="label_product_weight">Weight (lb) (to calculate shipping cost)</string>
     <string name="label_product_material">Material</string>
-    <string name="label_product_percentage">Percentage</string>
+    <string name="label_product_percentage">%</string>
     <string name="link_add_more">Add more</string>
     <string name="label_occassion">Occasion</string>
     <string name="label_pattern">Pattern</string>
@@ -50,8 +50,8 @@
     <string name="btn_increment">+</string>
     <string name="label_select_qty">Select quantity</string>
     <string name="label_one">1</string>
-    <string name="select_occassion">Select occassion</string>
-    <string name="select_pattern">Select pattern</string>
+    <string name="select_occassion">Select Occasion</string>
+    <string name="select_pattern">Select Pattern</string>
     <string name="select_province">Select Province</string>
     <string name="select_washcare">Select Washcare</string>
     <string name="title_prominent_color">Select Prominent Color</string>
@@ -159,5 +159,23 @@
     <string name="error_invalid_max_age">Invalid max age.</string>
     <string name="error_invalid_age_range">Please enter valid age range.</string>
     <string name="baby">Baby (1-2 years)</string>
+    <string name="error_empty_title">Please enter product title.</string>
+    <string name="error_empty_product_price">Please enter product price</string>
+    <string name="error_invalid_product_price">Please enter valid price.</string>
+    <string name="error_empty_product_weight">Please enter product weight.</string>
+    <string name="error_invalid_product_weight">Please enter valid weight.</string>
+    <string name="error_empty_material">Please enter product material</string>
+    <string name="error_empty_material_percentage">Please enter material percentage.</string>
+    <string name="error_invalid_material_percentage">Invalid percentage.</string>
+    <string name="error_zero_product_price">Price value must be more than 0.</string>
+    <string name="error_zero_product_weight">Product weight must be more than 0.</string>
+    <string name="error_zero_material_percentage">Percentage must be between 0-100.</string>
+    <string name="error_duplicate_material">This material is already added above.</string>
+    <string name="error_invalid_total_material_percentage">Total material percentage should be 100.</string>
+    <string name="error_empty_occasion">Please select occasion.</string>
+    <string name="error_empty_pattern">Please select pattern.</string>
+    <string name="error_empty_wash_care">Please select wash care.</string>
+    <string name="error_empty_season">Please select season(s) when this product can be used.</string>
+    <string name="none">None</string>
 
 </resources>

@@ -17,7 +17,6 @@
         <activity android:name=".ui.MainActivity" />
         <activity android:name=".ui.startup.RegisterDesignerInfoActivity" />
         <activity android:name=".ui.startup.RegisterCreateCatalogueActivity" />
-        <activity android:name=".ui.newproduct.SelectProductTypeActivity" />
         <activity android:name=".ui.newproduct.AddProductInfo1Activity" />
         <activity android:name=".ui.newproduct.AddProductInfo2Activity" />
         <activity android:name=".ui.newproduct.AddProductInfo3Activity" />

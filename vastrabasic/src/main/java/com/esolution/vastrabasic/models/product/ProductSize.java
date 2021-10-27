@@ -1,6 +1,10 @@
 package com.esolution.vastrabasic.models.product;
 
-public class ProductSize {
+import java.io.Serializable;
+
+public class ProductSize implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     int id;
     int productId;
 

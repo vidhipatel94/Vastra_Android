@@ -1,6 +1,10 @@
 package com.esolution.vastrabasic.models.product;
 
-public class ProductType implements Comparable<ProductType> {
+import java.io.Serializable;
+
+public class ProductType implements Comparable<ProductType>, Serializable {
+    private static final long serialVersionUID = 1L;
+
     public static final int GENDER_BOTH = 0;
     public static final int GENDER_MALE = 1;
     public static final int GENDER_FEMALE = 2;
