@@ -11,6 +11,7 @@ import com.esolution.vastrabasic.models.Catalogue;
 import com.esolution.vastrabasic.models.Designer;
 import com.esolution.vastrabasic.models.ProductFilter;
 import com.esolution.vastrabasic.models.User;
+import com.esolution.vastrabasic.models.product.BasicProduct;
 import com.esolution.vastrabasic.models.product.Color;
 import com.esolution.vastrabasic.models.product.Material;
 import com.esolution.vastrabasic.models.product.Product;
@@ -79,6 +80,10 @@ public interface VastraAPIs {
     @DELETE("/product")
     Observable<APIResponse<JsonElement>> deleteProduct(@Header("token") String token, @Body int productId);
 
+    @GET("/product/basiclist/fd/type")
+    Observable<APIResponse<List<BasicProduct>>> getDesignerProductsByTypes(@Header("token") String token,
+                                                                           @Query("designerId") int designerId,
+                                                                           @Query("productTypeId") int productType);
 
     // ------------- Product Color --------------
 
@@ -115,11 +120,10 @@ public interface VastraAPIs {
     Observable<APIResponse<JsonElement>> deleteProductSize(@Header("token") String token,
                                                            @Body int productSizeId);
 
-    // get all sizes of a designer having same product type
     @GET("/product/size/list")
-    Observable<APIResponse<JsonElement>> getProductSizes(@Header("token") String token,
+    Observable<APIResponse<List<ProductSize>>> getProductSizes(@Header("token") String token,
                                                          @Query("designerId") int designerId,
-                                                         @Query("productTypeId") int productTypeId);
+                                                         @Query("productId") int productId);
 
 
     // ------------- Product Inventory --------------

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="occasions">
+        <item>Casual</item>
+        <item>Smart Casual</item>
+        <item>Dressy Casual</item>
+        <item>Country Club Casual</item>
+        <item>Business Casual</item>
+        <item>Formal Office Wear</item>
+        <item>Sports Wear</item>
+        <item>Native Wear</item>
+        <item>Cocktail Attire</item>
+        <item>Lounge</item>
+        <item>White Tie</item>
+        <item>Black Tie</item>
+        <item>Creative Black Tie</item>
+        <item>Warm Weather Black Tie</item>
+        <item>Black Tie Optional</item>
+    </string-array>
+
+    <string-array name="patterns">
+        <item>Striped</item>
+        <item>Checked</item>
+        <item>Solid</item>
+        <item>Printed</item>
+        <item>Color Blocked</item>
+        <item>Dyed</item>
+        <item>Self Design</item>
+    </string-array>
+
+    <string-array name="wash_cares">
+        <item>Machine Wash</item>
+        <item>Hand Wash</item>
+        <item>Dry Clean</item>
+    </string-array>
+</resources>
