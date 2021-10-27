@@ -39,48 +39,48 @@ public interface VastraAPIs {
 
     // ------------- User --------------
 
-    @POST("/user")
+    @POST("user")
     Observable<APIResponse<RegisterUserResponse>> registerShopper(@Body RegisterShopperRequest registerShopperRequest);
 
-    @POST("/fd/user")
+    @POST("fd/user")
     Observable<APIResponse<RegisterDesignerResponse>> registerDesigner(@Body RegisterDesignerRequest registerDesignerRequest);
 
-    @POST("/login")
+    @POST("login")
     Observable<APIResponse<LoginResponse>> login(@Body LoginRequest loginRequest);
 
-    @PUT("/user")
+    @PUT("user")
     Observable<APIResponse<JsonElement>> updateShopper(@Header("token") String token, @Body User user);
 
-    @PUT("/fd/user")
+    @PUT("fd/user")
     Observable<APIResponse<JsonElement>> updateDesigner(@Header("token") String token, @Body Designer designer);
 
 
     // ------------- Catalogue --------------
 
-    @POST("/catalogue")
+    @POST("catalogue")
     Observable<APIResponse<Catalogue>> createCatalogue(@Header("token") String token, @Body Catalogue catalogue);
 
-    @GET("/catalogue/list")
+    @GET("catalogue/list")
     Observable<APIResponse<List<Catalogue>>> getCatalogues(@Header("token") String token, @Query("designerId") int designerId);
 
 
     // ------------- Product --------------
 
-    @POST("/product")
+    @POST("product")
     Observable<APIResponse<Product>> createProduct(@Header("token") String token, @Body Product product);
 
-    @PUT("/product")
+    @PUT("product")
     Observable<APIResponse<Product>> updateProduct(@Header("token") String token, @Body Product product);
 
     // show product list with filter -> fd
-    @POST("/product/list")
+    @POST("product/list")
     Observable<APIResponse<List<Product>>> getProducts(@Header("token") String token, @Body ProductFilter productFilter);
 
     // delete product
-    @DELETE("/product")
+    @DELETE("product")
     Observable<APIResponse<JsonElement>> deleteProduct(@Header("token") String token, @Body int productId);
 
-    @GET("/product/basiclist/fd/type")
+    @GET("product/basiclist/fd/type")
     Observable<APIResponse<List<BasicProduct>>> getDesignerProductsByTypes(@Header("token") String token,
                                                                            @Query("designerId") int designerId,
                                                                            @Query("productTypeId") int productType);
@@ -88,39 +88,39 @@ public interface VastraAPIs {
     // ------------- Product Color --------------
 
     // add product color -> while updating inventory -> call API add inventories
-    @POST("/product/color")
+    @POST("product/color")
     Observable<APIResponse<ProductColor>> addProductColor(@Header("token") String token, @Body ProductColor productColor);
 
     // update product color -> while updating inventory
-    @PUT("/product/color")
+    @PUT("product/color")
     Observable<APIResponse<ProductColor>> updateProductColor(@Header("token") String token, @Body ProductColor productColor);
 
     // delete product color -> while updating inventory -> also delete inventory
-    @DELETE("/product/color")
+    @DELETE("product/color")
     Observable<APIResponse<JsonElement>> deleteProductColor(@Header("token") String token, @Body int productColorId);
 
     // get all colors
-    @GET("/color/list")
+    @GET("color/list")
     Observable<APIResponse<List<Color>>> getColors();
 
 
     // ------------- Product Size --------------
 
     // add product size -> while updating inventory -> call API add inventories
-    @POST("/product/size")
+    @POST("product/size")
     Observable<APIResponse<ProductSize>> addProductSize(@Header("token") String token, @Body ProductSize productSize);
 
     // add product size -> while updating inventory
-    @PUT("/product/size")
+    @PUT("product/size")
     Observable<APIResponse<ProductSize>> updateProductSize(@Header("token") String token,
                                                            @Body ProductSize productSize);
 
     // add product size -> while updating inventory -> also delete inventory
-    @DELETE("/product/size")
+    @DELETE("product/size")
     Observable<APIResponse<JsonElement>> deleteProductSize(@Header("token") String token,
                                                            @Body int productSizeId);
 
-    @GET("/product/size/list")
+    @GET("product/size/list")
     Observable<APIResponse<List<ProductSize>>> getProductSizes(@Header("token") String token,
                                                          @Query("designerId") int designerId,
                                                          @Query("productId") int productId);
@@ -129,12 +129,12 @@ public interface VastraAPIs {
     // ------------- Product Inventory --------------
 
     // add inventoriesx
-    @POST("/product/inventory/list")
+    @POST("product/inventory/list")
     Observable<APIResponse<JsonElement>> addProductInventories(@Header("token") String token,
                                                                @Body List<ProductInventory> productInventories);
 
     // update inventories
-    @PUT("/product/inventory/list")
+    @PUT("product/inventory/list")
     Observable<APIResponse<JsonElement>> updateProductInventories(@Header("token") String token,
                                                                   @Body List<ProductInventory> productInventories);
 
@@ -142,19 +142,19 @@ public interface VastraAPIs {
     // ------------- Product Type --------------
 
     // get all product types
-    @GET("/product/type/list")
+    @GET("product/type/list")
     Observable<APIResponse<List<ProductType>>> getProductTypes();
 
 
     // ------------- Product Material --------------
 
     // get all materials
-    @GET("/material/list")
+    @GET("material/list")
     Observable<APIResponse<List<Material>>> getMaterials();
 
 
     // add material
-    @POST("/material")
+    @POST("material")
     Observable<APIResponse<Material>> addMaterial(@Header("token") String token, @Body String materialName);
 
 
@@ -162,7 +162,7 @@ public interface VastraAPIs {
 
     // upload image
     @Multipart
-    @POST("/upload")
-    Observable<APIResponse<String>> uploadImage(@Header("token") String token, @Part MultipartBody.Part image);
+    @POST("upload")
+    Observable<APIResponse<String>> uploadImage(@Header("token") String token, @Part MultipartBody.Part file);
 
 }

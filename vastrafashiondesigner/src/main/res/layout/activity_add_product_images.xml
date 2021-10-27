@@ -23,24 +23,14 @@
             android:paddingRight="24dp"
             android:paddingBottom="20dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLayoutProductTitle"
-                style="@style/Vastra.TextInputLayout"
+            <TextView
+                android:id="@+id/productTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/label_product_title">
-
-                <EditText
-                    android:id="@+id/inputProductTitle"
-                    style="@style/Vastra.EditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:cursorVisible="false"
-                    android:focusable="false"
-                    android:imeOptions="actionNext"
-                    android:maxLength="50"
-                    android:singleLine="true" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:fontFamily="@font/montserrat_medium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/text_primary_black"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -64,52 +54,17 @@
                     android:layout_gravity="start"
                     android:orientation="horizontal">
 
-                    <FrameLayout
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginEnd="16dp">
+                    <include
+                        android:id="@+id/image1Layout"
+                        layout="@layout/row_add_product_image" />
 
-                        <ImageView
-                            android:id="@+id/productImage1"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:background="@drawable/bg_grey_box"
-                            android:contentDescription="@string/image_1"
-                            android:src="@drawable/ic_add_white_24dp" />
+                    <include
+                        android:id="@+id/image2Layout"
+                        layout="@layout/row_add_product_image" />
 
-                    </FrameLayout>
-
-                    <FrameLayout
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginEnd="16dp">
-
-                        <ImageView
-                            android:id="@+id/productImage2"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_marginEnd="16dp"
-                            android:background="@drawable/bg_grey_box"
-                            android:contentDescription="@string/image_2"
-                            android:src="@drawable/ic_add_white_24dp" />
-
-                    </FrameLayout>
-
-                    <FrameLayout
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginEnd="16dp">
-
-                        <ImageView
-                            android:id="@+id/productImage3"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_marginEnd="16dp"
-                            android:background="@drawable/bg_grey_box"
-                            android:contentDescription="@string/image_3"
-                            android:src="@drawable/ic_add_white_24dp" />
-
-                    </FrameLayout>
+                    <include
+                        android:id="@+id/image3Layout"
+                        layout="@layout/row_add_product_image" />
 
                     <LinearLayout
                         android:id="@+id/addMoreImageLinearLayout"

@@ -177,5 +177,6 @@
     <string name="error_empty_wash_care">Please select wash care.</string>
     <string name="error_empty_season">Please select season(s) when this product can be used.</string>
     <string name="none">None</string>
+    <string name="error_insufficient_product_images">Please select at least 3 images of the product.</string>
 
 </resources>

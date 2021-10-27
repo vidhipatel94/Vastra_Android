@@ -1,38 +1,48 @@
 package com.esolution.vastrafashiondesigner.ui.newproduct;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.esolution.vastrabasic.ProgressDialogHandler;
+import com.esolution.vastrabasic.apis.RestUtils;
 import com.esolution.vastrabasic.models.Catalogue;
 import com.esolution.vastrabasic.models.product.Product;
 import com.esolution.vastrabasic.ui.BaseActivity;
-import com.esolution.vastrabasic.utils.JsonUtils;
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.ActivityAddProductImagesBinding;
 import com.esolution.vastrafashiondesigner.databinding.RowAddProductImageBinding;
 import com.esolution.vastrafashiondesigner.ui.newproduct.addcolor.SelectProductColorsActivity;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Stack;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class AddProductImagesActivity extends BaseActivity {
 
@@ -47,6 +57,7 @@ public class AddProductImagesActivity extends BaseActivity {
     }
 
     private ActivityAddProductImagesBinding binding;
+    private ProgressDialogHandler progressDialogHandler;
 
     private Catalogue catalogue;
     private Product product;
@@ -64,83 +75,12 @@ public class AddProductImagesActivity extends BaseActivity {
             return;
         }
 
-        Log.d("--------", "onCreate: "+ JsonUtils.toJson(product));
-
         binding = ActivityAddProductImagesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.toolbarLayout.title.setText(catalogue.getName());
-        binding.toolbarLayout.iconBack.setOnClickListener(v -> onBackPressed());
+        progressDialogHandler = new ProgressDialogHandler(this);
 
-        binding.addMoreProductImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RowAddProductImageBinding imageBinding = RowAddProductImageBinding.inflate(getLayoutInflater());
-                binding.addMoreImageLinearLayout.addView(imageBinding.getRoot());
-
-                imageBinding.iconDelete.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        binding.addMoreImageLinearLayout.removeView(imageBinding.getRoot());
-                    }
-                });
-            }
-        });
-
-        binding.productImage1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chooseImage(1);
-            }
-        });
-
-        binding.productImage2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chooseImage(2);
-            }
-        });
-
-        binding.productImage3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chooseImage(3);
-            }
-        });
-
-        binding.btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AddProductImagesActivity.this, SelectProductColorsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        binding.parentLinearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                closeKeyboard(AddProductImagesActivity.this);
-            }
-        });
-
-        activityResultLauncherGallery = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-            @Override
-            public void onActivityResult(ActivityResult result) {
-                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                    Uri imageUrl = result.getData().getData();
-                    switch (photoIndex) {
-                        case 1:
-                            binding.productImage1.setImageURI(imageUrl);
-                            return;
-                        case 2:
-                            binding.productImage2.setImageURI(imageUrl);
-                            return;
-                        case 3:
-                            binding.productImage3.setImageURI(imageUrl);
-                    }
-                }
-            }
-        });
+        initView();
     }
 
     @Override
@@ -157,6 +97,62 @@ public class AddProductImagesActivity extends BaseActivity {
         return false;
     }
 
+    private final Map<RowAddProductImageBinding, Uri> imageBindings = new LinkedHashMap<>();
+    private final ArrayList<String> imageUrls = new ArrayList<>();
+
+    private void initView() {
+        binding.toolbarLayout.title.setText(catalogue.getName());
+        binding.toolbarLayout.iconBack.setOnClickListener(v -> onBackPressed());
+        binding.productTitle.setText(product.getTitle());
+
+        binding.parentLinearLayout.setOnClickListener(v -> closeKeyboard());
+
+        binding.image1Layout.iconDelete.setVisibility(View.GONE);
+        binding.image2Layout.iconDelete.setVisibility(View.GONE);
+        binding.image3Layout.iconDelete.setVisibility(View.GONE);
+
+        imageBindings.put(binding.image1Layout, null);
+        imageBindings.put(binding.image2Layout, null);
+        imageBindings.put(binding.image3Layout, null);
+
+        binding.image1Layout.productImage.setOnClickListener(v -> chooseImage(0));
+        binding.image2Layout.productImage.setOnClickListener(v -> chooseImage(1));
+        binding.image3Layout.productImage.setOnClickListener(v -> chooseImage(2));
+
+        binding.addMoreProductImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RowAddProductImageBinding imageBinding = RowAddProductImageBinding.inflate(getLayoutInflater());
+                binding.addMoreImageLinearLayout.addView(imageBinding.getRoot());
+                imageBindings.put(imageBinding, null);
+
+                int i = imageBindings.size() - 1;
+                imageBinding.productImage.setOnClickListener(v1 -> chooseImage(i));
+
+                imageBinding.iconDelete.setOnClickListener(v1 -> {
+                    binding.addMoreImageLinearLayout.removeView(imageBinding.getRoot());
+                    imageBindings.remove(imageBinding);
+                });
+            }
+        });
+
+        activityResultLauncherGallery = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        Uri imageUrl = result.getData().getData();
+                        onImageSelected(imageUrl);
+                    }
+                });
+
+        binding.btnNext.setOnClickListener(v -> {
+            closeKeyboard();
+            if (isFormValidated()) {
+                imageUrls.clear();
+                uploadImagesAndOpenNextScreen();
+            }
+        });
+    }
+
     private void chooseImage(int i) {
         boolean granted = checkGalleryPermission();
         if (granted) {
@@ -166,6 +162,26 @@ public class AddProductImagesActivity extends BaseActivity {
         } else {
             openPermissionRequiredDialog();
         }
+    }
+
+    private void onImageSelected(Uri imageUri) {
+        if (imageBindings.size() > 0 && photoIndex < imageBindings.size()) {
+            List<RowAddProductImageBinding> list = new ArrayList<>(imageBindings.keySet());
+            RowAddProductImageBinding imageBinding = list.get(photoIndex);
+            imageBinding.productImage.setImageURI(imageUri);
+            imageBindings.put(imageBinding, imageUri);
+        }
+    }
+
+    public String getPath(Uri uri) {
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+        if (cursor == null) return null;
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String s = cursor.getString(column_index);
+        cursor.close();
+        return s;
     }
 
     @Override
@@ -195,7 +211,6 @@ public class AddProductImagesActivity extends BaseActivity {
     private boolean checkGalleryPermission() {
         if (ContextCompat.checkSelfPermission(AddProductImagesActivity.this,
                 Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            Log.i("permissiongranted", "checkGalleryPermission: ");
             return true;
         } else if (ActivityCompat.shouldShowRequestPermissionRationale(AddProductImagesActivity.this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)) {
@@ -210,10 +225,73 @@ public class AddProductImagesActivity extends BaseActivity {
         return false;
     }
 
-    private void closeKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        if (inputMethodManager.isAcceptingText()) {
-            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+    private Stack<Uri> finalURIs;
+
+    private boolean isFormValidated() {
+        finalURIs = new Stack<>();
+        for (Uri uri : imageBindings.values()) {
+            if (uri != null) {
+                finalURIs.push(uri);
+            }
         }
+        if (finalURIs.size() < 3) {
+            showMessage(binding.getRoot(), getString(R.string.error_insufficient_product_images));
+            return false;
+        }
+
+        String description = binding.inputDescription.getText().toString().trim();
+        if (description.isEmpty()) description = null;
+
+        product.setDescription(description);
+
+        return true;
+    }
+
+    private void uploadImagesAndOpenNextScreen() {
+        if (finalURIs == null) return;
+
+        if (!finalURIs.isEmpty()) {
+            Uri uri = finalURIs.pop();
+            progressDialogHandler.setProgress(true);
+            uploadImage(uri);
+        } else {
+            progressDialogHandler.setProgress(false);
+            product.setImages(imageUrls);
+            openNextScreen();
+        }
+    }
+
+    private void uploadImage(Uri imageUri) {
+        File file = new File(getPath(imageUri));
+        RequestBody requestFile = RequestBody.create(MediaType.parse(getContentResolver().getType(imageUri)), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+
+        subscriptions.add(RestUtils.getAPIs().uploadImage("", body)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    if (response.isSuccess()) {
+                        String url = response.getData();
+                        if (!TextUtils.isEmpty(url)) {
+                            imageUrls.add(url);
+                            uploadImagesAndOpenNextScreen();
+                        } else {
+                            progressDialogHandler.setProgress(false);
+                            showMessage(binding.getRoot(), getString(R.string.server_error));
+                        }
+                    } else {
+                        progressDialogHandler.setProgress(false);
+                        showMessage(binding.getRoot(), response.getMessage());
+                    }
+                }, throwable -> {
+                    progressDialogHandler.setProgress(false);
+                    throwable.printStackTrace();
+                    String message = RestUtils.processThrowable(this, throwable);
+                    showMessage(binding.getRoot(), message);
+                }));
+    }
+
+    private void openNextScreen() {
+        startActivity(SelectProductColorsActivity.createIntent(this, catalogue, product));
     }
 }

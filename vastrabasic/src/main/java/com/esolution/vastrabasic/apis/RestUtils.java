@@ -16,6 +16,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RestUtils {
 
+    public static final String BASE_URL = "http://10.0.0.58:3000/";
+
     public static final int CODE_UNAUTHORIZED = 403;
 
     private static VastraAPIs vastraAPIs;
@@ -24,7 +26,7 @@ public class RestUtils {
         if (vastraAPIs == null) {
             //MAC - ipconfig getifaddr en0
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://10.0.0.114:3000")
+                    .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                     .build();
@@ -48,8 +50,8 @@ public class RestUtils {
         return context.getString(R.string.server_error);
     }
 
-    public static boolean processResponseFailure(APIResponse apiResponse){
-        if (!apiResponse.isSuccess()){
+    public static boolean processResponseFailure(APIResponse apiResponse) {
+        if (!apiResponse.isSuccess()) {
             if (apiResponse.getCode() == CODE_UNAUTHORIZED) {
                 // TODO logout user
                 return true;
