@@ -1,12 +1,14 @@
 package com.esolution.vastrafashiondesigner.ui.startup;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.apis.RestUtils;
 import com.esolution.vastrabasic.models.Catalogue;
 import com.esolution.vastrabasic.ui.BaseActivity;
+import com.esolution.vastrabasic.utils.JsonUtils;
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
 import com.esolution.vastrafashiondesigner.databinding.ActivityRegisterCreateCatalogueBinding;
@@ -66,6 +68,7 @@ public class RegisterCreateCatalogueActivity extends BaseActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
+                    Log.d("-----", "createCatalogue: "+ JsonUtils.toJson(response));
                     progressDialogHandler.setProgress(false);
                     if (response.isSuccess()) {
                         if (response.getData() != null) {
@@ -77,6 +80,7 @@ public class RegisterCreateCatalogueActivity extends BaseActivity {
                         showMessage(binding.getRoot(), response.getMessage());
                     }
                 }, throwable -> {
+                    throwable.printStackTrace();
                     progressDialogHandler.setProgress(false);
                     String message = RestUtils.processThrowable(this, throwable);
                     showMessage(binding.getRoot(), message);

@@ -7,6 +7,9 @@ import java.util.List;
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    public static final int NONE = 0;
+    public static final int KNIT = 1;
+    public static final int WOVEN = 2;
 
     int id;
 
@@ -24,13 +27,14 @@ public class Product implements Serializable {
     float price;
     int multipackSet;
     float weight;
-    int occasion;
     int pattern;
     int knitOrWoven;
     int washCare;
     String trend;
     int totalLikes;
     float overallRating;
+
+    List<ProductOccasion> productOccasions;   // EXTRA
 
     List<ProductMaterial> materials;  // EXTRA
     List<ProductSeason> seasons;  // EXTRA
@@ -127,14 +131,6 @@ public class Product implements Serializable {
         this.weight = weight;
     }
 
-    public int getOccasion() {
-        return occasion;
-    }
-
-    public void setOccasion(int occasion) {
-        this.occasion = occasion;
-    }
-
     public int getPattern() {
         return pattern;
     }
@@ -181,6 +177,14 @@ public class Product implements Serializable {
 
     public void setOverallRating(float overallRating) {
         this.overallRating = overallRating;
+    }
+
+    public List<ProductOccasion> getOccasions() {
+        return productOccasions;
+    }
+
+    public void setOccasions(List<ProductOccasion> productOccasions) {
+        this.productOccasions = productOccasions;
     }
 
     public List<ProductMaterial> getMaterials() {

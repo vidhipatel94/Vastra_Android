@@ -3,6 +3,7 @@ package com.esolution.vastrafashiondesigner.ui.newproduct;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -22,6 +23,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.esolution.vastrabasic.models.Catalogue;
+import com.esolution.vastrabasic.models.product.Product;
+import com.esolution.vastrabasic.ui.BaseActivity;
+import com.esolution.vastrabasic.utils.JsonUtils;
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.ActivityAddProductImagesBinding;
 import com.esolution.vastrafashiondesigner.databinding.RowAddProductImageBinding;
@@ -29,8 +34,23 @@ import com.esolution.vastrafashiondesigner.ui.newproduct.addcolor.SelectProductC
 
 import org.jetbrains.annotations.NotNull;
 
-public class AddProductImagesActivity extends AppCompatActivity {
+public class AddProductImagesActivity extends BaseActivity {
+
+    private static final String EXTRA_CATALOGUE = "extra_catalogue";
+    private static final String EXTRA_PRODUCT = "extra_product";
+
+    public static Intent createIntent(Context context, Catalogue catalogue, Product product) {
+        Intent intent = new Intent(context, AddProductImagesActivity.class);
+        intent.putExtra(EXTRA_CATALOGUE, catalogue);
+        intent.putExtra(EXTRA_PRODUCT, product);
+        return intent;
+    }
+
     private ActivityAddProductImagesBinding binding;
+
+    private Catalogue catalogue;
+    private Product product;
+
     private ActivityResultLauncher<Intent> activityResultLauncherGallery;
     private static final int REQUEST_CODE_GALLARY = 102;
     private int photoIndex;
@@ -38,17 +58,19 @@ public class AddProductImagesActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (!getIntentData()) {
+            finish();
+            return;
+        }
+
+        Log.d("--------", "onCreate: "+ JsonUtils.toJson(product));
+
         binding = ActivityAddProductImagesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.toolbarLayout.title.setText(R.string.catalogue_name);
-
-        binding.toolbarLayout.iconBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        binding.toolbarLayout.title.setText(catalogue.getName());
+        binding.toolbarLayout.iconBack.setOnClickListener(v -> onBackPressed());
 
         binding.addMoreProductImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +141,20 @@ public class AddProductImagesActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected View getRootView() {
+        return binding.getRoot();
+    }
+
+    private boolean getIntentData() {
+        if (getIntent() != null) {
+            catalogue = (Catalogue) getIntent().getSerializableExtra(EXTRA_CATALOGUE);
+            product = (Product) getIntent().getSerializableExtra(EXTRA_PRODUCT);
+            return catalogue != null && product != null;
+        }
+        return false;
     }
 
     private void chooseImage(int i) {
