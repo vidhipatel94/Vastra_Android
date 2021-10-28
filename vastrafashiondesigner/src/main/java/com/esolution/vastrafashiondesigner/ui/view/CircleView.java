@@ -2,7 +2,9 @@ package com.esolution.vastrafashiondesigner.ui.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -32,6 +34,16 @@ public class CircleView extends View {
         circlePaint.setAntiAlias(true);
         circlePaint.setStyle(Paint.Style.FILL);
         circlePaint.setColor(DEFAULT_COLOR);
+    }
+
+    public void setColor(String hex) {
+        if (TextUtils.isEmpty(hex)) return;
+        try {
+            int color = Color.parseColor(hex);
+            circlePaint.setColor(color);
+            invalidate();
+        } catch (IllegalArgumentException ignored) {
+        }
     }
 
     @Override

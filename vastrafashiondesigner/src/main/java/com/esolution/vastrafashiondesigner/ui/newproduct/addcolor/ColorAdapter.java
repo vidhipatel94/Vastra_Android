@@ -7,14 +7,24 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.esolution.vastrabasic.models.product.Color;
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.ListColorBinding;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> {
 
+    private final List<Color> colors;
+
     private int selectedPosition = -1;
+
+    public ColorAdapter(@NotNull List<Color> colors, int selectedPosition) {
+        this.colors = colors;
+        this.selectedPosition = selectedPosition;
+    }
 
     public int getSelectedPosition() {
         return selectedPosition;
@@ -27,7 +37,10 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NotNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.binding.prominentColorText.setText(colors.get(position).getName());
+        holder.binding.prominentColorView.setColor(colors.get(position).getHexCode());
+
         holder.binding.iconSelected.setVisibility(position == selectedPosition ? View.VISIBLE : View.INVISIBLE);
 
         holder.binding.itemLayout.setOnClickListener((view) -> {
@@ -42,7 +55,7 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return 20;
+        return colors.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

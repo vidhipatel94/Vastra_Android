@@ -21,6 +21,7 @@ import com.esolution.vastrabasic.models.product.ProductSize;
 import com.esolution.vastrabasic.models.product.ProductType;
 import com.google.gson.JsonElement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Observable;
@@ -101,7 +102,7 @@ public interface VastraAPIs {
 
     // get all colors
     @GET("color/list")
-    Observable<APIResponse<List<Color>>> getColors();
+    Observable<APIResponse<ArrayList<Color>>> getColors();
 
 
     // ------------- Product Size --------------

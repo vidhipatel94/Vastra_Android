@@ -1,5 +1,6 @@
 package com.esolution.vastrafashiondesigner.ui.newproduct.addsize;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,16 +11,34 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import com.esolution.vastrabasic.models.Catalogue;
+import com.esolution.vastrabasic.models.product.Product;
+import com.esolution.vastrabasic.ui.BaseActivity;
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.ActivityProductSizesBinding;
 import com.esolution.vastrafashiondesigner.databinding.ListSizeTitleBinding;
+import com.esolution.vastrafashiondesigner.ui.newproduct.addcolor.SelectProductColorsActivity;
 import com.esolution.vastrafashiondesigner.ui.newproduct.inventory.AddProductInventoryActivity;
 
 import java.util.ArrayList;
 
-public class ProductSizesActivity extends AppCompatActivity {
+public class ProductSizesActivity extends BaseActivity {
+
+    private static final String EXTRA_CATALOGUE = "extra_catalogue";
+    private static final String EXTRA_PRODUCT = "extra_product";
+
+    public static Intent createIntent(Context context, Catalogue catalogue, Product product) {
+        Intent intent = new Intent(context, ProductSizesActivity.class);
+        intent.putExtra(EXTRA_CATALOGUE, catalogue);
+        intent.putExtra(EXTRA_PRODUCT, product);
+        return intent;
+    }
 
     private ActivityProductSizesBinding binding;
+
+    private Catalogue catalogue;
+    private Product product;
+
     private final int totalParameters = 14;
 
     private ArrayList<String> sizes;
@@ -27,6 +46,12 @@ public class ProductSizesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (!getIntentData()) {
+            finish();
+            return;
+        }
+
         binding = ActivityProductSizesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -43,6 +68,20 @@ public class ProductSizesActivity extends AppCompatActivity {
             Intent intent = new Intent(ProductSizesActivity.this, AddProductInventoryActivity.class);
             startActivity(intent);
         });
+    }
+
+    @Override
+    protected View getRootView() {
+        return binding.getRoot();
+    }
+
+    private boolean getIntentData() {
+        if (getIntent() != null) {
+            catalogue = (Catalogue) getIntent().getSerializableExtra(EXTRA_CATALOGUE);
+            product = (Product) getIntent().getSerializableExtra(EXTRA_PRODUCT);
+            return catalogue != null && product != null;
+        }
+        return false;
     }
 
     private void setToolbarLayout() {

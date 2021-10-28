@@ -13,10 +13,11 @@ public class Product implements Serializable {
 
     int id;
 
+    int designerId;
+    String designerName;    // EXTRA, in get query
+
     int catalogueId;
     String catalogueName;  // EXTRA
-
-    String designerName;    // EXTRA, in get query
 
     int typeId;     // ProductType
     ProductType productType;  // EXTRA
@@ -65,6 +66,14 @@ public class Product implements Serializable {
 
     public String getCatalogueName() {
         return catalogueName;
+    }
+
+    public int getDesignerId() {
+        return designerId;
+    }
+
+    public void setDesignerId(int designerId) {
+        this.designerId = designerId;
     }
 
     public String getDesignerName() {

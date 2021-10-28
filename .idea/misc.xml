@@ -33,7 +33,9 @@
         <entry key="vastrafashiondesigner/src/main/res/layout/grid_size_measurement.xml" value="0.1580547112462006" />
         <entry key="vastrafashiondesigner/src/main/res/layout/layout_toolbar.xml" value="0.1580547112462006" />
         <entry key="vastrafashiondesigner/src/main/res/layout/layout_toolbar_menu_item.xml" value="0.1580547112462006" />
+        <entry key="vastrafashiondesigner/src/main/res/layout/list_color.xml" value="0.1580547112462006" />
         <entry key="vastrafashiondesigner/src/main/res/layout/list_product.xml" value="0.322463768115942" />
+        <entry key="vastrafashiondesigner/src/main/res/layout/list_product_color.xml" value="0.1580547112462006" />
         <entry key="vastrafashiondesigner/src/main/res/layout/row_add_product_image.xml" value="0.325" />
         <entry key="vastrafashiondesigner/src/main/res/layout/row_add_product_material.xml" value="0.1580547112462006" />
         <entry key="vastrafashiondesigner/src/main/res/layout/row_add_product_size.xml" value="0.1580547112462006" />

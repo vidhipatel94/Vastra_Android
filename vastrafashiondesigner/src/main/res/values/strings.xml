@@ -178,5 +178,10 @@
     <string name="error_empty_season">Please select season(s) when this product can be used.</string>
     <string name="none">None</string>
     <string name="error_insufficient_product_images">Please select at least 3 images of the product.</string>
+    <string name="error_no_colors_found">No colors found.</string>
+    <string name="skip">Skip</string>
+    <string name="error_empty_product_color">Please add at least 1 product color.</string>
+    <string name="error_duplicate_color">All prominent colors of the product should be unique.</string>
+    <string name="error_duplicate_secondary_color">Secondary color should not be same as prominent color.</string>
 
 </resources>
