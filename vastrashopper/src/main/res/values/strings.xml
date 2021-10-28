@@ -5,4 +5,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_designers">Designers</string>
     <string name="title_profile">Profile</string>
+    <string name="fashion_designer_name">Riya Chhabra</string>
+    <string name="fashion_designer_tagline">Be uniquely styled</string>
 </resources>

@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.esolution.vastrashopper.databinding.FragmentDesignersBinding;
 
@@ -18,6 +20,8 @@ public class DesignersFragment extends Fragment {
 
     private DesignersViewModel designersViewModel;
     private FragmentDesignersBinding binding;
+    private DesignersAdapter designersAdapter;
+    private RecyclerView designerRecyclerView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -25,16 +29,22 @@ public class DesignersFragment extends Fragment {
                 new ViewModelProvider(this).get(DesignersViewModel.class);
 
         binding = FragmentDesignersBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        final TextView textView = binding.textDesigners;
-        designersViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+        initView();
+        bindRecyclerViewAdapter();
+
+        return binding.getRoot();
+    }
+
+    private void initView() {
+        designerRecyclerView = binding.desingerRecyclerView;
+        designersAdapter = new DesignersAdapter();
+    }
+
+    private void bindRecyclerViewAdapter() {
+        designerRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        designerRecyclerView.setAdapter(designersAdapter);
+        designersAdapter.notifyDataSetChanged();
     }
 
     @Override
