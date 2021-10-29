@@ -6,11 +6,11 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.os.Build;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import com.esolution.vastrabasic.data.VastraBasicPreferences;
 import com.google.android.material.snackbar.Snackbar;
@@ -69,5 +69,17 @@ public class Utils {
     public static boolean isActivityExists(Activity activity) {
         if (activity == null) return false;
         return !activity.isFinishing() && !activity.isDestroyed();
+    }
+
+    public static boolean closeKeyboard(View view) {
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null) {
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+            view.clearFocus();
+            return true;
+        }
+        return false;
     }
 }

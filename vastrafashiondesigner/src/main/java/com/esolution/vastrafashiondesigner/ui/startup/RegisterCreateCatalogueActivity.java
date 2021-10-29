@@ -7,12 +7,15 @@ import android.view.View;
 import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.apis.RestUtils;
 import com.esolution.vastrabasic.models.Catalogue;
+import com.esolution.vastrabasic.models.product.Product;
 import com.esolution.vastrabasic.ui.BaseActivity;
 import com.esolution.vastrabasic.utils.JsonUtils;
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
 import com.esolution.vastrafashiondesigner.databinding.ActivityRegisterCreateCatalogueBinding;
 import com.esolution.vastrafashiondesigner.ui.newproduct.AddProductInfo1Activity;
+import com.esolution.vastrafashiondesigner.ui.newproduct.addcolor.SelectProductColorsActivity;
+import com.esolution.vastrafashiondesigner.ui.newproduct.addsize.ProductSizesActivity;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -88,6 +91,6 @@ public class RegisterCreateCatalogueActivity extends BaseActivity {
     }
 
     private void openNextScreen(Catalogue catalogue) {
-        startActivity(AddProductInfo1Activity.createIntent(this, catalogue));
+        startActivity(ProductSizesActivity.createIntent(this, catalogue, new Product(catalogue.getId(),1,"Test")));
     }
 }

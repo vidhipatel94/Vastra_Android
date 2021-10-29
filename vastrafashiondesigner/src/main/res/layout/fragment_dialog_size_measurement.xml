@@ -15,10 +15,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:fontFamily="@font/montserrat_medium"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="@color/text_primary_black"
             android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/radioUSSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:paddingStart="8dp"
+            android:text="@string/label_US_size"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/inputUSSize"
+            style="@style/Vastra.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="16dp"
+            android:imeOptions="actionDone"
+            android:maxLength="6"
+            android:padding="12dp"
+            android:singleLine="true"
+            android:visibility="gone" />
 
         <RadioButton
             android:id="@+id/radioFixSize"
@@ -39,7 +63,8 @@
             android:layout_marginBottom="16dp"
             android:hint="@string/fix_size_hint"
             android:imeOptions="actionDone"
-            android:maxLength="8"
+            android:inputType="numberDecimal"
+            android:maxLength="4"
             android:padding="12dp"
             android:singleLine="true"
             android:visibility="gone" />
@@ -61,8 +86,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:hint="@string/min_size_hint"
-            android:imeOptions="actionDone"
-            android:maxLength="8"
+            android:imeOptions="actionNext"
+            android:inputType="numberDecimal"
+            android:maxLength="4"
             android:padding="12dp"
             android:singleLine="true" />
 
@@ -75,7 +101,8 @@
             android:layout_marginTop="8dp"
             android:hint="@string/max_size_hint"
             android:imeOptions="actionDone"
-            android:maxLength="8"
+            android:inputType="numberDecimal"
+            android:maxLength="4"
             android:padding="12dp"
             android:singleLine="true" />
 

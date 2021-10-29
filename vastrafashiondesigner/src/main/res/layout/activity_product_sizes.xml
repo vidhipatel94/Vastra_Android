@@ -57,8 +57,10 @@
         android:fillViewport="true">
 
         <LinearLayout
+            android:id="@+id/sizesLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="invisible">
 
             <LinearLayout
                 android:id="@+id/sizesTitleLayout"

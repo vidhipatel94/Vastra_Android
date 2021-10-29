@@ -14,7 +14,6 @@
         android:maxLines="2"
         android:paddingStart="2dp"
         android:paddingEnd="2dp"
-        android:text="Size"
         android:textColor="@color/text_primary_black"
         android:textSize="12dp" />
 

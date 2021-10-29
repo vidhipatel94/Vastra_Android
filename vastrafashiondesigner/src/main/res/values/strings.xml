@@ -183,5 +183,19 @@
     <string name="error_empty_product_color">Please add at least 1 product color.</string>
     <string name="error_duplicate_color">All prominent colors of the product should be unique.</string>
     <string name="error_duplicate_secondary_color">Secondary color should not be same as prominent color.</string>
+    <string name="error_empty_letter_size">Please select letter size(s).</string>
+    <string name="error_empty_weight_size">Please enter weight.</string>
+    <string name="error_invalid_weight_size">Please enter valid weight.</string>
+    <string name="error_empty_volume_size">Please enter volume.</string>
+    <string name="error_invalid_volume_size">Please enter valid volume.</string>
+    <string name="error_empty_custom_size">Please enter custom size.</string>
+    <string name="error_duplicated_weight_size">All weight sizes must be unique.</string>
+    <string name="error_duplicated_volume_size">All volume sizes must be unique.</string>
+    <string name="error_duplicated_custom_size">All custom sizes must be unique.</string>
+    <string name="error_empty_size">Please add at least 1 product size.</string>
+    <string name="error_invalid_size">Please enter valid size.</string>
+    <string name="error_invalid_min_size">Please enter valid minimum size.</string>
+    <string name="error_invalid_max_size">Please enter valid maximum size.</string>
+    <string name="error_size_range">Maximum size should be more than minimum size.</string>
 
 </resources>

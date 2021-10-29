@@ -10,50 +10,36 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+import com.esolution.vastrabasic.models.product.BasicProduct;
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.LayoutDialogTitleBinding;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SelectPrevAddedSizesDialog extends DialogFragment {
-
-    private static final String EXTRA_PREV_PRODUCTS = "extra_prev_products";
-
-    public static SelectPrevAddedSizesDialog newInstance(ArrayList<String> prevAddedProducts,
-                                                         PrevAddedSizesListener listener) {
-        SelectPrevAddedSizesDialog dialog = new SelectPrevAddedSizesDialog(listener);
-        Bundle bundle = new Bundle();
-        bundle.putStringArrayList(EXTRA_PREV_PRODUCTS, prevAddedProducts);
-        dialog.setArguments(bundle);
-        return dialog;
-    }
 
     public interface PrevAddedSizesListener {
         void onClickAddCustomSizes();
     }
 
-    private ArrayList<String> prevAddedProducts;
+    private List<BasicProduct> prevAddedProducts;
     private final PrevAddedSizesListener listener;
 
-    public SelectPrevAddedSizesDialog(@NonNull PrevAddedSizesListener listener) {
+    public SelectPrevAddedSizesDialog(@NotNull List<BasicProduct> prevAddedProducts, @NonNull PrevAddedSizesListener listener) {
+        this.prevAddedProducts = prevAddedProducts;
         this.listener = listener;
     }
 
     @NotNull
     @Override
     public Dialog onCreateDialog(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        if (getArguments() != null) {
-            prevAddedProducts = getArguments().getStringArrayList(EXTRA_PREV_PRODUCTS);
-        }
-        if (prevAddedProducts == null || prevAddedProducts.isEmpty()) {
-            listener.onClickAddCustomSizes();
-            dismiss();
-        }
-
         String[] list = new String[prevAddedProducts.size()];
-        list = prevAddedProducts.toArray(list);
+        for (int i = 0; i < prevAddedProducts.size(); i++) {
+            list[i] = prevAddedProducts.get(i).getTitle();
+        }
 
         LayoutDialogTitleBinding titleBinding = LayoutDialogTitleBinding.inflate(getLayoutInflater());
         titleBinding.title.setText(R.string.title_select_prev_addded_sizes);

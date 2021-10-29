@@ -20,17 +20,17 @@ public class SizeAdapter extends BaseAdapter {
     private static final int TYPE_TITLE = 1;
     private static final int TYPE_VALUE = 2;
 
-    private final ArrayList<String> sizeList;
-    private int totalParameters;
+    private final ArrayList<String> titleList;
+    private final ArrayList<String> measurementList;
 
-    public SizeAdapter(@NonNull ArrayList<String> sizeList, int totalParameters) {
-        this.sizeList = sizeList;
-        this.totalParameters = totalParameters;
+    public SizeAdapter(@NonNull ArrayList<String> titleList, @NonNull ArrayList<String> measurementList) {
+        this.titleList = titleList;
+        this.measurementList = measurementList;
     }
 
     @Override
     public int getCount() {
-        return sizeList.size();
+        return titleList.size() + measurementList.size();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class SizeAdapter extends BaseAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        return position < totalParameters ? TYPE_TITLE : TYPE_VALUE;
+        return position < titleList.size() ? TYPE_TITLE : TYPE_VALUE;
     }
 
     @NonNull
@@ -62,7 +62,12 @@ public class SizeAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        String text = sizeList.get(position);
+        String text;
+        if (getItemViewType(position) == TYPE_TITLE) {
+            text = titleList.get(position);
+        } else {
+            text = measurementList.get(position - titleList.size());
+        }
         holder.binding.textView.setText(text);
 
         if (getItemViewType(position) == TYPE_TITLE) {
