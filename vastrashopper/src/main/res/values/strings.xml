@@ -7,4 +7,5 @@
     <string name="title_profile">Profile</string>
     <string name="fashion_designer_name">Riya Chhabra</string>
     <string name="fashion_designer_tagline">Be uniquely styled</string>
+    <string name="label_followings">Following</string>
 </resources>

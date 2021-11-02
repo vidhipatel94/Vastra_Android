@@ -37,7 +37,7 @@ public class DesignersFragment extends Fragment {
     }
 
     private void initView() {
-        designerRecyclerView = binding.desingerRecyclerView;
+        designerRecyclerView = binding.designerRecyclerView;
         designersAdapter = new DesignersAdapter();
     }
 
