@@ -35,7 +35,7 @@ public class Product implements Serializable {
     int totalLikes;
     float overallRating;
 
-    List<ProductOccasion> productOccasions;   // EXTRA
+    List<ProductOccasion> occasions;   // EXTRA
 
     List<ProductMaterial> materials;  // EXTRA
     List<ProductSeason> seasons;  // EXTRA
@@ -46,7 +46,8 @@ public class Product implements Serializable {
     List<ProductInventory> inventories;  // EXTRA
 
 
-    public Product(int catalogueId, int typeId, String title) {
+    public Product(int designerId, int catalogueId, int typeId, String title) {
+        this.designerId = designerId;
         this.catalogueId = catalogueId;
         this.typeId = typeId;
         this.title = title;
@@ -189,11 +190,11 @@ public class Product implements Serializable {
     }
 
     public List<ProductOccasion> getOccasions() {
-        return productOccasions;
+        return occasions;
     }
 
     public void setOccasions(List<ProductOccasion> productOccasions) {
-        this.productOccasions = productOccasions;
+        this.occasions = productOccasions;
     }
 
     public List<ProductMaterial> getMaterials() {

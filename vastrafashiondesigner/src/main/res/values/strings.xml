@@ -197,5 +197,8 @@
     <string name="error_invalid_min_size">Please enter valid minimum size.</string>
     <string name="error_invalid_max_size">Please enter valid maximum size.</string>
     <string name="error_size_range">Maximum size should be more than minimum size.</string>
+    <string name="error_invalid_qty">Invalid Qty</string>
+    <string name="error_invalid_inventory">Please enter valid quantity of each inventory.</string>
+    <string name="error_empty_product_description">Please enter product description.</string>
 
 </resources>

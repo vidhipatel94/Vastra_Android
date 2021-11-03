@@ -93,7 +93,7 @@ public class ProductSizesActivity extends BaseActivity {
 
         binding.btnNext.setOnClickListener((v) -> {
             if (isFormValidated()) {
-                openNextScreen();
+                saveProduct();
             }
         });
     }
@@ -307,10 +307,41 @@ public class ProductSizesActivity extends BaseActivity {
             showMessage(getRootView(), getString(R.string.error_empty_size));
             return false;
         }
+        product.setSizes(productSizes);
         return true;
     }
 
-    private void openNextScreen() {
-        startActivity(AddProductInventoryActivity.createIntent(this, catalogue, product));
+    private void saveProduct() {
+        progressDialogHandler.setProgress(true);
+        DesignerLoginPreferences preferences = DesignerLoginPreferences.createInstance(this);
+        subscriptions.add(RestUtils.getAPIs().createProduct(preferences.getSessionToken(), product)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    progressDialogHandler.setProgress(false);
+                    if (response.isSuccess()) {
+                        Product product = response.getData();
+                        if (product == null || product.getColors() == null || product.getColors().isEmpty() ||
+                                product.getSizes() == null || product.getSizes().isEmpty()) {
+                            showMessage(binding.getRoot(), getString(R.string.server_error));
+                        } else {
+                            DesignerLoginPreferences.createInstance(this).setAnyCatalogueAdded(true);
+                            openNextScreen(response.getData());
+                        }
+                    } else {
+                        showMessage(binding.getRoot(), response.getMessage());
+                    }
+                }, throwable -> {
+                    throwable.printStackTrace();
+                    progressDialogHandler.setProgress(false);
+                    String message = RestUtils.processThrowable(this, throwable);
+                    showMessage(binding.getRoot(), message);
+                }));
+    }
+
+    private void openNextScreen(Product product) {
+        Intent intent = AddProductInventoryActivity.createIntent(this, product);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

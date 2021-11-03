@@ -11,10 +11,12 @@ import android.widget.RadioGroup;
 import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.apis.RestUtils;
 import com.esolution.vastrabasic.models.Catalogue;
+import com.esolution.vastrabasic.models.Designer;
 import com.esolution.vastrabasic.models.product.Product;
 import com.esolution.vastrabasic.models.product.ProductType;
 import com.esolution.vastrabasic.ui.BaseActivity;
 import com.esolution.vastrafashiondesigner.R;
+import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
 import com.esolution.vastrafashiondesigner.databinding.ActivityAddProductInfo1Binding;
 
 import java.util.ArrayList;
@@ -188,7 +190,9 @@ public class AddProductInfo1Activity extends BaseActivity {
         }
         binding.inputLayoutProductType.setErrorEnabled(false);
 
-        product = new Product(catalogue.getId(), selectedProductTypeId, null);
+        Designer designer = DesignerLoginPreferences.createInstance(this).getDesigner();
+
+        product = new Product(designer.getId(), catalogue.getId(), selectedProductTypeId, null);
 
         return true;
     }

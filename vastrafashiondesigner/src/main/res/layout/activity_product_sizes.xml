@@ -104,5 +104,5 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/btn_next" />
+        android:text="@string/btn_done" />
 </LinearLayout>

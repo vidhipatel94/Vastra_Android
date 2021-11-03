@@ -25,6 +25,7 @@ import com.esolution.vastrabasic.models.Catalogue;
 import com.esolution.vastrabasic.models.product.Product;
 import com.esolution.vastrabasic.ui.BaseActivity;
 import com.esolution.vastrafashiondesigner.R;
+import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
 import com.esolution.vastrafashiondesigner.databinding.ActivityAddProductImagesBinding;
 import com.esolution.vastrafashiondesigner.databinding.RowAddProductImageBinding;
 import com.esolution.vastrafashiondesigner.ui.newproduct.addcolor.SelectProductColorsActivity;
@@ -240,7 +241,10 @@ public class AddProductImagesActivity extends BaseActivity {
         }
 
         String description = binding.inputDescription.getText().toString().trim();
-        if (description.isEmpty()) description = null;
+        if (description.isEmpty()) {
+            showMessage(binding.getRoot(), getString(R.string.error_empty_product_description));
+            return false;
+        }
 
         product.setDescription(description);
 
@@ -266,7 +270,9 @@ public class AddProductImagesActivity extends BaseActivity {
         RequestBody requestFile = RequestBody.create(MediaType.parse(getContentResolver().getType(imageUri)), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
 
-        subscriptions.add(RestUtils.getAPIs().uploadImage("", body)
+        String token = DesignerLoginPreferences.createInstance(this).getSessionToken();
+
+        subscriptions.add(RestUtils.getAPIs().uploadImage(token, body)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
