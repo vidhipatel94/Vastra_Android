@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rowLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
@@ -11,7 +12,14 @@
         android:id="@+id/chkBox"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:foregroundTint="@color/primary" />
+        android:foregroundTint="@color/bg_screen_dark" />
+
+    <com.esolution.vastrashopper.ui.view.CircleView
+        android:id="@+id/filterColorView"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="0dp"/>
 
     <TextView
         android:id="@+id/textView"
@@ -21,18 +29,7 @@
         android:layout_marginEnd="0dp"
         android:layout_weight="1"
         android:gravity="center_vertical"
-        android:text="XS"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/textViewNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="2dp"
-        android:gravity="center_vertical"
-        android:paddingStart="0dp"
-        android:paddingEnd="2dp"
-        android:text="9"
+        android:text="Yellow"
         android:textSize="16sp" />
 
 </LinearLayout>

@@ -23,4 +23,7 @@
     <string name="title_clear_all">Clear All</string>
     <string name="btn_close">Close</string>
     <string name="btn_apply">Apply</string>
+    <string name="title_price_range">Selected Price range</string>
+    <string name="dollar_symbol">$</string>
+    <string name="dash_sign">-</string>
 </resources>

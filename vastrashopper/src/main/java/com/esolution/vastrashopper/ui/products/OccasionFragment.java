@@ -8,12 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
-public class TypeFragment extends Fragment {
+public class OccasionFragment extends Fragment {
 
     private FragmentFilterBinding binding;
-    private TypeAdapter typeAdapter;
+    private OccasionAdapter occasionAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -29,8 +30,9 @@ public class TypeFragment extends Fragment {
     }
 
     private void initView() {
-        typeAdapter = new TypeAdapter();
-        binding.filterRecyclerView.setAdapter(typeAdapter);
-        typeAdapter.notifyDataSetChanged();
+        occasionAdapter = new OccasionAdapter();
+        binding.filterRecyclerView.setAdapter(occasionAdapter);
+        occasionAdapter.notifyDataSetChanged();
     }
 }
+
