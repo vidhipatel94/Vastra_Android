@@ -26,7 +26,7 @@
             android:layout_marginRight="68dp"
             android:gravity="center_vertical">
 
-            <com.esolution.vastrafashiondesigner.ui.view.CircleView
+            <com.esolution.vastrabasic.ui.view.CircleView
                 android:id="@+id/prominentColorView"
                 android:layout_width="32dp"
                 android:layout_height="32dp" />
@@ -49,7 +49,7 @@
             android:layout_marginTop="12dp"
             android:gravity="center_vertical">
 
-            <com.esolution.vastrafashiondesigner.ui.view.CircleView
+            <com.esolution.vastrabasic.ui.view.CircleView
                 android:id="@+id/secondaryColorView"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
@@ -73,7 +73,7 @@
             android:layout_marginTop="12dp"
             android:gravity="center_vertical">
 
-            <com.esolution.vastrafashiondesigner.ui.view.CircleView
+            <com.esolution.vastrabasic.ui.view.CircleView
                 android:id="@+id/tertiaryColorView"
                 android:layout_width="24dp"
                 android:layout_height="24dp"

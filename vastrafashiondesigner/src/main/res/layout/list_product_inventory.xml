@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
 
-            <com.esolution.vastrafashiondesigner.ui.view.CircleView
+            <com.esolution.vastrabasic.ui.view.CircleView
                 android:id="@+id/prominentColorView"
                 android:layout_width="32dp"
                 android:layout_height="32dp" />

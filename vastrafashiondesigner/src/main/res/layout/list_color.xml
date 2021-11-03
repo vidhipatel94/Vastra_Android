@@ -13,7 +13,7 @@
     android:paddingEnd="16dp"
     android:paddingBottom="12dp">
 
-    <com.esolution.vastrafashiondesigner.ui.view.CircleView
+    <com.esolution.vastrabasic.ui.view.CircleView
         android:id="@+id/prominentColorView"
         android:layout_width="32dp"
         android:layout_height="32dp" />

@@ -1,4 +1,4 @@
-package com.esolution.vastrafashiondesigner.ui.view;
+package com.esolution.vastrabasic.ui.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,7 +11,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import com.esolution.vastrafashiondesigner.R;
+import com.esolution.vastrabasic.R;
 
 public class CircleView extends View {
 
