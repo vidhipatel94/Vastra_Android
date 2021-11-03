@@ -8,4 +8,19 @@
     <string name="fashion_designer_name">Riya Chhabra</string>
     <string name="fashion_designer_tagline">Be uniquely styled</string>
     <string name="label_followings">Following</string>
+    <string name="filter_type">Type</string>
+    <string name="filter_price">Price</string>
+    <string name="filter_pattern">Pattern</string>
+    <string name="filter_knit_or_woven">Knit/Woven</string>
+    <string name="filter_washcare">Washcare</string>
+    <string name="filter_color">Color</string>
+    <string name="filter_material">Material</string>
+    <string name="filter_occasion">Occasion</string>
+    <string name="filter_season">Season</string>
+    <string name="filter_size">Size</string>
+    <string name="filter_designer">Designer</string>
+    <string name="title_filters">Filters</string>
+    <string name="title_clear_all">Clear All</string>
+    <string name="btn_close">Close</string>
+    <string name="btn_apply">Apply</string>
 </resources>
