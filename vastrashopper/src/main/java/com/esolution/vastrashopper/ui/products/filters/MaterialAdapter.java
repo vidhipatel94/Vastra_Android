@@ -1,4 +1,4 @@
-package com.esolution.vastrashopper.ui.products;
+package com.esolution.vastrashopper.ui.products.filters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

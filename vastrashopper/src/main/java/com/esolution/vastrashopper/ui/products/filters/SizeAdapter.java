@@ -1,4 +1,4 @@
-package com.esolution.vastrashopper.ui.products;
+package com.esolution.vastrashopper.ui.products.filters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
-public class OccasionAdapter extends RecyclerView.Adapter<OccasionAdapter.ViewHolder> {
+public class SizeAdapter extends RecyclerView.Adapter<SizeAdapter.ViewHolder> {
 
     @NonNull
     @Override
@@ -17,7 +17,7 @@ public class OccasionAdapter extends RecyclerView.Adapter<OccasionAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OccasionAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SizeAdapter.ViewHolder holder, int position) {
         holder.binding.rowLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,7 +31,7 @@ public class OccasionAdapter extends RecyclerView.Adapter<OccasionAdapter.ViewHo
                 Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
             }
         });
-        holder.binding.textView.setText("Casual");
+        holder.binding.textView.setText("XS");
     }
 
     @Override

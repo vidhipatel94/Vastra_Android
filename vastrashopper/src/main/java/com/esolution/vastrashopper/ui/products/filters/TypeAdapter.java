@@ -1,4 +1,4 @@
-package com.esolution.vastrashopper.ui.products;
+package com.esolution.vastrashopper.ui.products.filters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
-public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHolder> {
+public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.ViewHolder> {
 
     @NonNull
     @Override
@@ -19,7 +19,7 @@ public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PatternAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TypeAdapter.ViewHolder holder, int position) {
         holder.binding.rowLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,15 +33,15 @@ public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHold
                 Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
             }
         });
-        holder.binding.textView.setText("Striped");
+        holder.binding.textView.setText("Shirts");
     }
 
     @Override
     public int getItemCount() {
-        return 9;
+        return 25;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         RowFilterBinding binding;
 

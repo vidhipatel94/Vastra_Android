@@ -14,7 +14,7 @@
         android:layout_height="30dp"
         android:foregroundTint="@color/bg_screen_dark" />
 
-    <com.esolution.vastrashopper.ui.view.CircleView
+    <com.esolution.vastrabasic.ui.view.CircleView
         android:id="@+id/filterColorView"
         android:layout_width="24dp"
         android:layout_height="24dp"

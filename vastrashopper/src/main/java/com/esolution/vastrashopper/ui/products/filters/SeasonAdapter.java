@@ -1,4 +1,4 @@
-package com.esolution.vastrashopper.ui.products;
+package com.esolution.vastrashopper.ui.products.filters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
-public class KnitWovenAdapter extends RecyclerView.Adapter<KnitWovenAdapter.ViewHolder> {
+public class SeasonAdapter extends RecyclerView.Adapter<SeasonAdapter.ViewHolder> {
 
     @NonNull
     @Override
@@ -17,7 +17,7 @@ public class KnitWovenAdapter extends RecyclerView.Adapter<KnitWovenAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull KnitWovenAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SeasonAdapter.ViewHolder holder, int position) {
         holder.binding.rowLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,7 +31,7 @@ public class KnitWovenAdapter extends RecyclerView.Adapter<KnitWovenAdapter.View
                 Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
             }
         });
-        holder.binding.textView.setText("Woven");
+        holder.binding.textView.setText("Winter");
     }
 
     @Override

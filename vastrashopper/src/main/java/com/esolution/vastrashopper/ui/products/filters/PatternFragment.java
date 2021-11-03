@@ -1,4 +1,4 @@
-package com.esolution.vastrashopper.ui.products;
+package com.esolution.vastrashopper.ui.products.filters;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
-public class OccasionFragment extends Fragment {
+public class PatternFragment extends Fragment {
 
     private FragmentFilterBinding binding;
-    private OccasionAdapter occasionAdapter;
+    private PatternAdapter patternAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -30,9 +30,8 @@ public class OccasionFragment extends Fragment {
     }
 
     private void initView() {
-        occasionAdapter = new OccasionAdapter();
-        binding.filterRecyclerView.setAdapter(occasionAdapter);
-        occasionAdapter.notifyDataSetChanged();
+        patternAdapter = new PatternAdapter();
+        binding.filterRecyclerView.setAdapter(patternAdapter);
+        patternAdapter.notifyDataSetChanged();
     }
 }
-
