@@ -86,6 +86,10 @@ public interface VastraAPIs {
                                                                            @Query("designerId") int designerId,
                                                                            @Query("productTypeId") int productType);
 
+    @GET("product/exist/fd")
+    Observable<APIResponse<Boolean>> isDesignerProductsExist(@Header("token") String token,
+                                                                        @Query("designerId") int designerId);
+
     // ------------- Product Color --------------
 
     // add product color -> while updating inventory -> call API add inventories
@@ -123,13 +127,13 @@ public interface VastraAPIs {
 
     @GET("product/size/list")
     Observable<APIResponse<List<ProductSize>>> getProductSizes(@Header("token") String token,
-                                                         @Query("designerId") int designerId,
-                                                         @Query("productId") int productId);
+                                                               @Query("designerId") int designerId,
+                                                               @Query("productId") int productId);
 
 
     // ------------- Product Inventory --------------
 
-    // add inventoriesx
+    // add inventories
     @POST("product/inventory/list")
     Observable<APIResponse<JsonElement>> addProductInventories(@Header("token") String token,
                                                                @Body List<ProductInventory> productInventories);
