@@ -7,6 +7,7 @@ import com.esolution.vastrabasic.apis.response.APIResponse;
 import com.esolution.vastrabasic.apis.response.LoginResponse;
 import com.esolution.vastrabasic.apis.response.RegisterDesignerResponse;
 import com.esolution.vastrabasic.apis.response.RegisterUserResponse;
+import com.esolution.vastrabasic.models.BasicCatalogue;
 import com.esolution.vastrabasic.models.Catalogue;
 import com.esolution.vastrabasic.models.Designer;
 import com.esolution.vastrabasic.models.ProductFilter;
@@ -62,7 +63,7 @@ public interface VastraAPIs {
     Observable<APIResponse<Catalogue>> createCatalogue(@Header("token") String token, @Body Catalogue catalogue);
 
     @GET("catalogue/list")
-    Observable<APIResponse<List<Catalogue>>> getCatalogues(@Header("token") String token, @Query("designerId") int designerId);
+    Observable<APIResponse<List<BasicCatalogue>>> getCatalogues(@Header("token") String token, @Query("designerId") int designerId);
 
 
     // ------------- Product --------------

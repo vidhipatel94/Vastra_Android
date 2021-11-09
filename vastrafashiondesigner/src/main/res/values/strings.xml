@@ -200,5 +200,7 @@
     <string name="error_invalid_qty">Invalid Qty</string>
     <string name="error_invalid_inventory">Please enter valid quantity of each inventory.</string>
     <string name="error_empty_product_description">Please enter product description.</string>
+    <string name="msg_empty_catalogue">No catalogues are added.</string>
+    <string name="msg_empty_products">No products are added.</string>
 
 </resources>

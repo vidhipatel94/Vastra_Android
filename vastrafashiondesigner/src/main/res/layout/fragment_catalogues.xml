@@ -42,20 +42,37 @@
                 app:tint="@color/primary_dark" />
         </FrameLayout>
 
-        <androidx.core.widget.NestedScrollView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:layout_height="match_parent">
 
-            <LinearLayout
-                android:id="@+id/cataloguesLayout"
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:id="@+id/cataloguesLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:clipToPadding="false"
+                    android:orientation="vertical" />
+
+            </androidx.core.widget.NestedScrollView>
+
+            <TextView
+                android:id="@+id/emptyListTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:clipToPadding="false"
-                android:orientation="vertical" />
-
-        </androidx.core.widget.NestedScrollView>
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="24dp"
+                android:text="@string/msg_empty_catalogue"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/text_secondary_black"
+                android:visibility="invisible" />
+        </FrameLayout>
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -35,39 +35,24 @@
             android:textSize="12sp" />
     </LinearLayout>
 
-    <HorizontalScrollView
+    <TextView
+        android:id="@+id/emptyListTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/montserrat_light"
+        android:text="@string/msg_empty_products"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/text_secondary_black"
+        android:textSize="12sp"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/products"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:fadeScrollbars="true"
-        android:fillViewport="true"
-        android:scrollbars="none">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp">
-
-            <include
-                android:id="@+id/product1Layout"
-                layout="@layout/grid_product" />
-
-            <include
-                android:id="@+id/product2Layout"
-                layout="@layout/grid_product" />
-
-            <include
-                android:id="@+id/product3Layout"
-                layout="@layout/grid_product" />
-
-            <include
-                android:id="@+id/product4Layout"
-                layout="@layout/grid_product" />
-
-            <include
-                android:id="@+id/product5Layout"
-                layout="@layout/grid_product" />
-        </LinearLayout>
-    </HorizontalScrollView>
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp" />
 </LinearLayout>
