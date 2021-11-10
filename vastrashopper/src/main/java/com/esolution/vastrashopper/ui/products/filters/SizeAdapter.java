@@ -3,6 +3,7 @@ package com.esolution.vastrashopper.ui.products.filters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -11,12 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.esolution.vastrashopper.R;
 import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SizeAdapter extends RecyclerView.Adapter<SizeAdapter.ViewHolder> {
 
-    private List<String> customSizes;
-    private String[] letterSizes;
+    private final List<String> customSizes;
+    private final String[] letterSizes;
+    private final ArrayList<String> selectedSizes = new ArrayList<>();
 
     public SizeAdapter(List<String> customSizes, String[] letterSizes) {
         this.customSizes = customSizes;
@@ -31,29 +34,42 @@ public class SizeAdapter extends RecyclerView.Adapter<SizeAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull SizeAdapter.ViewHolder holder, int position) {
+        String letterSize = "";
+        String customSize = "";
         if (position == 0) {
-            holder.binding.textView.setText(R.string.one_size);
+            holder.binding.chkBox.setText(R.string.one_size);
         } else if (position >= 1 && position <= letterSizes.length) {
-            String letterSize = letterSizes[position - 1];
-            holder.binding.textView.setText(letterSize);
+            letterSize = letterSizes[position - 1];
+            holder.binding.chkBox.setText(letterSize);
         } else {
-            String customSize = customSizes.get(position - letterSizes.length - 1);
-            holder.binding.textView.setText(customSize);
+            customSize = customSizes.get(position - letterSizes.length - 1);
+            holder.binding.chkBox.setText(customSize);
         }
 
-        holder.binding.rowLinearLayout.setOnClickListener(new View.OnClickListener() {
+        holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                holder.binding.chkBox.setChecked(true);
-                Toast.makeText(v.getContext(), position + " item selected.", Toast.LENGTH_SHORT).show();
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    if(position == 0) {
+                        selectedSizes.add("One Size");
+                    } else if(position >= 1 && position <= letterSizes.length) {
+                        selectedSizes.add(letterSizes[position-1]);
+                    } else {
+                        selectedSizes.add(customSizes.get(position - letterSizes.length - 1));
+                    }
+                }
             }
         });
-        holder.binding.chkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), position + " item selected.", Toast.LENGTH_SHORT).show();
-            }
-        });
+
+        if(selectedSizes.contains("One Size")) {
+            holder.binding.chkBox.setChecked(true);
+        } else if(selectedSizes.contains(letterSize)) {
+            holder.binding.chkBox.setChecked(true);
+        } else if(selectedSizes.contains(customSize)) {
+            holder.binding.chkBox.setChecked(true);
+        } else {
+            holder.binding.chkBox.setChecked(false);
+        }
     }
 
     @Override

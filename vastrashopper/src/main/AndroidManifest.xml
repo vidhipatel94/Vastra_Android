@@ -8,7 +8,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vastra.NoActionBar">
         <activity android:name=".ui.ShopperMainActivity" />
-        <activity android:name=".ui.products.filters.ProductFilterActivity"/>
+        <activity android:name=".ui.products.filters.ProductFilterActivity">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
     </application>
 
 </manifest>

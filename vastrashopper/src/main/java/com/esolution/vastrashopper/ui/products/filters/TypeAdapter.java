@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -23,7 +24,8 @@ public class TypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int TYPE_GENDER_AGE = 1;
     private static final int TYPE_LIST_ITEM = 2;
 
-    private ArrayList<ProductType> displayingProductTypes;
+    private final ArrayList<ProductType> displayingProductTypes;
+    private final ArrayList<ProductType> selectedDisplayingProductTypes = new ArrayList<>();
 
     public Listener listener;
 
@@ -112,21 +114,26 @@ public class TypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }*/
         ProductType productType = displayingProductTypes.get(position-1);
 
-        holder.binding.textView.setText(productType.getName());
+        holder.binding.chkBox.setText(productType.getName());
 
-        holder.binding.rowLinearLayout.setOnClickListener(new View.OnClickListener() {
+        holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                holder.binding.chkBox.setChecked(true);
-                Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    selectedDisplayingProductTypes.add(productType);
+                    holder.binding.chkBox.setChecked(true);
+                } else {
+                    selectedDisplayingProductTypes.remove(productType);
+                    holder.binding.chkBox.setChecked(false);
+                }
             }
         });
-        holder.binding.chkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
-            }
-        });
+
+        if(selectedDisplayingProductTypes.contains(productType)) {
+            holder.binding.chkBox.setChecked(true);
+        } else {
+            holder.binding.chkBox.setChecked(false);
+        }
     }
 
     @Override

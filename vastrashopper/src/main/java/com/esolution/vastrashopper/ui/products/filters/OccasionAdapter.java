@@ -2,6 +2,7 @@ package com.esolution.vastrashopper.ui.products.filters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,19 +29,12 @@ public class OccasionAdapter extends RecyclerView.Adapter<OccasionAdapter.ViewHo
     public void onBindViewHolder(@NonNull OccasionAdapter.ViewHolder holder, int position) {
         String occasion = occasions[position];
 
-        holder.binding.textView.setText(occasion);
+        holder.binding.chkBox.setText(occasion);
 
-        holder.binding.rowLinearLayout.setOnClickListener(new View.OnClickListener() {
+        holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                holder.binding.chkBox.setChecked(true);
-                Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
-            }
-        });
-        holder.binding.chkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Toast.makeText(buttonView.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
             }
         });
     }

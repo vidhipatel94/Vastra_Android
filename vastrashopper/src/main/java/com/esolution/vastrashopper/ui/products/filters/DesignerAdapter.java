@@ -2,6 +2,7 @@ package com.esolution.vastrashopper.ui.products.filters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,7 +17,8 @@ import java.util.ArrayList;
 
 public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.ViewHolder> {
 
-    private ArrayList<Designer> designers;
+    private final ArrayList<Designer> designers;
+    private final ArrayList<Designer> selectedDesigners = new ArrayList<>();
 
     public DesignerAdapter(@NotNull ArrayList<Designer> designers) {
         this.designers = designers;
@@ -32,21 +34,26 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.ViewHo
     public void onBindViewHolder(@NonNull DesignerAdapter.ViewHolder holder, int position) {
         Designer designer = designers.get(position);
 
-        holder.binding.textView.setText(designer.getFirstName().concat(" " + designer.getLastName()));
+        holder.binding.chkBox.setText(designer.getFirstName().concat(" " + designer.getLastName()));
 
-        holder.binding.rowLinearLayout.setOnClickListener(new View.OnClickListener() {
+        holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                holder.binding.chkBox.setChecked(true);
-                Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    selectedDesigners.add(designer);
+                    holder.binding.chkBox.setChecked(true);
+                } else {
+                    selectedDesigners.remove(designer);
+                    holder.binding.chkBox.setChecked(false);
+                }
             }
         });
-        holder.binding.chkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
-            }
-        });
+
+        if(selectedDesigners.contains(designer)) {
+            holder.binding.chkBox.setChecked(true);
+        } else {
+            holder.binding.chkBox.setChecked(false);
+        }
     }
 
     @Override

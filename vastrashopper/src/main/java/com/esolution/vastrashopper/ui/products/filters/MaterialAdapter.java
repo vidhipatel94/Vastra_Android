@@ -2,6 +2,7 @@ package com.esolution.vastrashopper.ui.products.filters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,11 +13,13 @@ import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHolder> {
 
-    private List<Material> materials;
+    private final List<Material> materials;
+    private final ArrayList<Material> selectedMaterials = new ArrayList<>();
 
     public MaterialAdapter(@NotNull List<Material> materials) {
         this.materials = materials;
@@ -32,21 +35,26 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHo
     public void onBindViewHolder(@NonNull MaterialAdapter.ViewHolder holder, int position) {
         Material material = materials.get(position);
 
-        holder.binding.textView.setText(material.getMaterial());
+        holder.binding.chkBox.setText(material.getMaterial());
 
-        holder.binding.rowLinearLayout.setOnClickListener(new View.OnClickListener() {
+        holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                holder.binding.chkBox.setChecked(true);
-                Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    selectedMaterials.add(material);
+                    holder.binding.chkBox.setChecked(true);
+                } else {
+                    selectedMaterials.remove(material);
+                    holder.binding.chkBox.setChecked(false);
+                }
             }
         });
-        holder.binding.chkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
-            }
-        });
+
+        if(selectedMaterials.contains(material)) {
+            holder.binding.chkBox.setChecked(true);
+        } else {
+            holder.binding.chkBox.setChecked(false);
+        }
     }
 
     @Override

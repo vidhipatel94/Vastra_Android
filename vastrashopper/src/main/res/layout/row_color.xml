@@ -8,12 +8,6 @@
     android:orientation="horizontal"
     android:padding="4dp">
 
-    <CheckBox
-        android:id="@+id/chkBox"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:buttonTint="@color/primary_dark" />
-
     <com.esolution.vastrabasic.ui.view.CircleView
         android:id="@+id/filterColorView"
         android:layout_width="24dp"
@@ -21,16 +15,11 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="0dp"/>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="0dp"
-        android:layout_weight="1"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:textColor="@color/primary_dark"
-        android:gravity="center_vertical" />
+    <CheckBox
+        android:id="@+id/chkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Color"
+        android:buttonTint="@color/primary_dark" />
 
 </LinearLayout>

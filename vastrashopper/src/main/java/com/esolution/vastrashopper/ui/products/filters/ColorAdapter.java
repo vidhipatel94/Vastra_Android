@@ -1,9 +1,8 @@
 package com.esolution.vastrashopper.ui.products.filters;
-import android.util.Log;
+
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,11 +12,13 @@ import com.esolution.vastrashopper.databinding.RowColorBinding;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> {
 
-    private List<Color> colors;
+    private final List<Color> colors;
+    private final ArrayList<Color> selectedColors = new ArrayList<>();
 
     public ColorAdapter(@NotNull List<Color> colors) {
         this.colors = colors;
@@ -34,21 +35,26 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
         Color color = colors.get(position);
 
         holder.binding.filterColorView.setColor(color.getHexCode());
-        holder.binding.textView.setText(color.getName());
+        holder.binding.chkBox.setText(color.getName());
 
-        holder.binding.rowLinearLayout.setOnClickListener(new View.OnClickListener() {
+        holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                holder.binding.chkBox.setChecked(true);
-                Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    selectedColors.add(color);
+                    holder.binding.chkBox.setChecked(true);
+                } else {
+                    selectedColors.remove(color);
+                    holder.binding.chkBox.setChecked(false);
+                }
             }
         });
-        holder.binding.chkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
-            }
-        });
+
+        if(selectedColors.contains(color)) {
+            holder.binding.chkBox.setChecked(true);
+        } else {
+            holder.binding.chkBox.setChecked(false);
+        }
     }
 
     @Override
