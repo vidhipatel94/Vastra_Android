@@ -10,7 +10,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
+import org.jetbrains.annotations.NotNull;
+
 public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHolder> {
+
+    private String[] patterns;
+
+    public PatternAdapter(@NotNull String[] patterns) {
+        this.patterns = patterns;
+    }
 
     @NonNull
     @Override
@@ -20,6 +28,10 @@ public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull PatternAdapter.ViewHolder holder, int position) {
+        String pattern = patterns[position];
+
+        holder.binding.textView.setText(pattern);
+
         holder.binding.rowLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,12 +45,11 @@ public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHold
                 Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
             }
         });
-        holder.binding.textView.setText("Striped");
     }
 
     @Override
     public int getItemCount() {
-        return 9;
+        return patterns.length;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

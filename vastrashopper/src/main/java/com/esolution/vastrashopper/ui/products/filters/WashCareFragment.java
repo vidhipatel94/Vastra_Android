@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.esolution.vastrabasic.R;
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
 public class WashCareFragment extends Fragment {
@@ -16,13 +17,15 @@ public class WashCareFragment extends Fragment {
     private FragmentFilterBinding binding;
     private WashCareAdapter washCareAdapter;
 
+    private static String[] WASHCARES;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentFilterBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        WASHCARES = getResources().getStringArray(R.array.wash_cares);
 
         initView();
 
@@ -30,7 +33,8 @@ public class WashCareFragment extends Fragment {
     }
 
     private void initView() {
-        washCareAdapter = new WashCareAdapter();
+        binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        washCareAdapter = new WashCareAdapter(WASHCARES);
         binding.filterRecyclerView.setAdapter(washCareAdapter);
         washCareAdapter.notifyDataSetChanged();
     }

@@ -6,9 +6,21 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.esolution.vastrabasic.models.Designer;
 import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+
 public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.ViewHolder> {
+
+    private ArrayList<Designer> designers;
+
+    public DesignerAdapter(@NotNull ArrayList<Designer> designers) {
+        this.designers = designers;
+    }
 
     @NonNull
     @Override
@@ -18,6 +30,10 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull DesignerAdapter.ViewHolder holder, int position) {
+        Designer designer = designers.get(position);
+
+        holder.binding.textView.setText(designer.getFirstName().concat(" " + designer.getLastName()));
+
         holder.binding.rowLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,12 +47,11 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.ViewHo
                 Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
             }
         });
-        holder.binding.textView.setText("Manish Malhotra");
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return designers.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

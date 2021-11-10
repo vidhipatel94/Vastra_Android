@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.esolution.vastrabasic.R;
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
 public class PatternFragment extends Fragment {
@@ -16,13 +17,15 @@ public class PatternFragment extends Fragment {
     private FragmentFilterBinding binding;
     private PatternAdapter patternAdapter;
 
+    private static String[] PATTERNS;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentFilterBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        PATTERNS = getResources().getStringArray(R.array.patterns);
 
         initView();
 
@@ -30,7 +33,8 @@ public class PatternFragment extends Fragment {
     }
 
     private void initView() {
-        patternAdapter = new PatternAdapter();
+        binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        patternAdapter = new PatternAdapter(PATTERNS);
         binding.filterRecyclerView.setAdapter(patternAdapter);
         patternAdapter.notifyDataSetChanged();
     }

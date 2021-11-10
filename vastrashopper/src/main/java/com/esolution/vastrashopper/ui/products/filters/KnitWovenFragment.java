@@ -10,12 +10,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.esolution.vastrashopper.R;
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
 public class KnitWovenFragment extends Fragment {
 
     private FragmentFilterBinding binding;
     private KnitWovenAdapter knitWovenAdapter;
+
+    private static String[] KNIT_WOVEN;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -24,7 +27,7 @@ public class KnitWovenFragment extends Fragment {
         binding = FragmentFilterBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        KNIT_WOVEN = getResources().getStringArray(R.array.knit_wovens);
 
         initView();
 
@@ -32,7 +35,8 @@ public class KnitWovenFragment extends Fragment {
     }
 
     private void initView() {
-        knitWovenAdapter = new KnitWovenAdapter();
+        binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        knitWovenAdapter = new KnitWovenAdapter(KNIT_WOVEN);
         binding.filterRecyclerView.setAdapter(knitWovenAdapter);
         knitWovenAdapter.notifyDataSetChanged();
     }

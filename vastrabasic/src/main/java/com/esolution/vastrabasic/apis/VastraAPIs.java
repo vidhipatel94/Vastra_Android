@@ -56,6 +56,9 @@ public interface VastraAPIs {
     @PUT("fd/user")
     Observable<APIResponse<JsonElement>> updateDesigner(@Header("token") String token, @Body Designer designer);
 
+    @GET("fd/user/list")
+    Observable<APIResponse<List<Designer>>> getDesigners();
+
 
     // ------------- Catalogue --------------
 
@@ -130,6 +133,9 @@ public interface VastraAPIs {
     Observable<APIResponse<List<ProductSize>>> getProductSizes(@Header("token") String token,
                                                                @Query("designerId") int designerId,
                                                                @Query("productId") int productId);
+
+    @GET("product/customSize/list")
+    Observable<APIResponse<List<String>>> getCustomProductSizes();
 
 
     // ------------- Product Inventory --------------

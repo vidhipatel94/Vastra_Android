@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.esolution.vastrabasic.R;
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
 public class OccasionFragment extends Fragment {
@@ -16,13 +17,15 @@ public class OccasionFragment extends Fragment {
     private FragmentFilterBinding binding;
     private OccasionAdapter occasionAdapter;
 
+    private static String[] OCCASIONS;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentFilterBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        OCCASIONS = getResources().getStringArray(R.array.occasions);
 
         initView();
 
@@ -30,7 +33,8 @@ public class OccasionFragment extends Fragment {
     }
 
     private void initView() {
-        occasionAdapter = new OccasionAdapter();
+        binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        occasionAdapter = new OccasionAdapter(OCCASIONS);
         binding.filterRecyclerView.setAdapter(occasionAdapter);
         occasionAdapter.notifyDataSetChanged();
     }

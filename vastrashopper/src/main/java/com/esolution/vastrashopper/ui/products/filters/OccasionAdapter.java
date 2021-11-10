@@ -8,7 +8,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
+import org.jetbrains.annotations.NotNull;
+
 public class OccasionAdapter extends RecyclerView.Adapter<OccasionAdapter.ViewHolder> {
+
+    private static String[] occasions;
+
+    public OccasionAdapter(@NotNull String[] occasions) {
+        this.occasions = occasions;
+    }
 
     @NonNull
     @Override
@@ -18,6 +26,10 @@ public class OccasionAdapter extends RecyclerView.Adapter<OccasionAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull OccasionAdapter.ViewHolder holder, int position) {
+        String occasion = occasions[position];
+
+        holder.binding.textView.setText(occasion);
+
         holder.binding.rowLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,12 +43,11 @@ public class OccasionAdapter extends RecyclerView.Adapter<OccasionAdapter.ViewHo
                 Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
             }
         });
-        holder.binding.textView.setText("Casual");
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return occasions.length;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

@@ -33,4 +33,33 @@
         <item>Hand Wash</item>
         <item>Dry Clean</item>
     </string-array>
+
+    <string-array name="seasons">
+        <item>Winter</item>
+        <item>Spring</item>
+        <item>Summer</item>
+        <item>Fall</item>
+    </string-array>
+
+    <string-array name="knit_wovens">
+        <item>Knit</item>
+        <item>Woven</item>
+    </string-array>
+
+    <string-array name="letter_sizes">
+        <item>XS</item>
+        <item>S</item>
+        <item>M</item>
+        <item>L</item>
+        <item>XL</item>
+        <item>2XL</item>
+        <item>3XL</item>
+        <item>4XL</item>
+        <item>5XL</item>
+        <item>6XL</item>
+        <item>7XL</item>
+        <item>8XL</item>
+        <item>9XL</item>
+    </string-array>
+
 </resources>

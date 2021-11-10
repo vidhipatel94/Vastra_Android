@@ -6,9 +6,21 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.esolution.vastrabasic.models.product.Material;
 import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
+
 public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHolder> {
+
+    private List<Material> materials;
+
+    public MaterialAdapter(@NotNull List<Material> materials) {
+        this.materials = materials;
+    }
 
     @NonNull
     @Override
@@ -18,6 +30,10 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MaterialAdapter.ViewHolder holder, int position) {
+        Material material = materials.get(position);
+
+        holder.binding.textView.setText(material.getMaterial());
+
         holder.binding.rowLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,12 +47,11 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHo
                 Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
             }
         });
-        holder.binding.textView.setText("Cotton");
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return materials.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

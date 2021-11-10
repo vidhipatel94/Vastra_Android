@@ -10,6 +10,12 @@ import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
 public class SeasonAdapter extends RecyclerView.Adapter<SeasonAdapter.ViewHolder> {
 
+    private String[] seasons;
+
+    public SeasonAdapter(String[] seasons) {
+        this.seasons = seasons;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -18,6 +24,10 @@ public class SeasonAdapter extends RecyclerView.Adapter<SeasonAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull SeasonAdapter.ViewHolder holder, int position) {
+        String season = seasons[position];
+
+        holder.binding.textView.setText(season);
+
         holder.binding.rowLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,12 +41,11 @@ public class SeasonAdapter extends RecyclerView.Adapter<SeasonAdapter.ViewHolder
                 Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
             }
         });
-        holder.binding.textView.setText("Winter");
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return seasons.length;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

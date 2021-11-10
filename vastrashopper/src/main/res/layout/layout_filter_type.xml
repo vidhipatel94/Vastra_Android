@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_medium"
+        android:layout_marginTop="8dp"
+        android:text="@string/select_gender"
+        android:textColor="@color/text_primary_black"/>
+
+    <RadioGroup
+        android:id="@+id/rg_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rb_male"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/primary_dark"
+            android:fontFamily="@font/montserrat_light"
+            android:text="@string/male"/>
+
+        <RadioButton
+            android:id="@+id/rb_female"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/primary_dark"
+            android:fontFamily="@font/montserrat_light"
+            android:text="@string/female"/>
+
+        <RadioButton
+            android:id="@+id/rb_both"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/primary_dark"
+            android:fontFamily="@font/montserrat_light"
+            android:text="@string/both"/>
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/select_age_group"
+        android:textColor="@color/text_primary_black" />
+
+    <RadioGroup
+        android:id="@+id/rg_age_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rb_baby"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/primary_dark"
+            android:fontFamily="@font/montserrat_light"
+            android:text="@string/baby"/>
+
+        <RadioButton
+            android:id="@+id/rb_kids"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/primary_dark"
+            android:fontFamily="@font/montserrat_light"
+            android:text="@string/kids" />
+
+        <RadioButton
+            android:id="@+id/rb_adult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/primary_dark"
+            android:fontFamily="@font/montserrat_light"
+            android:text="@string/adult" />
+    </RadioGroup>
+
+</LinearLayout>

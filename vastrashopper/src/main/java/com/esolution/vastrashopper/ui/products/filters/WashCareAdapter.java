@@ -8,7 +8,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
+import org.jetbrains.annotations.NotNull;
+
 public class WashCareAdapter extends RecyclerView.Adapter<WashCareAdapter.ViewHolder> {
+
+    private String[] washcares;
+
+    public WashCareAdapter(@NotNull String[] washcares) {
+        this.washcares = washcares;
+    }
 
     @NonNull
     @Override
@@ -18,6 +26,10 @@ public class WashCareAdapter extends RecyclerView.Adapter<WashCareAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull WashCareAdapter.ViewHolder holder, int position) {
+        String washcare = washcares[position];
+
+        holder.binding.textView.setText(washcare);
+
         holder.binding.rowLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,12 +43,11 @@ public class WashCareAdapter extends RecyclerView.Adapter<WashCareAdapter.ViewHo
                 Toast.makeText(v.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
             }
         });
-        holder.binding.textView.setText("Dry Clean");
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return washcares.length;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

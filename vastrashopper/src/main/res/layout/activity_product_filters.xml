@@ -47,7 +47,7 @@
 
     <LinearLayout
         android:id="@+id/leftSearchPanel"
-        android:layout_width="130dp"
+        android:layout_width="120dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/bg_screen_dark">
