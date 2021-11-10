@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/img"/>
+                android:src="@drawable/img" />
 
             <ImageView
                 android:id="@+id/iconMenu"
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:fontFamily="@font/montserrat_medium"
-            android:maxLines="2"
+            android:lines="2"
             android:paddingStart="8dp"
             android:paddingTop="8dp"
             android:paddingEnd="8dp"

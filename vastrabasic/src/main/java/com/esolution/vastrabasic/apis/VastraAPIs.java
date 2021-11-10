@@ -30,6 +30,7 @@ import okhttp3.MultipartBody;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -81,9 +82,13 @@ public interface VastraAPIs {
     @POST("product/list")
     Observable<APIResponse<List<Product>>> getProducts(@Header("token") String token, @Body ProductFilter productFilter);
 
+    @GET("product/fd/catalogue/list")
+    Observable<APIResponse<List<BasicProduct>>> getCatalogueProducts(@Header("token") String token,
+                                                                    @Query("catalogueId") int catalogueId);
+
     // delete product
     @DELETE("product")
-    Observable<APIResponse<JsonElement>> deleteProduct(@Header("token") String token, @Body int productId);
+    Observable<APIResponse<JsonElement>> deleteProduct(@Header("token") String token, @Query("productId") int productId);
 
     @GET("product/basiclist/fd/type")
     Observable<APIResponse<List<BasicProduct>>> getDesignerProductsByTypes(@Header("token") String token,

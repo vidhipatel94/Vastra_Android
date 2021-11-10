@@ -19,6 +19,8 @@ public class BasicProduct implements Serializable {
     int totalLikes;
     float overallRating;
 
+    boolean isUserLiked;
+
     public int getId() {
         return id;
     }
@@ -51,7 +53,19 @@ public class BasicProduct implements Serializable {
         return totalLikes;
     }
 
+    public void setTotalLikes(int totalLikes) {
+        this.totalLikes = totalLikes;
+    }
+
     public float getOverallRating() {
         return overallRating;
+    }
+
+    public boolean isUserLiked() {
+        return isUserLiked;
+    }
+
+    public void setUserLiked(boolean userLiked) {
+        isUserLiked = userLiked;
     }
 }

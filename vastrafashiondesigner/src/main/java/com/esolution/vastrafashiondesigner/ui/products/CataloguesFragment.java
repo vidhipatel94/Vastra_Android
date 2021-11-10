@@ -1,11 +1,16 @@
 package com.esolution.vastrafashiondesigner.ui.products;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,14 +52,14 @@ public class CataloguesFragment extends BaseFragment {
         binding = FragmentCataloguesBinding.inflate(inflater, container, false);
 
         initView();
+        refreshView();
 
         return binding.getRoot();
     }
 
     private void initView() {
         binding.btnAdd.setOnClickListener((v) -> {
-            Intent intent = new Intent(getContext(), RegisterCreateCatalogueActivity.class);
-            startActivity(intent);
+            startActivity(RegisterCreateCatalogueActivity.createIntent(getContext(), true));
         });
     }
 
@@ -74,18 +79,22 @@ public class CataloguesFragment extends BaseFragment {
                             catalogues.addAll(data);
                         }
                         refreshView();
-                    } else {
+                    } else if (binding != null) {
                         showMessage(binding.getRoot(), response.getMessage());
                     }
                 }, throwable -> {
                     throwable.printStackTrace();
                     progressDialogHandler.setProgress(false);
                     String message = RestUtils.processThrowable(getContext(), throwable);
-                    showMessage(binding.getRoot(), message);
+                    if (binding != null) {
+                        showMessage(binding.getRoot(), message);
+                    }
                 }));
     }
 
     private void refreshView() {
+        if (binding == null) return;
+
         binding.cataloguesLayout.removeAllViews();
 
         int totalCatalogues = catalogues.size();
@@ -117,8 +126,7 @@ public class CataloguesFragment extends BaseFragment {
                 catalogueBinding.linkShowAll.setVisibility(isProductsEmpty ? View.GONE : View.VISIBLE);
 
                 catalogueBinding.linkShowAll.setOnClickListener((v) -> {
-                    Intent intent = new Intent(getContext(), CatalogueProductsActivity.class);
-                    startActivity(intent);
+                    openCatalogueProducts(catalogue);
                 });
             }
         } else {
@@ -126,8 +134,34 @@ public class CataloguesFragment extends BaseFragment {
         }
     }
 
+    private void openCatalogueProducts(BasicCatalogue catalogue) {
+        Intent intent = CatalogueProductsActivity.createIntent(requireContext(), catalogue);
+        activityResultLauncher.launch(intent);
+    }
+
     private void onClickProduct(int id) {
 
+    }
+
+    private ActivityResultLauncher<Intent> activityResultLauncher;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        CataloguesFragment.this.onActivityResult(result);
+                    }
+                });
+    }
+
+    private void onActivityResult(ActivityResult result) {
+        if (result.getResultCode() == CatalogueProductsActivity.RESULT_UPDATED) {
+            getCatalogues();
+        }
     }
 
     @Override

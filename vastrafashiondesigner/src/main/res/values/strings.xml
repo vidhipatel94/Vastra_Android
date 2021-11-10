@@ -202,5 +202,9 @@
     <string name="error_empty_product_description">Please enter product description.</string>
     <string name="msg_empty_catalogue">No catalogues are added.</string>
     <string name="msg_empty_products">No products are added.</string>
+    <string name="likes_count">%d likes</string>
+    <string name="title_delete_product">Delete product</string>
+    <string name="msg_delete_product">Are you sure you want to delete this product? You will not be able to get it back after delete permanently.</string>
+    <string name="label_select_or_create_catalogue">Select existing or create new catalogue</string>
 
 </resources>
