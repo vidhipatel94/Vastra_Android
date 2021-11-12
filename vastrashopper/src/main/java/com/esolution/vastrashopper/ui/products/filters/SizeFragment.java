@@ -24,7 +24,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import static com.esolution.vastrabasic.utils.Utils.showMessage;
 
-public class SizeFragment extends Fragment {
+public class SizeFragment extends FilterFragment {
 
     protected CompositeDisposable subscriptions = new CompositeDisposable();
 
@@ -32,7 +32,7 @@ public class SizeFragment extends Fragment {
     private SizeAdapter sizeAdapter;
 
     private ProgressDialogHandler progressDialogHandler;
-    private ArrayList<String> customSizes = new ArrayList<>();
+    private final ArrayList<String> customSizes = new ArrayList<>();
     private String[] letterSizes;
 
     @Override
@@ -84,6 +84,18 @@ public class SizeFragment extends Fragment {
             String message = RestUtils.processThrowable(getContext(), throwable);
             showMessage(binding.getRoot(), message);
         }));
+    }
+
+    @Override
+    protected ArrayList<String> getSelectedBrandSizes() {
+        if(sizeAdapter==null) return null;
+        return sizeAdapter.getSelectedBrandSizes();
+    }
+
+    @Override
+    protected ArrayList<String> getSelectedCustomSizes() {
+        if(sizeAdapter==null) return null;
+        return sizeAdapter.getSelectedCustomSizes();
     }
 }
 

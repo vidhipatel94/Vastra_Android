@@ -1,5 +1,6 @@
 package com.esolution.vastrashopper.ui.products.filters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +18,25 @@ import java.util.List;
 
 public class SizeAdapter extends RecyclerView.Adapter<SizeAdapter.ViewHolder> {
 
+    private static final String ONESIZE = "One Size";
+
     private final List<String> customSizes;
     private final String[] letterSizes;
-    private final ArrayList<String> selectedSizes = new ArrayList<>();
+    //private final ArrayList<String> selectedSizes = new ArrayList<>();
+    private final ArrayList<String> selectedBrandSizes = new ArrayList<>();
+    private final ArrayList<String> selectedCustomSizes = new ArrayList<>();
 
     public SizeAdapter(List<String> customSizes, String[] letterSizes) {
         this.customSizes = customSizes;
         this.letterSizes = letterSizes;
+    }
+
+    public ArrayList<String> getSelectedBrandSizes() {
+        return selectedBrandSizes;
+    }
+
+    public ArrayList<String> getSelectedCustomSizes() {
+        return selectedCustomSizes;
     }
 
     @NonNull
@@ -37,7 +50,7 @@ public class SizeAdapter extends RecyclerView.Adapter<SizeAdapter.ViewHolder> {
         String letterSize = "";
         String customSize = "";
         if (position == 0) {
-            holder.binding.chkBox.setText(R.string.one_size);
+            holder.binding.chkBox.setText(ONESIZE);
         } else if (position >= 1 && position <= letterSizes.length) {
             letterSize = letterSizes[position - 1];
             holder.binding.chkBox.setText(letterSize);
@@ -51,21 +64,39 @@ public class SizeAdapter extends RecyclerView.Adapter<SizeAdapter.ViewHolder> {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     if(position == 0) {
-                        selectedSizes.add("One Size");
+                        //selectedSizes.add(ONESIZE);
+                        if(!selectedBrandSizes.contains(ONESIZE)) {
+                            selectedBrandSizes.add(ONESIZE);
+                        }
                     } else if(position >= 1 && position <= letterSizes.length) {
-                        selectedSizes.add(letterSizes[position-1]);
+                        //selectedSizes.add(letterSizes[position-1]);
+                        if(!selectedBrandSizes.contains(letterSizes[position-1])) {
+                            selectedBrandSizes.add(letterSizes[position-1]);
+                        }
                     } else {
-                        selectedSizes.add(customSizes.get(position - letterSizes.length - 1));
+                        //selectedSizes.add(customSizes.get(position - letterSizes.length - 1));
+                        String value = customSizes.get(position - letterSizes.length - 1);
+                        if(!selectedCustomSizes.contains(value)){
+                            selectedCustomSizes.add(value);
+                        }
+                    }
+                } else {
+                    if(position == 0) {
+                        selectedBrandSizes.remove(ONESIZE);
+                    } else if(position>=1 && position<= letterSizes.length) {
+                        selectedBrandSizes.remove(letterSizes[position-1]);
+                    } else {
+                        selectedCustomSizes.remove(customSizes.get(position - letterSizes.length -1));
                     }
                 }
             }
         });
 
-        if(selectedSizes.contains("One Size")) {
+        if(selectedBrandSizes.contains(ONESIZE)) {
             holder.binding.chkBox.setChecked(true);
-        } else if(selectedSizes.contains(letterSize)) {
+        } else if(selectedBrandSizes.contains(letterSize)) {
             holder.binding.chkBox.setChecked(true);
-        } else if(selectedSizes.contains(customSize)) {
+        } else if(selectedCustomSizes.contains(customSize)) {
             holder.binding.chkBox.setChecked(true);
         } else {
             holder.binding.chkBox.setChecked(false);

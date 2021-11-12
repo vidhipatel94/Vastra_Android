@@ -23,7 +23,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import static com.esolution.vastrabasic.utils.Utils.showMessage;
 
-public class DesignerFragment extends Fragment {
+public class DesignerFragment extends FilterFragment {
 
     protected CompositeDisposable subscriptions = new CompositeDisposable();
 
@@ -80,6 +80,12 @@ public class DesignerFragment extends Fragment {
             String message = RestUtils.processThrowable(getContext(), throwable);
             showMessage(binding.getRoot(), message);
         }));
+    }
+
+    @Override
+    protected ArrayList<Integer> getSelectedData() {
+        if(designerAdapter==null) return null;
+        return designerAdapter.getSelectedDesigners();
     }
 }
 

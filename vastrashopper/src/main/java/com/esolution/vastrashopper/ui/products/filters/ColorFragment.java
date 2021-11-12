@@ -24,7 +24,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import static com.esolution.vastrabasic.utils.Utils.showMessage;
 
-public class ColorFragment extends Fragment {
+public class ColorFragment extends FilterFragment {
 
     protected CompositeDisposable subscriptions = new CompositeDisposable();
 
@@ -32,7 +32,7 @@ public class ColorFragment extends Fragment {
     private ColorAdapter colorAdapter;
 
     private ProgressDialogHandler progressDialogHandler;
-    private ArrayList<Color> colors = new ArrayList<>();
+    private final ArrayList<Color> colors = new ArrayList<>();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -83,5 +83,10 @@ public class ColorFragment extends Fragment {
                 }));
     }
 
+    @Override
+    protected ArrayList<Integer> getSelectedData() {
+        if(colorAdapter==null) return null;
+        return colorAdapter.getSelectedColors();
+    }
 }
 

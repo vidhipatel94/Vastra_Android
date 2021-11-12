@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.esolution.vastrabasic.R;
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
-public class WashCareFragment extends Fragment {
+import java.util.ArrayList;
+
+public class WashCareFragment extends FilterFragment {
 
     private FragmentFilterBinding binding;
     private WashCareAdapter washCareAdapter;
@@ -37,6 +39,12 @@ public class WashCareFragment extends Fragment {
         washCareAdapter = new WashCareAdapter(WASHCARES);
         binding.filterRecyclerView.setAdapter(washCareAdapter);
         washCareAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected ArrayList<Integer> getSelectedData() {
+        if(washCareAdapter==null) return null;
+        return washCareAdapter.getSelectedWashCares();
     }
 }
 

@@ -23,7 +23,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import static com.esolution.vastrabasic.utils.Utils.showMessage;
 
-public class MaterialFragment extends Fragment {
+public class MaterialFragment extends FilterFragment {
 
     protected CompositeDisposable subscriptions = new CompositeDisposable();
 
@@ -80,6 +80,12 @@ public class MaterialFragment extends Fragment {
                     String message = RestUtils.processThrowable(getContext(), throwable);
                     showMessage(binding.getRoot(), message);
                 }));
+    }
+
+    @Override
+    protected ArrayList<Integer> getSelectedData() {
+        if(materialAdapter==null) return null;
+        return materialAdapter.getSelectedMaterials();
     }
 }
 

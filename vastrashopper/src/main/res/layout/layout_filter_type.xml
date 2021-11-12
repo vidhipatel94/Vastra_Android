@@ -19,20 +19,20 @@
         android:layout_height="wrap_content">
 
         <RadioButton
-            android:id="@+id/rb_male"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/primary_dark"
-            android:fontFamily="@font/montserrat_light"
-            android:text="@string/male"/>
-
-        <RadioButton
             android:id="@+id/rb_female"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="@color/primary_dark"
             android:fontFamily="@font/montserrat_light"
             android:text="@string/female"/>
+
+        <RadioButton
+            android:id="@+id/rb_male"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/primary_dark"
+            android:fontFamily="@font/montserrat_light"
+            android:text="@string/male"/>
 
         <RadioButton
             android:id="@+id/rb_both"

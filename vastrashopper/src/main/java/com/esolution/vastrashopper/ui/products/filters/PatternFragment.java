@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.esolution.vastrabasic.R;
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
-public class PatternFragment extends Fragment {
+import java.util.ArrayList;
+
+public class PatternFragment extends FilterFragment {
 
     private FragmentFilterBinding binding;
     private PatternAdapter patternAdapter;
@@ -37,5 +39,11 @@ public class PatternFragment extends Fragment {
         patternAdapter = new PatternAdapter(PATTERNS);
         binding.filterRecyclerView.setAdapter(patternAdapter);
         patternAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected ArrayList<Integer> getSelectedData() {
+        if(patternAdapter==null) return null;
+        return patternAdapter.getSelectedPatterns();
     }
 }

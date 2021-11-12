@@ -1,4 +1,5 @@
 package com.esolution.vastrashopper.ui.products.filters;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +12,19 @@ import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 public class OccasionAdapter extends RecyclerView.Adapter<OccasionAdapter.ViewHolder> {
 
     private static String[] occasions;
+    private final ArrayList<Integer> selectedOccasions = new ArrayList<>();
 
     public OccasionAdapter(@NotNull String[] occasions) {
         this.occasions = occasions;
+    }
+
+    public ArrayList<Integer> getSelectedOccasions() {
+        return selectedOccasions;
     }
 
     @NonNull
@@ -32,9 +40,18 @@ public class OccasionAdapter extends RecyclerView.Adapter<OccasionAdapter.ViewHo
         holder.binding.chkBox.setText(occasion);
 
         holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            int value = position + 1;
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(buttonView.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
+                if(isChecked) {
+                    if(!selectedOccasions.contains(value)) {
+                        selectedOccasions.add(value);
+                        Log.i("A", "onItemAdded: " + value);
+                    }
+                } else {
+                    Log.i("R", "onItemRemoved: " + value);
+                    selectedOccasions.remove((Integer) value);
+                }
             }
         });
     }

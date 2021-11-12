@@ -1,5 +1,6 @@
 package com.esolution.vastrashopper.ui.products.filters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
@@ -18,10 +19,14 @@ import java.util.List;
 public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> {
 
     private final List<Color> colors;
-    private final ArrayList<Color> selectedColors = new ArrayList<>();
+    private final ArrayList<Integer> selectedColors = new ArrayList<>();
 
     public ColorAdapter(@NotNull List<Color> colors) {
         this.colors = colors;
+    }
+
+    public ArrayList<Integer> getSelectedColors() {
+        return selectedColors;
     }
 
     @NonNull
@@ -41,16 +46,18 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
-                    selectedColors.add(color);
-                    holder.binding.chkBox.setChecked(true);
+                    if(!selectedColors.contains(color.getId())){
+                        selectedColors.add(color.getId());
+                        Log.i("A", "onItemAdded: " + color.getId());
+                    }
                 } else {
-                    selectedColors.remove(color);
-                    holder.binding.chkBox.setChecked(false);
+                    Log.i("R", "onItemRemoved: " + color.getId());
+                    selectedColors.remove((Integer) color.getId());
                 }
             }
         });
 
-        if(selectedColors.contains(color)) {
+        if(selectedColors.contains(color.getId())) {
             holder.binding.chkBox.setChecked(true);
         } else {
             holder.binding.chkBox.setChecked(false);

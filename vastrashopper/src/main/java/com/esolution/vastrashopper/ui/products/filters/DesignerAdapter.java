@@ -1,4 +1,5 @@
 package com.esolution.vastrashopper.ui.products.filters;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,14 @@ import java.util.ArrayList;
 public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.ViewHolder> {
 
     private final ArrayList<Designer> designers;
-    private final ArrayList<Designer> selectedDesigners = new ArrayList<>();
+    private final ArrayList<Integer> selectedDesigners = new ArrayList<>();
 
     public DesignerAdapter(@NotNull ArrayList<Designer> designers) {
         this.designers = designers;
+    }
+
+    public ArrayList<Integer> getSelectedDesigners() {
+        return selectedDesigners;
     }
 
     @NonNull
@@ -40,16 +45,18 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.ViewHo
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
-                    selectedDesigners.add(designer);
-                    holder.binding.chkBox.setChecked(true);
+                    if(!selectedDesigners.contains(designer.getId())) {
+                        selectedDesigners.add(designer.getId());
+                        Log.i("A", "onItemAdded: " + designer.getId());
+                    }
                 } else {
-                    selectedDesigners.remove(designer);
-                    holder.binding.chkBox.setChecked(false);
+                    Log.i("R", "onItemRemoved: " + designer.getId());
+                    selectedDesigners.remove((Integer) designer.getId());
                 }
             }
         });
 
-        if(selectedDesigners.contains(designer)) {
+        if(selectedDesigners.contains(designer.getId())) {
             holder.binding.chkBox.setChecked(true);
         } else {
             holder.binding.chkBox.setChecked(false);

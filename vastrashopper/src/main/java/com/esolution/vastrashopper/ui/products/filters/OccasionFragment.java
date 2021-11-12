@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.esolution.vastrabasic.R;
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
-public class OccasionFragment extends Fragment {
+import java.util.ArrayList;
+
+public class OccasionFragment extends FilterFragment {
 
     private FragmentFilterBinding binding;
     private OccasionAdapter occasionAdapter;
@@ -37,6 +39,12 @@ public class OccasionFragment extends Fragment {
         occasionAdapter = new OccasionAdapter(OCCASIONS);
         binding.filterRecyclerView.setAdapter(occasionAdapter);
         occasionAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected ArrayList<Integer> getSelectedData() {
+        if(occasionAdapter==null) return null;
+        return occasionAdapter.getSelectedOccasions();
     }
 }
 

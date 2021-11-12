@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.esolution.vastrabasic.R;
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
-public class SeasonFragment extends Fragment {
+import java.util.ArrayList;
+
+public class SeasonFragment extends FilterFragment {
 
     private FragmentFilterBinding binding;
     private SeasonAdapter seasonAdapter;
@@ -37,6 +39,12 @@ public class SeasonFragment extends Fragment {
         seasonAdapter = new SeasonAdapter(SEASONS);
         binding.filterRecyclerView.setAdapter(seasonAdapter);
         seasonAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected ArrayList<Integer> getSelectedData() {
+        if(seasonAdapter==null) return null;
+        return seasonAdapter.getSelectedSeasons();
     }
 }
 

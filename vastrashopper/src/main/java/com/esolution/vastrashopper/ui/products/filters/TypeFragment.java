@@ -24,7 +24,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import static com.esolution.vastrabasic.utils.Utils.showMessage;
 
-public class TypeFragment extends Fragment {
+public class TypeFragment extends FilterFragment {
 
     protected CompositeDisposable subscriptions = new CompositeDisposable();
 
@@ -32,8 +32,8 @@ public class TypeFragment extends Fragment {
     private TypeAdapter typeAdapter;
 
     private ProgressDialogHandler progressDialogHandler;
-    private ArrayList<ProductType> allProductTypes = new ArrayList<>();
-    private ArrayList<ProductType> displayingProductTypes = new ArrayList<>();
+    private final ArrayList<ProductType> allProductTypes = new ArrayList<>();
+    private final ArrayList<ProductType> displayingProductTypes = new ArrayList<>();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -92,5 +92,11 @@ public class TypeFragment extends Fragment {
                     String message = RestUtils.processThrowable(getContext(), throwable);
                     showMessage(binding.getRoot(), message);
                 }));
+    }
+
+    @Override
+    protected ArrayList<Integer> getSelectedData() {
+        if (typeAdapter==null) return null;
+        return typeAdapter.getSelectedProductTypes();
     }
 }

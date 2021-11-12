@@ -1,4 +1,5 @@
 package com.esolution.vastrashopper.ui.products.filters;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +12,19 @@ import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 public class WashCareAdapter extends RecyclerView.Adapter<WashCareAdapter.ViewHolder> {
 
-    private String[] washcares;
+    private final String[] washcares;
+    private final ArrayList<Integer> selectedWashCares = new ArrayList<>();
 
     public WashCareAdapter(@NotNull String[] washcares) {
         this.washcares = washcares;
+    }
+
+    public ArrayList<Integer> getSelectedWashCares() {
+        return selectedWashCares;
     }
 
     @NonNull
@@ -32,9 +40,16 @@ public class WashCareAdapter extends RecyclerView.Adapter<WashCareAdapter.ViewHo
         holder.binding.chkBox.setText(washcare);
 
         holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            int value = position + 1;
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(buttonView.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
+                if(isChecked) {
+                    selectedWashCares.add(value);
+                    Log.i("A", "onItemAdded: " + value);
+                } else {
+                    Log.i("R", "onItemRemoved: " + value);
+                    selectedWashCares.remove((Integer) value);
+                }
             }
         });
     }

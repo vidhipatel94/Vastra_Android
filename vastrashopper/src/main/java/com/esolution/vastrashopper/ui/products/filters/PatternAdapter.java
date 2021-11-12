@@ -1,5 +1,6 @@
 package com.esolution.vastrashopper.ui.products.filters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,19 @@ import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHolder> {
 
     private final String[] patterns;
+    protected final ArrayList<Integer> selectedPatterns = new ArrayList<>();
 
     public PatternAdapter(@NotNull String[] patterns) {
         this.patterns = patterns;
+    }
+
+    public ArrayList<Integer> getSelectedPatterns() {
+        return selectedPatterns;
     }
 
     @NonNull
@@ -36,9 +44,24 @@ public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHold
         holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(buttonView.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
+                int value = position + 1;
+                if(isChecked) {
+                    if(!selectedPatterns.contains(value)) {
+                        //Log.i("A", "onItemAdded: " + value);
+                        selectedPatterns.add(value);
+                    }
+                } else {
+                    //Log.i("R", "onItemRemoved: " + value);
+                    selectedPatterns.remove((Integer) (value));
+                }
             }
         });
+
+        /*if(selectedPatterns.contains(position)) {
+            holder.binding.chkBox.setChecked(true);
+        } else {
+            holder.binding.chkBox.setChecked(false);
+        }*/
     }
 
     @Override

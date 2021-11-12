@@ -1,4 +1,5 @@
 package com.esolution.vastrashopper.ui.products.filters;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
+import java.util.ArrayList;
+
 public class KnitWovenAdapter extends RecyclerView.Adapter<KnitWovenAdapter.ViewHolder> {
 
-    private String[] knit_wovens;
+    private final String[] knit_wovens;
+    private final ArrayList<Integer> selectedKnitWovens = new ArrayList<>();
 
     public KnitWovenAdapter(String[] knit_wovens) {
         this.knit_wovens = knit_wovens;
+    }
+
+    public ArrayList<Integer> getSelectedKnitWovens() {
+        return selectedKnitWovens;
     }
 
     @NonNull
@@ -30,9 +38,18 @@ public class KnitWovenAdapter extends RecyclerView.Adapter<KnitWovenAdapter.View
         holder.binding.chkBox.setText(knit_woven);
 
         holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            int value = position + 1;
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(buttonView.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
+                if(isChecked) {
+                    if(!selectedKnitWovens.contains(value)) {
+                        selectedKnitWovens.add(value);
+                        Log.i("A", "onItemAdded: " + value);
+                    }
+                } else {
+                    Log.i("R", "onItemRemoved: " + value);
+                    selectedKnitWovens.remove((Integer) value);
+                }
             }
         });
     }

@@ -1,4 +1,5 @@
 package com.esolution.vastrashopper.ui.products.filters;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
+import java.util.ArrayList;
+
 public class SeasonAdapter extends RecyclerView.Adapter<SeasonAdapter.ViewHolder> {
 
-    private String[] seasons;
+    private final String[] seasons;
+    private final ArrayList<Integer> selectedSeasons = new ArrayList<>();
 
     public SeasonAdapter(String[] seasons) {
         this.seasons = seasons;
+    }
+
+    public ArrayList<Integer> getSelectedSeasons() {
+        return selectedSeasons;
     }
 
     @NonNull
@@ -30,9 +38,18 @@ public class SeasonAdapter extends RecyclerView.Adapter<SeasonAdapter.ViewHolder
         holder.binding.chkBox.setText(season);
 
         holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            int value = position + 1;
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(buttonView.getContext(), position + " item selected." , Toast.LENGTH_SHORT).show();
+                if(isChecked) {
+                    if(!selectedSeasons.contains(value)) {
+                        selectedSeasons.add(value);
+                        Log.i("A", "onItemAdded: " + value);
+                    }
+                } else {
+                    Log.i("R", "onItemRemoved: " + value);
+                    selectedSeasons.remove((Integer) value);
+                }
             }
         });
     }

@@ -15,7 +15,7 @@ import com.google.android.material.slider.RangeSlider;
 
 import org.jetbrains.annotations.NotNull;
 
-public class PriceFragment extends Fragment {
+public class PriceFragment extends FilterFragment {
 
     private FragmentPriceBinding binding;
 
@@ -44,5 +44,15 @@ public class PriceFragment extends Fragment {
     private void initView() {
         binding.minPriceRange.setText(String.valueOf(binding.priceRangeSlider.getValueFrom()));
         binding.maxPriceRange.setText(String.valueOf(binding.priceRangeSlider.getValueTo()));
+    }
+
+    @Override
+    protected float getMinPrice() {
+        return Float.parseFloat(binding.minPriceRange.getText().toString().trim());
+    }
+
+    @Override
+    protected float getMaxPrice() {
+        return Float.parseFloat(binding.maxPriceRange.getText().toString().trim());
     }
 }

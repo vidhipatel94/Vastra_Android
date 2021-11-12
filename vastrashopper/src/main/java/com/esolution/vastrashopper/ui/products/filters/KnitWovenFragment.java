@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.esolution.vastrashopper.R;
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
-public class KnitWovenFragment extends Fragment {
+import java.util.ArrayList;
+
+public class KnitWovenFragment extends FilterFragment {
 
     private FragmentFilterBinding binding;
     private KnitWovenAdapter knitWovenAdapter;
@@ -39,5 +41,11 @@ public class KnitWovenFragment extends Fragment {
         knitWovenAdapter = new KnitWovenAdapter(KNIT_WOVEN);
         binding.filterRecyclerView.setAdapter(knitWovenAdapter);
         knitWovenAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected ArrayList<Integer> getSelectedData() {
+        if(knitWovenAdapter==null) return null;
+        return knitWovenAdapter.getSelectedKnitWovens();
     }
 }

@@ -1,4 +1,5 @@
 package com.esolution.vastrashopper.ui.products.filters;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +20,14 @@ import java.util.List;
 public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHolder> {
 
     private final List<Material> materials;
-    private final ArrayList<Material> selectedMaterials = new ArrayList<>();
+    private final ArrayList<Integer> selectedMaterials = new ArrayList<>();
 
     public MaterialAdapter(@NotNull List<Material> materials) {
         this.materials = materials;
+    }
+
+    public ArrayList<Integer> getSelectedMaterials() {
+        return selectedMaterials;
     }
 
     @NonNull
@@ -41,16 +46,18 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHo
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
-                    selectedMaterials.add(material);
-                    holder.binding.chkBox.setChecked(true);
+                    if(!selectedMaterials.contains(material.getId())){
+                        selectedMaterials.add(material.getId());
+                        Log.i("A", "onItemAdded: " + material.getId());
+                    }
                 } else {
-                    selectedMaterials.remove(material);
-                    holder.binding.chkBox.setChecked(false);
+                    Log.i("R", "onItemRemoved: " + material.getId());
+                    selectedMaterials.remove((Integer) material.getId());
                 }
             }
         });
 
-        if(selectedMaterials.contains(material)) {
+        if(selectedMaterials.contains(material.getId())) {
             holder.binding.chkBox.setChecked(true);
         } else {
             holder.binding.chkBox.setChecked(false);
