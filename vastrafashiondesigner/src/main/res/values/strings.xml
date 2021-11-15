@@ -206,5 +206,7 @@
     <string name="title_delete_product">Delete product</string>
     <string name="msg_delete_product">Are you sure you want to delete this product? You will not be able to get it back after delete permanently.</string>
     <string name="label_select_or_create_catalogue">Select existing or create new catalogue</string>
+    <string name="edit_info">Update Info</string>
+    <string name="edit_inventory">Update Inventory</string>
 
 </resources>

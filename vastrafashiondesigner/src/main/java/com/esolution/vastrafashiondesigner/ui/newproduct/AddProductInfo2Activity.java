@@ -27,8 +27,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class AddProductInfo2Activity extends BaseActivity {
 
-    private static final String EXTRA_CATALOGUE = "extra_catalogue";
-    private static final String EXTRA_PRODUCT = "extra_product";
+    protected static final String EXTRA_CATALOGUE = "extra_catalogue";
+    protected static final String EXTRA_PRODUCT = "extra_product";
 
     public static Intent createIntent(Context context, Catalogue catalogue, Product product) {
         Intent intent = new Intent(context, AddProductInfo2Activity.class);
@@ -37,11 +37,11 @@ public class AddProductInfo2Activity extends BaseActivity {
         return intent;
     }
 
-    private ActivityAddProductInfo2Binding binding;
+    protected ActivityAddProductInfo2Binding binding;
     private ProgressDialogHandler progressDialogHandler;
 
-    private Catalogue catalogue;
-    private Product product;
+    protected Catalogue catalogue;
+    protected Product product;
 
     private List<Material> materials = new ArrayList<>();
     private ArrayAdapter<String> materialAdapter;
@@ -79,7 +79,7 @@ public class AddProductInfo2Activity extends BaseActivity {
         return false;
     }
 
-    private final List<RowAddProductMaterialBinding> materialBindingList = new ArrayList<>();
+    protected final List<RowAddProductMaterialBinding> materialBindingList = new ArrayList<>();
 
     private void initView() {
         binding.toolbarLayout.title.setText(catalogue.getName());
@@ -309,7 +309,7 @@ public class AddProductInfo2Activity extends BaseActivity {
         return false;
     }
 
-    private void openNextScreen() {
+    protected void openNextScreen() {
         startActivity(AddProductInfo3Activity.createIntent(this, catalogue, product));
     }
 }

@@ -17,7 +17,6 @@ public class Product implements Serializable {
     String designerName;    // EXTRA, in get query
 
     int catalogueId;
-    String catalogueName;  // EXTRA
 
     int typeId;     // ProductType
     ProductType productType;  // EXTRA
@@ -63,10 +62,6 @@ public class Product implements Serializable {
 
     public void setCatalogueId(int catalogueId) {
         this.catalogueId = catalogueId;
-    }
-
-    public String getCatalogueName() {
-        return catalogueName;
     }
 
     public int getDesignerId() {

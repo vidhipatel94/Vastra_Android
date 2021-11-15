@@ -34,6 +34,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,8 +49,8 @@ import okhttp3.RequestBody;
 
 public class AddProductImagesActivity extends BaseActivity {
 
-    private static final String EXTRA_CATALOGUE = "extra_catalogue";
-    private static final String EXTRA_PRODUCT = "extra_product";
+    protected static final String EXTRA_CATALOGUE = "extra_catalogue";
+    protected static final String EXTRA_PRODUCT = "extra_product";
 
     public static Intent createIntent(Context context, Catalogue catalogue, Product product) {
         Intent intent = new Intent(context, AddProductImagesActivity.class);
@@ -57,11 +59,11 @@ public class AddProductImagesActivity extends BaseActivity {
         return intent;
     }
 
-    private ActivityAddProductImagesBinding binding;
+    protected ActivityAddProductImagesBinding binding;
     private ProgressDialogHandler progressDialogHandler;
 
-    private Catalogue catalogue;
-    private Product product;
+    protected Catalogue catalogue;
+    protected Product product;
 
     private ActivityResultLauncher<Intent> activityResultLauncherGallery;
     private static final int REQUEST_CODE_GALLARY = 102;
@@ -98,8 +100,8 @@ public class AddProductImagesActivity extends BaseActivity {
         return false;
     }
 
-    private final Map<RowAddProductImageBinding, Uri> imageBindings = new LinkedHashMap<>();
-    private final ArrayList<String> imageUrls = new ArrayList<>();
+    protected final Map<RowAddProductImageBinding, Uri> imageBindings = new LinkedHashMap<>();
+    protected final ArrayList<String> imageUrls = new ArrayList<>();
 
     private void initView() {
         binding.toolbarLayout.title.setText(catalogue.getName());
@@ -147,8 +149,8 @@ public class AddProductImagesActivity extends BaseActivity {
 
         binding.btnNext.setOnClickListener(v -> {
             closeKeyboard();
+            imageUrls.clear();
             if (isFormValidated()) {
-                imageUrls.clear();
                 uploadImagesAndOpenNextScreen();
             }
         });
@@ -171,7 +173,13 @@ public class AddProductImagesActivity extends BaseActivity {
             RowAddProductImageBinding imageBinding = list.get(photoIndex);
             imageBinding.productImage.setImageURI(imageUri);
             imageBindings.put(imageBinding, imageUri);
+            onSetSelectedImage(imageBinding);
         }
+    }
+
+    protected void onSetSelectedImage(RowAddProductImageBinding imageBinding) {
+        // Not implemented
+        // Only for inheritance
     }
 
     public String getPath(Uri uri) {
@@ -226,16 +234,18 @@ public class AddProductImagesActivity extends BaseActivity {
         return false;
     }
 
-    private Stack<Uri> finalURIs;
+    protected Stack<Uri> pendingUploadURIs;
 
     private boolean isFormValidated() {
-        finalURIs = new Stack<>();
-        for (Uri uri : imageBindings.values()) {
-            if (uri != null) {
-                finalURIs.push(uri);
+        pendingUploadURIs = new Stack<>();
+        List<Uri> uris = new ArrayList<>(imageBindings.values());
+        for (int i = uris.size() - 1; i >= 0; i--) {
+            if (uris.get(i) != null) {
+                pendingUploadURIs.push(uris.get(i));
             }
         }
-        if (finalURIs.size() < 3) {
+
+        if (getTotalImages() < 3) {
             showMessage(binding.getRoot(), getString(R.string.error_insufficient_product_images));
             return false;
         }
@@ -251,11 +261,15 @@ public class AddProductImagesActivity extends BaseActivity {
         return true;
     }
 
-    private void uploadImagesAndOpenNextScreen() {
-        if (finalURIs == null) return;
+    protected int getTotalImages() {
+        return pendingUploadURIs.size();
+    }
 
-        if (!finalURIs.isEmpty()) {
-            Uri uri = finalURIs.pop();
+    private void uploadImagesAndOpenNextScreen() {
+        if (pendingUploadURIs == null) return;
+
+        if (!pendingUploadURIs.isEmpty()) {
+            Uri uri = pendingUploadURIs.pop();
             progressDialogHandler.setProgress(true);
             uploadImage(uri);
         } else {
@@ -297,7 +311,7 @@ public class AddProductImagesActivity extends BaseActivity {
                 }));
     }
 
-    private void openNextScreen() {
+    protected void openNextScreen() {
         startActivity(SelectProductColorsActivity.createIntent(this, catalogue, product));
     }
 }

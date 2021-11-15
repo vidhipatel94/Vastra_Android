@@ -2,9 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_edit"
+        android:id="@+id/action_edit_info"
         android:icon="@drawable/ic_edit_grey_500_24dp"
-        android:title="@string/edit" />
+        android:title="@string/edit_info" />
+
+    <item
+        android:id="@+id/action_edit_inventory"
+        android:icon="@drawable/ic_edit_grey_500_24dp"
+        android:title="@string/edit_inventory" />
 
     <item
         android:id="@+id/action_delete"

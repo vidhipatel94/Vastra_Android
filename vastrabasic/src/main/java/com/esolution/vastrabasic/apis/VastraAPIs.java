@@ -30,7 +30,6 @@ import okhttp3.MultipartBody;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
-import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -76,7 +75,7 @@ public interface VastraAPIs {
     Observable<APIResponse<Product>> createProduct(@Header("token") String token, @Body Product product);
 
     @PUT("product")
-    Observable<APIResponse<Product>> updateProduct(@Header("token") String token, @Body Product product);
+    Observable<APIResponse<JsonElement>> updateProduct(@Header("token") String token, @Body Product product);
 
     // show product list with filter -> fd
     @POST("product/list")
@@ -84,11 +83,14 @@ public interface VastraAPIs {
 
     @GET("product/fd/catalogue/list")
     Observable<APIResponse<List<BasicProduct>>> getCatalogueProducts(@Header("token") String token,
-                                                                    @Query("catalogueId") int catalogueId);
+                                                                     @Query("catalogueId") int catalogueId);
 
     // delete product
     @DELETE("product")
     Observable<APIResponse<JsonElement>> deleteProduct(@Header("token") String token, @Query("productId") int productId);
+
+    @GET("product/info")
+    Observable<APIResponse<Product>> getProductInfo(@Header("token") String token, @Query("productId") int productId);
 
     @GET("product/basiclist/fd/type")
     Observable<APIResponse<List<BasicProduct>>> getDesignerProductsByTypes(@Header("token") String token,
@@ -97,7 +99,7 @@ public interface VastraAPIs {
 
     @GET("product/exist/fd")
     Observable<APIResponse<Boolean>> isDesignerProductsExist(@Header("token") String token,
-                                                                        @Query("designerId") int designerId);
+                                                             @Query("designerId") int designerId);
 
     // ------------- Product Color --------------
 

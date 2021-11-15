@@ -31,7 +31,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class AddProductInfo1Activity extends BaseActivity {
 
-    private static final String EXTRA_CATALOGUE = "extra_catalogue";
+    protected static final String EXTRA_CATALOGUE = "extra_catalogue";
 
     public static Intent createIntent(Context context, Catalogue catalogue) {
         Intent intent = new Intent(context, AddProductInfo1Activity.class);
@@ -39,15 +39,15 @@ public class AddProductInfo1Activity extends BaseActivity {
         return intent;
     }
 
-    private ActivityAddProductInfo1Binding binding;
+    protected ActivityAddProductInfo1Binding binding;
     private ProgressDialogHandler progressDialogHandler;
 
-    private Catalogue catalogue;
+    protected Catalogue catalogue;
 
     private List<ProductType> productTypes = new ArrayList<>();
-    private int selectedProductTypeId = -1;
+    protected int selectedProductTypeId = -1;
 
-    private Product product;
+    protected Product product;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,7 +76,7 @@ public class AddProductInfo1Activity extends BaseActivity {
         return binding.getRoot();
     }
 
-    private boolean getIntentData() {
+    protected boolean getIntentData() {
         if (getIntent() != null) {
             catalogue = (Catalogue) getIntent().getSerializableExtra(EXTRA_CATALOGUE);
             return catalogue != null;
@@ -192,12 +192,15 @@ public class AddProductInfo1Activity extends BaseActivity {
 
         Designer designer = DesignerLoginPreferences.createInstance(this).getDesigner();
 
-        product = new Product(designer.getId(), catalogue.getId(), selectedProductTypeId, null);
-
+        if (product == null) {
+            product = new Product(designer.getId(), catalogue.getId(), selectedProductTypeId, null);
+        } else {
+            product.setTypeId(selectedProductTypeId);
+        }
         return true;
     }
 
-    private void openNextScreen() {
+    protected void openNextScreen() {
         startActivity(AddProductInfo2Activity.createIntent(this, catalogue, product));
     }
 }

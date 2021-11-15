@@ -15,12 +15,14 @@ import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.apis.RestUtils;
 import com.esolution.vastrabasic.models.Catalogue;
 import com.esolution.vastrabasic.models.product.BasicProduct;
+import com.esolution.vastrabasic.models.product.Product;
 import com.esolution.vastrabasic.ui.BaseActivity;
 import com.esolution.vastrabasic.utils.AlertDialogHelper;
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
 import com.esolution.vastrafashiondesigner.databinding.ActivityCatalogueProductsBinding;
 import com.esolution.vastrafashiondesigner.ui.newproduct.AddProductInfo1Activity;
+import com.esolution.vastrafashiondesigner.ui.updateproduct.UpdateProductInfo1Activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -165,8 +167,10 @@ public class CatalogueProductsActivity extends BaseActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.action_edit) {
-                    onClickEditProduct(position);
+                if (item.getItemId() == R.id.action_edit_info) {
+                    onClickEditProductInfo(position);
+                } else if (item.getItemId() == R.id.action_edit_inventory) {
+                    onClickEditProductInventory(position);
                 } else if (item.getItemId() == R.id.action_delete) {
                     onClickDeleteProduct(position);
                 }
@@ -176,7 +180,46 @@ public class CatalogueProductsActivity extends BaseActivity {
         popupMenu.show();
     }
 
-    private void onClickEditProduct(int position) {
+    private void onClickEditProductInfo(int position) {
+        getProductInfo(products.get(position), true, false);
+    }
+
+    private void onClickEditProductInventory(int position) {
+        getProductInfo(products.get(position), false, true);
+    }
+
+    private void getProductInfo(BasicProduct product, boolean editInfo, boolean editInventory) {
+        progressDialogHandler.setProgress(true);
+        DesignerLoginPreferences preferences = DesignerLoginPreferences.createInstance(this);
+        subscriptions.add(RestUtils.getAPIs().getProductInfo(preferences.getSessionToken(), product.getId())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    progressDialogHandler.setProgress(false);
+                    if (response.isSuccess()) {
+                        if (editInfo) {
+                            openEditProductInfo(response.getData());
+                        } else if (editInventory) {
+                            openEditInventory(response.getData());
+                        }
+                    } else {
+                        showMessage(binding.getRoot(), response.getMessage());
+                    }
+                }, throwable -> {
+                    throwable.printStackTrace();
+                    progressDialogHandler.setProgress(false);
+                    String message = RestUtils.processThrowable(this, throwable);
+                    showMessage(binding.getRoot(), message);
+                }));
+    }
+
+    private void openEditProductInfo(Product product) {
+        //        Intent intent = UpdateProductInfoActivity.createIntent(this, products.get(position).getId());
+        Intent intent = UpdateProductInfo1Activity.createIntent(this, catalogue, product);
+        startActivity(intent);
+    }
+
+    private void openEditInventory(Product product) {
 
     }
 

@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.models.Catalogue;
 import com.esolution.vastrabasic.models.product.Product;
 import com.esolution.vastrabasic.models.product.ProductOccasion;
@@ -16,14 +15,15 @@ import com.esolution.vastrabasic.models.product.Season;
 import com.esolution.vastrabasic.ui.BaseActivity;
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.databinding.ActivityAddProductInfo3Binding;
+import com.esolution.vastrafashiondesigner.ui.updateproduct.UpdateProductImagesActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AddProductInfo3Activity extends BaseActivity {
 
-    private static final String EXTRA_CATALOGUE = "extra_catalogue";
-    private static final String EXTRA_PRODUCT = "extra_product";
+    protected static final String EXTRA_CATALOGUE = "extra_catalogue";
+    protected static final String EXTRA_PRODUCT = "extra_product";
 
     public static Intent createIntent(Context context, Catalogue catalogue, Product product) {
         Intent intent = new Intent(context, AddProductInfo3Activity.class);
@@ -32,14 +32,14 @@ public class AddProductInfo3Activity extends BaseActivity {
         return intent;
     }
 
-    private ActivityAddProductInfo3Binding binding;
+    protected ActivityAddProductInfo3Binding binding;
 
-    private Catalogue catalogue;
-    private Product product;
+    protected Catalogue catalogue;
+    protected Product product;
 
-    private static String[] OCCASIONS;
-    private static String[] PATTERNS;
-    private static String[] WASHCARES;
+    protected static String[] OCCASIONS;
+    protected static String[] PATTERNS;
+    protected static String[] WASHCARES;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -93,7 +93,7 @@ public class AddProductInfo3Activity extends BaseActivity {
         });
     }
 
-    private boolean[] selectedOccasions;
+    protected boolean[] selectedOccasions;
 
     private void openOccasionDialog() {
         if (selectedOccasions == null) {
@@ -111,22 +111,25 @@ public class AddProductInfo3Activity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        StringBuilder builder = new StringBuilder();
-                        for (int i = 0; i < OCCASIONS.length; i++) {
-                            if (selectedOccasions[i]) {
-                                if (builder.length() != 0) {
-                                    builder.append(", ");
-                                }
-                                builder.append(OCCASIONS[i]);
-
-                            }
-                        }
-                        binding.inputOccasion.setText(builder.toString());
+                        onUpdateOccasions();
                     }
                 }).show();
     }
 
-    private int selectedPattern;
+    protected void onUpdateOccasions() {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < OCCASIONS.length; i++) {
+            if (selectedOccasions[i]) {
+                if (builder.length() != 0) {
+                    builder.append(", ");
+                }
+                builder.append(OCCASIONS[i]);
+            }
+        }
+        binding.inputOccasion.setText(builder.toString());
+    }
+
+    protected int selectedPattern;
 
     private void openPatternDialog() {
         new AlertDialog.Builder(this)
@@ -137,13 +140,18 @@ public class AddProductInfo3Activity extends BaseActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                        binding.inputPattern.setText(PATTERNS[selectedPosition]);
                         selectedPattern = selectedPosition + 1;
+                        onUpdatePattern();
                     }
                 }).show();
     }
 
-    private int selectedWashcare;
+    protected void onUpdatePattern() {
+        if (selectedPattern < 1 || selectedPattern > PATTERNS.length) return;
+        binding.inputPattern.setText(PATTERNS[selectedPattern - 1]);
+    }
+
+    protected int selectedWashcare;
 
     private void openWashcareDialog() {
         new AlertDialog.Builder(this)
@@ -154,10 +162,15 @@ public class AddProductInfo3Activity extends BaseActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                        binding.inputWashCare.setText(WASHCARES[selectedPosition]);
                         selectedWashcare = selectedPosition + 1;
+                        onUpdateWashCare();
                     }
                 }).show();
+    }
+
+    protected void onUpdateWashCare() {
+        if (selectedWashcare < 1 || selectedWashcare > WASHCARES.length) return;
+        binding.inputWashCare.setText(WASHCARES[selectedWashcare - 1]);
     }
 
     private boolean isFormValidated() {
@@ -238,7 +251,7 @@ public class AddProductInfo3Activity extends BaseActivity {
         return true;
     }
 
-    private void openNextScreen() {
-        startActivity(AddProductImagesActivity.createIntent(this, catalogue, product));
+    protected void openNextScreen() {
+        startActivity(UpdateProductImagesActivity.createIntent(this, catalogue, product));
     }
 }
