@@ -15,14 +15,17 @@ import com.esolution.vastrashopper.databinding.RowFilterBinding;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHolder> {
 
     private final String[] patterns;
     protected final ArrayList<Integer> selectedPatterns = new ArrayList<>();
+    protected final List<Integer> prevSelectedPatterns;
 
-    public PatternAdapter(@NotNull String[] patterns) {
+    public PatternAdapter(@NotNull String[] patterns, List<Integer> prevSelectedPatterns) {
         this.patterns = patterns;
+        this.prevSelectedPatterns = prevSelectedPatterns;
     }
 
     public ArrayList<Integer> getSelectedPatterns() {
@@ -32,7 +35,7 @@ public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(RowFilterBinding.inflate(LayoutInflater.from(parent.getContext()),parent, false));
+        return new ViewHolder(RowFilterBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
@@ -44,9 +47,9 @@ public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHold
         holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                int value = position + 1;
-                if(isChecked) {
-                    if(!selectedPatterns.contains(value)) {
+                final int value = position + 1;
+                if (isChecked) {
+                    if (!selectedPatterns.contains(value)) {
                         //Log.i("A", "onItemAdded: " + value);
                         selectedPatterns.add(value);
                     }
@@ -57,11 +60,16 @@ public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHold
             }
         });
 
-        /*if(selectedPatterns.contains(position)) {
-            holder.binding.chkBox.setChecked(true);
-        } else {
-            holder.binding.chkBox.setChecked(false);
-        }*/
+        // For showing previously selected item on swapping the filter options
+        if (prevSelectedPatterns != null) {
+            if (prevSelectedPatterns.contains(position + 1)) {
+                //Log.i("----", "Contains: " + value);
+                holder.binding.chkBox.setChecked(true);
+            } else {
+                //Log.i("----", "Not Contain: " + value);
+                holder.binding.chkBox.setChecked(false);
+            }
+        }
     }
 
     @Override

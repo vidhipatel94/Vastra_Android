@@ -13,14 +13,18 @@ import com.esolution.vastrashopper.databinding.RowFilterBinding;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WashCareAdapter extends RecyclerView.Adapter<WashCareAdapter.ViewHolder> {
 
     private final String[] washcares;
     private final ArrayList<Integer> selectedWashCares = new ArrayList<>();
 
-    public WashCareAdapter(@NotNull String[] washcares) {
+    private final List<Integer> prevSelectedWashCares;
+
+    public WashCareAdapter(@NotNull String[] washcares, List<Integer> prevSelectedWashCares) {
         this.washcares = washcares;
+        this.prevSelectedWashCares = prevSelectedWashCares;
     }
 
     public ArrayList<Integer> getSelectedWashCares() {
@@ -40,18 +44,26 @@ public class WashCareAdapter extends RecyclerView.Adapter<WashCareAdapter.ViewHo
         holder.binding.chkBox.setText(washcare);
 
         holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            int value = position + 1;
+            final int value = position + 1;
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     selectedWashCares.add(value);
-                    Log.i("A", "onItemAdded: " + value);
+                    //Log.i("A", "onItemAdded: " + value);
                 } else {
-                    Log.i("R", "onItemRemoved: " + value);
+                    //Log.i("R", "onItemRemoved: " + value);
                     selectedWashCares.remove((Integer) value);
                 }
             }
         });
+
+        if(prevSelectedWashCares != null) {
+            if(prevSelectedWashCares.contains(position+1)){
+                holder.binding.chkBox.setChecked(true);
+            } else {
+                holder.binding.chkBox.setChecked(false);
+            }
+        }
     }
 
     @Override

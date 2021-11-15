@@ -18,6 +18,13 @@ import org.jetbrains.annotations.NotNull;
 public class PriceFragment extends FilterFragment {
 
     private FragmentPriceBinding binding;
+    private final float minPrice;
+    private final float maxPrice;
+
+    public PriceFragment(float minPrice, float maxPrice) {
+        this.minPrice = minPrice;
+        this.maxPrice = maxPrice;
+    }
 
     @Nullable
     @org.jetbrains.annotations.Nullable
@@ -37,6 +44,12 @@ public class PriceFragment extends FilterFragment {
                 binding.maxPriceRange.setText(String.valueOf(slider.getValues().get(1)));
             }
         });
+
+        if(minPrice != 0.0f && maxPrice != 10000.0f) {
+            binding.minPriceRange.setText(String.valueOf(minPrice));
+            binding.maxPriceRange.setText(String.valueOf(maxPrice));
+            binding.priceRangeSlider.setValues(minPrice, maxPrice);
+        }
 
         return root;
     }

@@ -13,13 +13,19 @@ import com.esolution.vastrabasic.R;
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WashCareFragment extends FilterFragment {
 
     private FragmentFilterBinding binding;
     private WashCareAdapter washCareAdapter;
+    private final List<Integer> prevSelectedWashCares;
 
     private static String[] WASHCARES;
+
+    public WashCareFragment(List<Integer> prevSelectedWashCares) {
+        this.prevSelectedWashCares = prevSelectedWashCares;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -36,7 +42,7 @@ public class WashCareFragment extends FilterFragment {
 
     private void initView() {
         binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        washCareAdapter = new WashCareAdapter(WASHCARES);
+        washCareAdapter = new WashCareAdapter(WASHCARES, prevSelectedWashCares);
         binding.filterRecyclerView.setAdapter(washCareAdapter);
         washCareAdapter.notifyDataSetChanged();
     }

@@ -30,7 +30,7 @@
     <string name="select_gender">Select gender</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
-    <string name="both">Both</string>
+    <string name="unisex">Unisex</string>
     <string name="select_age_group">Select age group</string>
     <string name="baby">Baby (1-2 years)</string>
     <string name="kids">Kids</string>

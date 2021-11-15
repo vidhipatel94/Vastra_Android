@@ -3,13 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="0dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_medium"
         android:layout_marginTop="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="0dp"
         android:text="@string/select_gender"
         android:textColor="@color/text_primary_black"/>
 
@@ -35,12 +39,12 @@
             android:text="@string/male"/>
 
         <RadioButton
-            android:id="@+id/rb_both"
+            android:id="@+id/rb_unisex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="@color/primary_dark"
             android:fontFamily="@font/montserrat_light"
-            android:text="@string/both"/>
+            android:text="@string/unisex"/>
 
     </RadioGroup>
 
@@ -49,6 +53,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/montserrat_medium"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="0dp"
         android:text="@string/select_age_group"
         android:textColor="@color/text_primary_black" />
 

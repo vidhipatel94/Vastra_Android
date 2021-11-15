@@ -21,8 +21,11 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
     private final List<Color> colors;
     private final ArrayList<Integer> selectedColors = new ArrayList<>();
 
-    public ColorAdapter(@NotNull List<Color> colors) {
+    private final List<Integer> prevSelectedColors;
+
+    public ColorAdapter(@NotNull List<Color> colors, List<Integer> prevSelectedColors) {
         this.colors = colors;
+        this.prevSelectedColors = prevSelectedColors;
     }
 
     public ArrayList<Integer> getSelectedColors() {
@@ -48,19 +51,29 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
                 if(isChecked) {
                     if(!selectedColors.contains(color.getId())){
                         selectedColors.add(color.getId());
-                        Log.i("A", "onItemAdded: " + color.getId());
+                        //Log.i("A", "onItemAdded: " + color.getId());
                     }
                 } else {
-                    Log.i("R", "onItemRemoved: " + color.getId());
+                    //Log.i("R", "onItemRemoved: " + color.getId());
                     selectedColors.remove((Integer) color.getId());
                 }
             }
         });
 
+        // Retains selection on scroll
         if(selectedColors.contains(color.getId())) {
             holder.binding.chkBox.setChecked(true);
         } else {
             holder.binding.chkBox.setChecked(false);
+        }
+
+        // PrevSelected Values
+        if(prevSelectedColors != null) {
+            if(prevSelectedColors.contains(color.getId())) {
+                holder.binding.chkBox.setChecked(true);
+            } else {
+                holder.binding.chkBox.setChecked(false);
+            }
         }
     }
 

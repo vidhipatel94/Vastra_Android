@@ -11,14 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class KnitWovenAdapter extends RecyclerView.Adapter<KnitWovenAdapter.ViewHolder> {
 
     private final String[] knit_wovens;
     private final ArrayList<Integer> selectedKnitWovens = new ArrayList<>();
+    private final List<Integer> prevSelectedKnitWovens;
 
-    public KnitWovenAdapter(String[] knit_wovens) {
+    public KnitWovenAdapter(String[] knit_wovens, List<Integer> prevSelectedKnitWovens) {
         this.knit_wovens = knit_wovens;
+        this.prevSelectedKnitWovens = prevSelectedKnitWovens;
     }
 
     public ArrayList<Integer> getSelectedKnitWovens() {
@@ -38,20 +41,28 @@ public class KnitWovenAdapter extends RecyclerView.Adapter<KnitWovenAdapter.View
         holder.binding.chkBox.setText(knit_woven);
 
         holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            int value = position + 1;
+            final int value = position + 1;
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     if(!selectedKnitWovens.contains(value)) {
                         selectedKnitWovens.add(value);
-                        Log.i("A", "onItemAdded: " + value);
+                        // Log.i("A", "onItemAdded: " + value);
                     }
                 } else {
-                    Log.i("R", "onItemRemoved: " + value);
+                    // Log.i("R", "onItemRemoved: " + value);
                     selectedKnitWovens.remove((Integer) value);
                 }
             }
         });
+
+        if(prevSelectedKnitWovens != null){
+            if(prevSelectedKnitWovens.contains(position + 1)) {
+                holder.binding.chkBox.setChecked(true);
+            } else {
+                holder.binding.chkBox.setChecked(false);
+            }
+        }
     }
 
     @Override

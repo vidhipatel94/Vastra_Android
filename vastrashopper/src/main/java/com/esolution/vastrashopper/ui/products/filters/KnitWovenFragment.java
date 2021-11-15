@@ -14,6 +14,7 @@ import com.esolution.vastrashopper.R;
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class KnitWovenFragment extends FilterFragment {
 
@@ -21,6 +22,11 @@ public class KnitWovenFragment extends FilterFragment {
     private KnitWovenAdapter knitWovenAdapter;
 
     private static String[] KNIT_WOVEN;
+    private final List<Integer> prevSelectedKnitWovens;
+
+    public KnitWovenFragment(List<Integer> prevSelectedKnitWovens) {
+        this.prevSelectedKnitWovens = prevSelectedKnitWovens;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -38,7 +44,7 @@ public class KnitWovenFragment extends FilterFragment {
 
     private void initView() {
         binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        knitWovenAdapter = new KnitWovenAdapter(KNIT_WOVEN);
+        knitWovenAdapter = new KnitWovenAdapter(KNIT_WOVEN, prevSelectedKnitWovens);
         binding.filterRecyclerView.setAdapter(knitWovenAdapter);
         knitWovenAdapter.notifyDataSetChanged();
     }

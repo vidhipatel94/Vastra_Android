@@ -17,6 +17,7 @@ import com.esolution.vastrashopper.R;
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -33,6 +34,12 @@ public class ColorFragment extends FilterFragment {
 
     private ProgressDialogHandler progressDialogHandler;
     private final ArrayList<Color> colors = new ArrayList<>();
+
+    private final List<Integer> prevSelectedColors;
+
+    public ColorFragment(List<Integer> prevSelectedColors) {
+        this.prevSelectedColors = prevSelectedColors;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -53,7 +60,7 @@ public class ColorFragment extends FilterFragment {
 
     private void initView() {
         binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        colorAdapter = new ColorAdapter(colors);
+        colorAdapter = new ColorAdapter(colors, prevSelectedColors);
         binding.filterRecyclerView.setAdapter(colorAdapter);
         colorAdapter.notifyDataSetChanged();
     }

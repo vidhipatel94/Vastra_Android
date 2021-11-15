@@ -11,14 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.esolution.vastrashopper.databinding.RowFilterBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SeasonAdapter extends RecyclerView.Adapter<SeasonAdapter.ViewHolder> {
 
     private final String[] seasons;
     private final ArrayList<Integer> selectedSeasons = new ArrayList<>();
+    private final List<Integer> prevSelectedSeasons;
 
-    public SeasonAdapter(String[] seasons) {
+    public SeasonAdapter(String[] seasons, List<Integer> prevSelectedSeasons) {
         this.seasons = seasons;
+        this.prevSelectedSeasons = prevSelectedSeasons;
     }
 
     public ArrayList<Integer> getSelectedSeasons() {
@@ -38,20 +41,28 @@ public class SeasonAdapter extends RecyclerView.Adapter<SeasonAdapter.ViewHolder
         holder.binding.chkBox.setText(season);
 
         holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            int value = position + 1;
+            final int value = position + 1;
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     if(!selectedSeasons.contains(value)) {
                         selectedSeasons.add(value);
-                        Log.i("A", "onItemAdded: " + value);
+                        // Log.i("A", "onItemAdded: " + value);
                     }
                 } else {
-                    Log.i("R", "onItemRemoved: " + value);
+                    // Log.i("R", "onItemRemoved: " + value);
                     selectedSeasons.remove((Integer) value);
                 }
             }
         });
+
+        if(prevSelectedSeasons != null) {
+            if(prevSelectedSeasons.contains(position + 1)) {
+                holder.binding.chkBox.setChecked(true);
+            } else {
+                holder.binding.chkBox.setChecked(false);
+            }
+        }
     }
 
     @Override

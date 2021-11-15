@@ -10,10 +10,14 @@ public class FilterFragment extends Fragment {
     protected float getMinPrice() { return 0f; }
 
     protected float getMaxPrice() {
-        return 0f;
+        return 10000f;
     }
 
     protected ArrayList<String> getSelectedBrandSizes() { return null; }
 
     protected ArrayList<String> getSelectedCustomSizes() { return null; }
+
+    protected int getSelectedGender() { return -1; }
+
+    protected int getSelectedAgeGroup() { return -1; }
 }

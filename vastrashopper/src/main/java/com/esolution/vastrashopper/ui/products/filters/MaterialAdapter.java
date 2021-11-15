@@ -22,8 +22,11 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHo
     private final List<Material> materials;
     private final ArrayList<Integer> selectedMaterials = new ArrayList<>();
 
-    public MaterialAdapter(@NotNull List<Material> materials) {
+    private final List<Integer> prevSelectedMaterials;
+
+    public MaterialAdapter(@NotNull List<Material> materials, List<Integer> prevSelectedMaterials) {
         this.materials = materials;
+        this.prevSelectedMaterials = prevSelectedMaterials;
     }
 
     public ArrayList<Integer> getSelectedMaterials() {
@@ -48,10 +51,10 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHo
                 if(isChecked) {
                     if(!selectedMaterials.contains(material.getId())){
                         selectedMaterials.add(material.getId());
-                        Log.i("A", "onItemAdded: " + material.getId());
+                        // Log.i("A", "onItemAdded: " + material.getId());
                     }
                 } else {
-                    Log.i("R", "onItemRemoved: " + material.getId());
+                    // Log.i("R", "onItemRemoved: " + material.getId());
                     selectedMaterials.remove((Integer) material.getId());
                 }
             }
@@ -61,6 +64,14 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHo
             holder.binding.chkBox.setChecked(true);
         } else {
             holder.binding.chkBox.setChecked(false);
+        }
+
+        if(prevSelectedMaterials != null) {
+            if(prevSelectedMaterials.contains(material.getId())) {
+                holder.binding.chkBox.setChecked(true);
+            } else {
+                holder.binding.chkBox.setChecked(false);
+            }
         }
     }
 

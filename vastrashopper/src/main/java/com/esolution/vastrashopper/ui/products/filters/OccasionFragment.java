@@ -13,13 +13,19 @@ import com.esolution.vastrabasic.R;
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OccasionFragment extends FilterFragment {
 
     private FragmentFilterBinding binding;
     private OccasionAdapter occasionAdapter;
+    private final List<Integer> prevSelectedOccasions;
 
     private static String[] OCCASIONS;
+
+    public OccasionFragment(List<Integer> prevSelectedOccasions) {
+        this.prevSelectedOccasions = prevSelectedOccasions;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -36,7 +42,7 @@ public class OccasionFragment extends FilterFragment {
 
     private void initView() {
         binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        occasionAdapter = new OccasionAdapter(OCCASIONS);
+        occasionAdapter = new OccasionAdapter(OCCASIONS, prevSelectedOccasions);
         binding.filterRecyclerView.setAdapter(occasionAdapter);
         occasionAdapter.notifyDataSetChanged();
     }

@@ -16,6 +16,7 @@ import com.esolution.vastrashopper.R;
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -31,7 +32,13 @@ public class DesignerFragment extends FilterFragment {
     private DesignerAdapter designerAdapter;
 
     private ProgressDialogHandler progressDialogHandler;
-    private ArrayList<Designer> designers = new ArrayList<>();
+    private final ArrayList<Designer> designers = new ArrayList<>();
+
+    private final List<Integer> prevSelectedDesigners;
+
+    public DesignerFragment(List<Integer> prevSelectedDesigners) {
+        this.prevSelectedDesigners = prevSelectedDesigners;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -52,7 +59,7 @@ public class DesignerFragment extends FilterFragment {
 
     private void initView() {
         binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        designerAdapter = new DesignerAdapter(designers);
+        designerAdapter = new DesignerAdapter(designers, prevSelectedDesigners);
         binding.filterRecyclerView.setAdapter(designerAdapter);
         designerAdapter.notifyDataSetChanged();
     }

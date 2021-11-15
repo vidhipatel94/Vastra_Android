@@ -35,6 +35,14 @@ public class SizeFragment extends FilterFragment {
     private final ArrayList<String> customSizes = new ArrayList<>();
     private String[] letterSizes;
 
+    private final List<String> prevSelectedBrandSizes;
+    private final List<String> prevSelectedCustomSizes;
+
+    public SizeFragment(List<String> prevSelectedBrandSizes, List<String> prevSelectedCustomSizes) {
+        this.prevSelectedBrandSizes = prevSelectedBrandSizes;
+        this.prevSelectedCustomSizes = prevSelectedCustomSizes;
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -55,7 +63,7 @@ public class SizeFragment extends FilterFragment {
     private void initView() {
         binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         letterSizes = getResources().getStringArray(R.array.letter_sizes);
-        sizeAdapter = new SizeAdapter(customSizes,letterSizes);
+        sizeAdapter = new SizeAdapter(customSizes,letterSizes, prevSelectedBrandSizes, prevSelectedCustomSizes);
         binding.filterRecyclerView.setAdapter(sizeAdapter);
         sizeAdapter.notifyDataSetChanged();
     }

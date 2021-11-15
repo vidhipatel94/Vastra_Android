@@ -17,6 +17,7 @@ import com.esolution.vastrashopper.R;
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -34,6 +35,11 @@ public class TypeFragment extends FilterFragment {
     private ProgressDialogHandler progressDialogHandler;
     private final ArrayList<ProductType> allProductTypes = new ArrayList<>();
     private final ArrayList<ProductType> displayingProductTypes = new ArrayList<>();
+    private final List<Integer> prevSelectedTypes;
+
+    public TypeFragment(List<Integer> prevSelectedTypes) {
+        this.prevSelectedTypes = prevSelectedTypes;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -53,8 +59,10 @@ public class TypeFragment extends FilterFragment {
     }
 
     private void initView() {
-        binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        typeAdapter = new TypeAdapter(displayingProductTypes, new TypeAdapter.Listener() {
+        binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
+                RecyclerView.VERTICAL, false));
+        typeAdapter = new TypeAdapter(displayingProductTypes, prevSelectedTypes,
+               new TypeAdapter.Listener() {
             @Override
             public void onGenderAgeChanged(int gender, int ageGroup) {
                 displayingProductTypes.clear();
@@ -64,6 +72,13 @@ public class TypeFragment extends FilterFragment {
                     }
                 }
                 typeAdapter.notifyDataSetChanged();
+                /*binding.filterRecyclerView.post(new Runnable()
+                {
+                    @Override
+                    public void run() {
+                        typeAdapter.notifyDataSetChanged();
+                    }
+                });*/
             }
         });
         binding.filterRecyclerView.setAdapter(typeAdapter);

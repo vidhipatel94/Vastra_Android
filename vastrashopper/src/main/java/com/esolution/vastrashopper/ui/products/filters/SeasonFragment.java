@@ -13,13 +13,19 @@ import com.esolution.vastrabasic.R;
 import com.esolution.vastrashopper.databinding.FragmentFilterBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SeasonFragment extends FilterFragment {
 
     private FragmentFilterBinding binding;
     private SeasonAdapter seasonAdapter;
+    private final List<Integer> prevSelectedSeasons;
 
     private static String[] SEASONS;
+
+    public SeasonFragment(List<Integer> prevSelectedSeasons) {
+        this.prevSelectedSeasons = prevSelectedSeasons;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -36,7 +42,7 @@ public class SeasonFragment extends FilterFragment {
 
     private void initView() {
         binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        seasonAdapter = new SeasonAdapter(SEASONS);
+        seasonAdapter = new SeasonAdapter(SEASONS, prevSelectedSeasons);
         binding.filterRecyclerView.setAdapter(seasonAdapter);
         seasonAdapter.notifyDataSetChanged();
     }

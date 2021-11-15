@@ -79,7 +79,7 @@ public interface VastraAPIs {
 
     // show product list with filter -> fd
     @POST("product/list")
-    Observable<APIResponse<List<Product>>> getProducts(@Header("token") String token, @Body ProductFilter productFilter);
+    Observable<APIResponse<List<BasicProduct>>> getProducts(@Header("token") String token, @Body ProductFilter productFilter);
 
     @GET("product/fd/catalogue/list")
     Observable<APIResponse<List<BasicProduct>>> getCatalogueProducts(@Header("token") String token,

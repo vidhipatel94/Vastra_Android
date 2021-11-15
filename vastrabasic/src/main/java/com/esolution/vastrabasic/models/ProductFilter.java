@@ -3,10 +3,10 @@ package com.esolution.vastrabasic.models;
 import java.util.List;
 
 public class ProductFilter {
-    int designerId;
-    int catalogueId;
-    float minPrice;
-    float maxPrice;
+    float minPrice = 0.0f;
+    float maxPrice = 10000.0f;
+    int gender = -1;
+    int ageGroup = -1;
     List<Integer> productTypes;
     List<Integer> productPatterns;
     List<Integer> productKnitWovens;
@@ -19,20 +19,44 @@ public class ProductFilter {
     List<String> productCustomSizes;
     List<Integer> productDesigners;
 
-    public int getDesignerId() {
-        return designerId;
+    public ProductFilter() {
     }
 
-    public void setDesignerId(int designerId) {
-        this.designerId = designerId;
+    public ProductFilter(List<Integer> productTypes, float minPrice, float maxPrice,
+                         List<Integer> productPatterns, List<Integer> productKnitWovens,
+                         List<Integer> productWashCares, List<Integer> productColors,
+                         List<Integer> productMaterials, List<Integer> productOccasions,
+                         List<Integer> productSeasons, List<String> productBrandSizes,
+                         List<String> productCustomSizes, List<Integer> productDesigners) {
+        this.minPrice = minPrice;
+        this.maxPrice = maxPrice;
+        this.productTypes = productTypes;
+        this.productPatterns = productPatterns;
+        this.productKnitWovens = productKnitWovens;
+        this.productWashCares = productWashCares;
+        this.productColors = productColors;
+        this.productMaterials = productMaterials;
+        this.productOccasions = productOccasions;
+        this.productSeasons = productSeasons;
+        this.productBrandSizes = productBrandSizes;
+        this.productCustomSizes = productCustomSizes;
+        this.productDesigners = productDesigners;
     }
 
-    public int getCatalogueId() {
-        return catalogueId;
+    public int getGender() {
+        return gender;
     }
 
-    public void setCatalogueId(int catalogueId) {
-        this.catalogueId = catalogueId;
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    public int getAgeGroup() {
+        return ageGroup;
+    }
+
+    public void setAgeGroup(int ageGroup) {
+        this.ageGroup = ageGroup;
     }
 
     public List<Integer> getProductTypes() {

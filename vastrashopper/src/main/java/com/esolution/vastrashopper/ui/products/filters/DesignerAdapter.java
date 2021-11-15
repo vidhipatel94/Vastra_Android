@@ -15,14 +15,18 @@ import com.esolution.vastrashopper.databinding.RowFilterBinding;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.ViewHolder> {
 
     private final ArrayList<Designer> designers;
     private final ArrayList<Integer> selectedDesigners = new ArrayList<>();
 
-    public DesignerAdapter(@NotNull ArrayList<Designer> designers) {
+    private final List<Integer> prevSelectedDesigners;
+
+    public DesignerAdapter(@NotNull ArrayList<Designer> designers, List<Integer> prevSelectedDesigners) {
         this.designers = designers;
+        this.prevSelectedDesigners = prevSelectedDesigners;
     }
 
     public ArrayList<Integer> getSelectedDesigners() {
@@ -47,10 +51,10 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.ViewHo
                 if(isChecked) {
                     if(!selectedDesigners.contains(designer.getId())) {
                         selectedDesigners.add(designer.getId());
-                        Log.i("A", "onItemAdded: " + designer.getId());
+                        // Log.i("A", "onItemAdded: " + designer.getId());
                     }
                 } else {
-                    Log.i("R", "onItemRemoved: " + designer.getId());
+                    // Log.i("R", "onItemRemoved: " + designer.getId());
                     selectedDesigners.remove((Integer) designer.getId());
                 }
             }
@@ -60,6 +64,14 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.ViewHo
             holder.binding.chkBox.setChecked(true);
         } else {
             holder.binding.chkBox.setChecked(false);
+        }
+
+        if(prevSelectedDesigners != null) {
+            if(prevSelectedDesigners.contains(designer.getId())){
+                holder.binding.chkBox.setChecked(true);
+            } else {
+                holder.binding.chkBox.setChecked(false);
+            }
         }
     }
 
