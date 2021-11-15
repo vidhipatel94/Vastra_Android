@@ -43,7 +43,10 @@ public class ProductFilterActivity extends AppCompatActivity {
 
         productFilter = new ProductFilter();
 
-        loadFragment(new TypeFragment(productFilter.getProductTypes()), TYPE);
+        loadFragment(new TypeFragment(productFilter.getProductTypes(),
+                productFilter.getAgeGroup(), productFilter.getGender()), TYPE);
+        changeFilterTypeView(TYPE);
+
         initFragment();
 
         binding.btnApply.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +100,9 @@ public class ProductFilterActivity extends AppCompatActivity {
 
     private void clearFilterData() {
         productFilter = new ProductFilter();
-        loadFragment(prevFilterType);
+        int current = prevFilterType;
+        prevFilterType = 0;
+        loadFragment(current);
     }
 
     private void initFragment() {
@@ -205,9 +210,11 @@ public class ProductFilterActivity extends AppCompatActivity {
     }
 
     private void loadFragment(int type) {
+        if(type == prevFilterType) { return; }
         switch (type) {
             case TYPE:
-                loadFragment(new TypeFragment(productFilter.getProductTypes()), TYPE);
+                loadFragment(new TypeFragment(productFilter.getProductTypes(),
+                        productFilter.getAgeGroup(), productFilter.getGender()), TYPE);
                 break;
             case PRICE:
                 loadFragment(new PriceFragment(productFilter.getMinPrice(),
@@ -269,11 +276,18 @@ public class ProductFilterActivity extends AppCompatActivity {
         ArrayList<String> customSizesData = prevLoadedFragment.getSelectedCustomSizes();
         float minPrice = prevLoadedFragment.getMinPrice();
         float maxPrice = prevLoadedFragment.getMaxPrice();
+        int ageGroup = prevLoadedFragment.getSelectedAgeGroup();
+        int gender = prevLoadedFragment.getSelectedGender();
+
+        Log.i("-----", "Gender: " + gender + " AgeGroup " + ageGroup);
 
         switch (prevFilterType) {
             case TYPE:
                 productFilter.setProductTypes(data);
-                //Log.i("TYPE", "TypeFilterData: " + data);
+                productFilter.setAgeGroup(ageGroup);
+                productFilter.setGender(gender);
+                Log.i("TYPE", "TypeFilterData: " + data + " Age " + productFilter.getAgeGroup()
+                        + "Gender " + productFilter.getGender());
                 break;
             case PRICE:
                 productFilter.setMinPrice(minPrice);

@@ -1,6 +1,7 @@
 package com.esolution.vastrashopper.ui.products.filters;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +38,13 @@ public class TypeFragment extends FilterFragment {
     private final ArrayList<ProductType> displayingProductTypes = new ArrayList<>();
     private final List<Integer> prevSelectedTypes;
 
-    public TypeFragment(List<Integer> prevSelectedTypes) {
+    private int prevSelectedAgeGroup;
+    private int prevSelectedGender;
+
+    public TypeFragment(List<Integer> prevSelectedTypes, int prevSelectedAgeGroup, int prevSelectedGender) {
         this.prevSelectedTypes = prevSelectedTypes;
+        this.prevSelectedAgeGroup = prevSelectedAgeGroup;
+        this.prevSelectedGender = prevSelectedGender;
     }
 
     @Override
@@ -61,28 +67,38 @@ public class TypeFragment extends FilterFragment {
     private void initView() {
         binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
                 RecyclerView.VERTICAL, false));
+        Log.i("Gender", "PrevSelectedGender: " + prevSelectedGender);
+        Log.i("AgeGroup", "PrevSelectedAgeGroup: " + prevSelectedAgeGroup);
         typeAdapter = new TypeAdapter(displayingProductTypes, prevSelectedTypes,
-               new TypeAdapter.Listener() {
-            @Override
-            public void onGenderAgeChanged(int gender, int ageGroup) {
-                displayingProductTypes.clear();
-                for(ProductType productType : allProductTypes) {
-                    if(productType.getGender() == gender && productType.getAgeGroup() == ageGroup) {
-                        displayingProductTypes.add(productType);
-                    }
-                }
-                typeAdapter.notifyDataSetChanged();
-                /*binding.filterRecyclerView.post(new Runnable()
-                {
+                prevSelectedAgeGroup, prevSelectedGender,
+                new TypeAdapter.Listener() {
                     @Override
-                    public void run() {
-                        typeAdapter.notifyDataSetChanged();
+                    public void onGenderAgeChanged(int gender, int ageGroup) {
+                        prevSelectedAgeGroup = ageGroup;
+                        prevSelectedGender = gender;
+                        updateDisplayingProductTypes();
                     }
-                });*/
-            }
-        });
+                });
         binding.filterRecyclerView.setAdapter(typeAdapter);
         typeAdapter.notifyDataSetChanged();
+    }
+
+    private void updateDisplayingProductTypes() {
+        Log.i("----", "Gender: " + prevSelectedGender + " Age " + prevSelectedAgeGroup + " SIZE" + allProductTypes.size());
+        displayingProductTypes.clear();
+        for (ProductType productType : allProductTypes) {
+            if (productType.getGender() == prevSelectedGender && productType.getAgeGroup() == prevSelectedAgeGroup) {
+                displayingProductTypes.add(productType);
+            }
+        }
+        Log.d("...", "onGenderAgeChanged: " + displayingProductTypes.size());
+        //typeAdapter.notifyDataSetChanged();
+        binding.filterRecyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                typeAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     private void getAllProductTypes() {
@@ -96,6 +112,7 @@ public class TypeFragment extends FilterFragment {
                         if (response.getData() != null) {
                             allProductTypes.clear();
                             allProductTypes.addAll(response.getData());
+                            updateDisplayingProductTypes();
                         } else {
                             showMessage(binding.getRoot(), getString(R.string.server_error));
                         }
@@ -111,7 +128,19 @@ public class TypeFragment extends FilterFragment {
 
     @Override
     protected ArrayList<Integer> getSelectedData() {
-        if (typeAdapter==null) return null;
+        if (typeAdapter == null) return null;
         return typeAdapter.getSelectedProductTypes();
+    }
+
+    @Override
+    protected int getSelectedGender() {
+        if (typeAdapter == null) return -1;
+        return typeAdapter.getPrevSelectedGender();
+    }
+
+    @Override
+    protected int getSelectedAgeGroup() {
+        if (typeAdapter == null) return -1;
+        return typeAdapter.getPrevSelectedAgeGroup();
     }
 }
