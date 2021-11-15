@@ -51,10 +51,8 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
                 if(isChecked) {
                     if(!selectedColors.contains(color.getId())){
                         selectedColors.add(color.getId());
-                        //Log.i("A", "onItemAdded: " + color.getId());
                     }
                 } else {
-                    //Log.i("R", "onItemRemoved: " + color.getId());
                     selectedColors.remove((Integer) color.getId());
                 }
             }

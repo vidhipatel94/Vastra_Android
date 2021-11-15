@@ -51,10 +51,8 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.ViewHo
                 if(isChecked) {
                     if(!selectedDesigners.contains(designer.getId())) {
                         selectedDesigners.add(designer.getId());
-                        // Log.i("A", "onItemAdded: " + designer.getId());
                     }
                 } else {
-                    // Log.i("R", "onItemRemoved: " + designer.getId());
                     selectedDesigners.remove((Integer) designer.getId());
                 }
             }

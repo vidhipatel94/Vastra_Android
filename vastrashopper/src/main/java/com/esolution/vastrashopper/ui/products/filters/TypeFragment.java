@@ -67,8 +67,6 @@ public class TypeFragment extends FilterFragment {
     private void initView() {
         binding.filterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
                 RecyclerView.VERTICAL, false));
-        Log.i("Gender", "PrevSelectedGender: " + prevSelectedGender);
-        Log.i("AgeGroup", "PrevSelectedAgeGroup: " + prevSelectedAgeGroup);
         typeAdapter = new TypeAdapter(displayingProductTypes, prevSelectedTypes,
                 prevSelectedAgeGroup, prevSelectedGender,
                 new TypeAdapter.Listener() {
@@ -84,15 +82,12 @@ public class TypeFragment extends FilterFragment {
     }
 
     private void updateDisplayingProductTypes() {
-        Log.i("----", "Gender: " + prevSelectedGender + " Age " + prevSelectedAgeGroup + " SIZE" + allProductTypes.size());
         displayingProductTypes.clear();
         for (ProductType productType : allProductTypes) {
             if (productType.getGender() == prevSelectedGender && productType.getAgeGroup() == prevSelectedAgeGroup) {
                 displayingProductTypes.add(productType);
             }
         }
-        Log.d("...", "onGenderAgeChanged: " + displayingProductTypes.size());
-        //typeAdapter.notifyDataSetChanged();
         binding.filterRecyclerView.post(new Runnable() {
             @Override
             public void run() {

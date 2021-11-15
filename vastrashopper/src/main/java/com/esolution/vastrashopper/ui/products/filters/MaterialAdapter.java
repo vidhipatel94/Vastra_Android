@@ -51,10 +51,8 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHo
                 if(isChecked) {
                     if(!selectedMaterials.contains(material.getId())){
                         selectedMaterials.add(material.getId());
-                        // Log.i("A", "onItemAdded: " + material.getId());
                     }
                 } else {
-                    // Log.i("R", "onItemRemoved: " + material.getId());
                     selectedMaterials.remove((Integer) material.getId());
                 }
             }

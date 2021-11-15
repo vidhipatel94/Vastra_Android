@@ -49,9 +49,7 @@ public class WashCareAdapter extends RecyclerView.Adapter<WashCareAdapter.ViewHo
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     selectedWashCares.add(value);
-                    //Log.i("A", "onItemAdded: " + value);
                 } else {
-                    //Log.i("R", "onItemRemoved: " + value);
                     selectedWashCares.remove((Integer) value);
                 }
             }

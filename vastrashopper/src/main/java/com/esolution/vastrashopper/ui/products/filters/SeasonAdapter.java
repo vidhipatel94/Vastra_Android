@@ -47,10 +47,8 @@ public class SeasonAdapter extends RecyclerView.Adapter<SeasonAdapter.ViewHolder
                 if(isChecked) {
                     if(!selectedSeasons.contains(value)) {
                         selectedSeasons.add(value);
-                        // Log.i("A", "onItemAdded: " + value);
                     }
                 } else {
-                    // Log.i("R", "onItemRemoved: " + value);
                     selectedSeasons.remove((Integer) value);
                 }
             }

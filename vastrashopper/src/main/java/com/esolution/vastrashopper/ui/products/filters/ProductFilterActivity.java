@@ -1,15 +1,11 @@
 package com.esolution.vastrashopper.ui.products.filters;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.hardware.camera2.params.ColorSpaceTransform;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import com.esolution.vastrabasic.models.ProductFilter;
 import com.esolution.vastrabasic.utils.JsonUtils;
@@ -279,59 +275,43 @@ public class ProductFilterActivity extends AppCompatActivity {
         int ageGroup = prevLoadedFragment.getSelectedAgeGroup();
         int gender = prevLoadedFragment.getSelectedGender();
 
-        Log.i("-----", "Gender: " + gender + " AgeGroup " + ageGroup);
-
         switch (prevFilterType) {
             case TYPE:
                 productFilter.setProductTypes(data);
                 productFilter.setAgeGroup(ageGroup);
                 productFilter.setGender(gender);
-                Log.i("TYPE", "TypeFilterData: " + data + " Age " + productFilter.getAgeGroup()
-                        + "Gender " + productFilter.getGender());
                 break;
             case PRICE:
                 productFilter.setMinPrice(minPrice);
                 productFilter.setMaxPrice(maxPrice);
-                //Log.i("MINPRICE", "MinPriceFilterData: " + minPrice);
-                //Log.i("MAXPRICE", "MaxPriceFilterData: " + maxPrice);
                 break;
             case PATTERN:
                 productFilter.setProductPatterns(data);
-                //Log.i("PATTERN", "PatternFilterData: " + data);
                 break;
             case KNIT_WOVEN:
                 productFilter.setProductKnitWovens(data);
-                //Log.i("KNITWOVEN", "KnitWovensFilterData: " + data);
                 break;
             case WASH_CARE:
                 productFilter.setProductWashCares(data);
-                //Log.i("WASHCARE", "WashCareFilterData: " + data);
                 break;
             case COLOR:
                 productFilter.setProductColors(data);
-                //Log.i("COLOR", "ColorFilterData: " + data);
                 break;
             case MATERIAL:
                 productFilter.setProductMaterials(data);
-                //Log.i("MATERIAL", "MaterialFilterData: " + data);
                 break;
             case OCCASION:
                 productFilter.setProductOccasions(data);
-                //Log.i("OCCASION", "OccasionFilterData: " + data);
                 break;
             case SEASON:
                 productFilter.setProductSeasons(data);
-                //Log.i("SEASON", "SeasonFilterData: " + data);
                 break;
             case SIZE:
                 productFilter.setProductBrandSizes(brandSizesData);
                 productFilter.setProductCustomSizes(customSizesData);
-                //Log.i("BRANDSIZE", "BrandSizesFilterData: " + brandSizesData);
-                //Log.i("CUSTOMSIZE", "CustomSizesFilterData: " + customSizesData);
                 break;
             case DESIGNER:
                 productFilter.setProductDesigners(data);
-                //Log.i("DESIGNER", "DesignerFilterData: " + data);
                 break;
         }
     }

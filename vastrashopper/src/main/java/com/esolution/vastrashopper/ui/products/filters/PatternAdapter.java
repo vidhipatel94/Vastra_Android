@@ -50,11 +50,9 @@ public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHold
                 final int value = position + 1;
                 if (isChecked) {
                     if (!selectedPatterns.contains(value)) {
-                        //Log.i("A", "onItemAdded: " + value);
                         selectedPatterns.add(value);
                     }
                 } else {
-                    //Log.i("R", "onItemRemoved: " + value);
                     selectedPatterns.remove((Integer) (value));
                 }
             }
@@ -63,10 +61,8 @@ public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHold
         // For showing previously selected item on swapping the filter options
         if (prevSelectedPatterns != null) {
             if (prevSelectedPatterns.contains(position + 1)) {
-                //Log.i("----", "Contains: " + value);
                 holder.binding.chkBox.setChecked(true);
             } else {
-                //Log.i("----", "Not Contain: " + value);
                 holder.binding.chkBox.setChecked(false);
             }
         }

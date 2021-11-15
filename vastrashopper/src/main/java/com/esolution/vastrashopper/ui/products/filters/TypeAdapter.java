@@ -104,26 +104,20 @@ public class TypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         if(prevSelectedAgeGroup != -1) {
             if(prevSelectedAgeGroup == ProductType.AGE_GROUP_BABY) {
-                //Log.i("BABY", "onBindGenderAgeViewHolder: " + prevSelectedAgeGroup);
                 holder.binding.rbBaby.setChecked(true);
             } else if(prevSelectedAgeGroup == ProductType.AGE_GROUP_KIDS) {
-                //Log.i("KIDS", "onBindGenderAgeViewHolder: " + prevSelectedAgeGroup);
                 holder.binding.rbKids.setChecked(true);
             } else if (prevSelectedAgeGroup == ProductType.AGE_GROUP_ADULTS) {
-                //Log.i("ADULT", "onBindGenderAgeViewHolder: " + prevSelectedAgeGroup);
                 holder.binding.rbAdult.setChecked(true);
             }
         }
 
         if(prevSelectedGender != -1) {
             if(prevSelectedGender == ProductType.GENDER_FEMALE) {
-                //Log.i("FEMALE", "onBindGenderAgeViewHolder: " + prevSelectedGender);
                 holder.binding.rbFemale.setChecked(true);
             } else if(prevSelectedGender == ProductType.GENDER_MALE) {
-                //Log.i("MALE", "onBindGenderAgeViewHolder: " + prevSelectedGender);
                 holder.binding.rbMale.setChecked(true);
             } else if (prevSelectedGender == ProductType.GENDER_BOTH) {
-                //Log.i("UNISEX", "onBindGenderAgeViewHolder: " + prevSelectedGender);
                 holder.binding.rbUnisex.setChecked(true);
             }
         }
@@ -141,7 +135,6 @@ public class TypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         prevSelectedGender = gender;
 
-        Log.i("AGEGENDER", "onGenderAgeChanged: " + prevSelectedAgeGroup + " gender " + prevSelectedGender);
         if (listener != null) {
             listener.onGenderAgeChanged(prevSelectedGender, prevSelectedAgeGroup);
             selectedDisplayingProductTypes.clear();
@@ -160,7 +153,6 @@ public class TypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         prevSelectedAgeGroup = age;
 
-        Log.i("AGEGENDER", "onGenderAgeChanged: " + prevSelectedAgeGroup + " gender " + prevSelectedGender);
         if (listener != null) {
             listener.onGenderAgeChanged(prevSelectedGender, prevSelectedAgeGroup);
             selectedDisplayingProductTypes.clear();
@@ -168,9 +160,6 @@ public class TypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     private void onBindListViewHolder(ListViewHolder holder, int position) {
-        /*if(position >= displayingProductTypes.size()) {
-            return;
-        }*/
         ProductType productType = displayingProductTypes.get(position - 1);
 
         holder.binding.chkBox.setText(productType.getName());
@@ -181,10 +170,8 @@ public class TypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 if (isChecked) {
                     if (!selectedDisplayingProductTypes.contains(productType.getId())) {
                         selectedDisplayingProductTypes.add(productType.getId());
-                        //Log.i("A", "onItemAdded: " + position + " " + productType.getId());
                     }
                 } else {
-                    //Log.i("R", "onItemRemoved: " + position + " " + productType.getId());
                     selectedDisplayingProductTypes.remove((Integer) productType.getId());
                 }
             }

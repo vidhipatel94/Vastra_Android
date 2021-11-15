@@ -52,10 +52,8 @@ public class OccasionAdapter extends RecyclerView.Adapter<OccasionAdapter.ViewHo
                 if (isChecked) {
                     if (!selectedOccasions.contains(value)) {
                         selectedOccasions.add(value);
-                        // Log.i("A", "onItemAdded: " + value);
                     }
                 } else {
-                    // Log.i("R", "onItemRemoved: " + value);
                     selectedOccasions.remove((Integer) value);
                 }
             }

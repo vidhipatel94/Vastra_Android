@@ -47,10 +47,8 @@ public class KnitWovenAdapter extends RecyclerView.Adapter<KnitWovenAdapter.View
                 if(isChecked) {
                     if(!selectedKnitWovens.contains(value)) {
                         selectedKnitWovens.add(value);
-                        // Log.i("A", "onItemAdded: " + value);
                     }
                 } else {
-                    // Log.i("R", "onItemRemoved: " + value);
                     selectedKnitWovens.remove((Integer) value);
                 }
             }

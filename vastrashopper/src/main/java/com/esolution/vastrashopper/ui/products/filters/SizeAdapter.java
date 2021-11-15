@@ -22,7 +22,6 @@ public class SizeAdapter extends RecyclerView.Adapter<SizeAdapter.ViewHolder> {
 
     private final List<String> customSizes;
     private final String[] letterSizes;
-    //private final ArrayList<String> selectedSizes = new ArrayList<>();
     private final ArrayList<String> selectedBrandSizes = new ArrayList<>();
     private final ArrayList<String> selectedCustomSizes = new ArrayList<>();
 
@@ -71,17 +70,14 @@ public class SizeAdapter extends RecyclerView.Adapter<SizeAdapter.ViewHolder> {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (position == 0) {
-                        //selectedSizes.add(ONESIZE);
                         if (!selectedBrandSizes.contains(ONESIZE)) {
                             selectedBrandSizes.add(ONESIZE);
                         }
                     } else if (position >= 1 && position <= letterSizes.length) {
-                        //selectedSizes.add(letterSizes[position-1]);
                         if (!selectedBrandSizes.contains(letterSizes[position - 1])) {
                             selectedBrandSizes.add(letterSizes[position - 1]);
                         }
                     } else {
-                        //selectedSizes.add(customSizes.get(position - letterSizes.length - 1));
                         String value = customSizes.get(position - letterSizes.length - 1);
                         if (!selectedCustomSizes.contains(value)) {
                             selectedCustomSizes.add(value);
