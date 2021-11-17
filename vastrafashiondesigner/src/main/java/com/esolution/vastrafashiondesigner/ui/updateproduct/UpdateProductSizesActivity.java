@@ -3,6 +3,7 @@ package com.esolution.vastrafashiondesigner.ui.updateproduct;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -10,6 +11,7 @@ import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.apis.RestUtils;
 import com.esolution.vastrabasic.apis.request.UpdateProductSizesRequest;
 import com.esolution.vastrabasic.models.product.Product;
+import com.esolution.vastrabasic.utils.JsonUtils;
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
 import com.esolution.vastrafashiondesigner.ui.newproduct.addsize.ProductSizesActivity;
@@ -37,6 +39,7 @@ public class UpdateProductSizesActivity extends ProductSizesActivity {
 
     @Override
     protected void saveProduct() {
+        // update sizes
         progressDialogHandler.setProgress(true);
         DesignerLoginPreferences preferences = DesignerLoginPreferences.createInstance(this);
         UpdateProductSizesRequest request = new UpdateProductSizesRequest(product.getId(), product.getSizes());

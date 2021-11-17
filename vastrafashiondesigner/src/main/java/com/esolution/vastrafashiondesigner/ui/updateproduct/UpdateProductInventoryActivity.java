@@ -13,17 +13,26 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 
+import com.esolution.vastrabasic.ProgressDialogHandler;
+import com.esolution.vastrabasic.apis.RestUtils;
+import com.esolution.vastrabasic.apis.request.UpdateProductColorsRequest;
+import com.esolution.vastrabasic.apis.request.UpdateProductInventoriesRequest;
 import com.esolution.vastrabasic.models.product.Product;
 import com.esolution.vastrabasic.models.product.ProductColor;
 import com.esolution.vastrabasic.models.product.ProductInventory;
 import com.esolution.vastrabasic.models.product.ProductSize;
 import com.esolution.vastrabasic.utils.JsonUtils;
+import com.esolution.vastrafashiondesigner.R;
+import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
 import com.esolution.vastrafashiondesigner.ui.newproduct.inventory.AddProductInventoryActivity;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class UpdateProductInventoryActivity extends AddProductInventoryActivity {
 
@@ -33,9 +42,13 @@ public class UpdateProductInventoryActivity extends AddProductInventoryActivity 
         return intent;
     }
 
+    private ProgressDialogHandler progressDialogHandler;
+
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        progressDialogHandler = new ProgressDialogHandler(this);
+
         binding.btnEditColors.setVisibility(View.VISIBLE);
         binding.btnEditSizes.setVisibility(View.VISIBLE);
 
@@ -97,7 +110,6 @@ public class UpdateProductInventoryActivity extends AddProductInventoryActivity 
             });
 
     private void onEditSizes(@NotNull List<ProductSize> sizes) {
-        Log.d("------", "onEditSizes: "+JsonUtils.toJson(sizes));
         product.setSizes(sizes);
         updateInventoriesList();
         adapter.setColorsAndInventories(product.getColors(), inventories);
@@ -132,7 +144,33 @@ public class UpdateProductInventoryActivity extends AddProductInventoryActivity 
 
     @Override
     protected void saveProductInventories() {
-        Log.d("-------", "saveProductInventories: " + JsonUtils.toJson(inventories));
+        progressDialogHandler.setProgress(true);
+        DesignerLoginPreferences preferences = DesignerLoginPreferences.createInstance(this);
+        UpdateProductInventoriesRequest request = new UpdateProductInventoriesRequest(product.getId(), inventories);
+        subscriptions.add(RestUtils.getAPIs().updateProductInventories(preferences.getSessionToken(), request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    progressDialogHandler.setProgress(false);
+                    if (response.isSuccess()) {
+                        if (response.getData() != null) {
+                            onProductInventoriesUpdated();
+                        } else {
+                            showMessage(binding.getRoot(), getString(R.string.server_error));
+                        }
+                    } else {
+                        showMessage(binding.getRoot(), response.getMessage());
+                    }
+                }, throwable -> {
+                    throwable.printStackTrace();
+                    progressDialogHandler.setProgress(false);
+                    String message = RestUtils.processThrowable(this, throwable);
+                    showMessage(binding.getRoot(), message);
+                }));
+    }
+
+    private void onProductInventoriesUpdated() {
+        finish();
     }
 
 }

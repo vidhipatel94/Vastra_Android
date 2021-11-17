@@ -4,7 +4,7 @@ import com.esolution.vastrabasic.apis.request.LoginRequest;
 import com.esolution.vastrabasic.apis.request.RegisterDesignerRequest;
 import com.esolution.vastrabasic.apis.request.RegisterShopperRequest;
 import com.esolution.vastrabasic.apis.request.UpdateProductColorsRequest;
-import com.esolution.vastrabasic.apis.request.UpdateProductInventoryRequest;
+import com.esolution.vastrabasic.apis.request.UpdateProductInventoriesRequest;
 import com.esolution.vastrabasic.apis.request.UpdateProductSizesRequest;
 import com.esolution.vastrabasic.apis.response.APIResponse;
 import com.esolution.vastrabasic.apis.response.LoginResponse;
@@ -134,7 +134,7 @@ public interface VastraAPIs {
     // add product size -> while updating inventory
     @PUT("product/size/list")
     Observable<APIResponse<List<ProductSize>>> updateProductSizes(@Header("token") String token,
-                                                                    @Body UpdateProductSizesRequest updateProductSizesRequest);
+                                                                  @Body UpdateProductSizesRequest updateProductSizesRequest);
 
     // add product size -> while updating inventory -> also delete inventory
     @DELETE("product/size")
@@ -161,10 +161,10 @@ public interface VastraAPIs {
     Observable<APIResponse<List<ProductColor>>> updateProductColors(@Header("token") String token,
                                                                     @Body UpdateProductColorsRequest updateProductColorsRequest);
 
-    // update inventory
-    @PUT("product/inventory")
-    Observable<APIResponse<JsonElement>> updateProductInventory(@Header("token") String token,
-                                                                @Body UpdateProductInventoryRequest updateProductInventoryRequest);
+    // update inventories
+    @PUT("product/inventory/list")
+    Observable<APIResponse<List<ProductInventory>>> updateProductInventories(@Header("token") String token,
+                                                                             @Body UpdateProductInventoriesRequest updateProductInventoriesRequest);
 
 
     // ------------- Product Type --------------
