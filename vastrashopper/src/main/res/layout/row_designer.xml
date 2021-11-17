@@ -40,7 +40,7 @@
                 android:textColor="@color/accent"/>
 
             <TextView
-                android:id="@+id/textViewBrandName"
+                android:id="@+id/textViewTagLine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
