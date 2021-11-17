@@ -66,7 +66,8 @@ public interface VastraAPIs {
     Observable<APIResponse<Catalogue>> createCatalogue(@Header("token") String token, @Body Catalogue catalogue);
 
     @GET("catalogue/list")
-    Observable<APIResponse<List<BasicCatalogue>>> getCatalogues(@Header("token") String token, @Query("designerId") int designerId);
+    Observable<APIResponse<List<BasicCatalogue>>> getCatalogues(@Header("token") String token,
+                                                                @Query("designerId") int designerId);
 
 
     // ------------- Product --------------
@@ -79,7 +80,8 @@ public interface VastraAPIs {
 
     // show product list with filter -> fd
     @POST("product/list")
-    Observable<APIResponse<List<BasicProduct>>> getProducts(@Header("token") String token, @Body ProductFilter productFilter);
+    Observable<APIResponse<List<BasicProduct>>> getProducts(@Header("token") String token,
+                                                            @Body ProductFilter productFilter);
 
     @GET("product/fd/catalogue/list")
     Observable<APIResponse<List<BasicProduct>>> getCatalogueProducts(@Header("token") String token,

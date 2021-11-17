@@ -7,14 +7,28 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.esolution.vastrabasic.ProgressDialogHandler;
+import com.esolution.vastrabasic.apis.RestUtils;
 import com.esolution.vastrabasic.models.ProductFilter;
+import com.esolution.vastrabasic.models.product.BasicProduct;
 import com.esolution.vastrabasic.utils.JsonUtils;
+import com.esolution.vastrabasic.utils.Utils;
 import com.esolution.vastrashopper.R;
+import com.esolution.vastrashopper.data.ShopperLoginPreferences;
 import com.esolution.vastrashopper.databinding.ActivityProductFiltersBinding;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
+import static com.esolution.vastrabasic.utils.Utils.showMessage;
 
 public class ProductFilterActivity extends AppCompatActivity {
+
+    protected CompositeDisposable subscriptions = new CompositeDisposable();
 
     private static final int TYPE = 1;
     private static final int PRICE = 2;
@@ -30,6 +44,7 @@ public class ProductFilterActivity extends AppCompatActivity {
 
     private ActivityProductFiltersBinding binding;
     private ProductFilter productFilter;
+    private ProgressDialogHandler progressDialogHandler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,8 +52,9 @@ public class ProductFilterActivity extends AppCompatActivity {
         binding = ActivityProductFiltersBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        productFilter = new ProductFilter();
+        progressDialogHandler = new ProgressDialogHandler(this);
 
+        productFilter = new ProductFilter();
         loadFragment(new TypeFragment(productFilter.getProductTypes(),
                 productFilter.getAgeGroup(), productFilter.getGender()), TYPE);
         changeFilterTypeView(TYPE);
@@ -49,19 +65,6 @@ public class ProductFilterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                /*Log.i("------", "MinPrice: " + productFilter.getMinPrice());
-                Log.i("------", "MaxPrice: " + productFilter.getMaxPrice());
-                Log.i("------", "Type: " + productFilter.getProductTypes());
-                Log.i("------", "Pattern: " + productFilter.getProductPatterns());
-                Log.i("------", "Knit/Woven: " + productFilter.getProductKnitWovens());
-                Log.i("------", "WashCare: " + productFilter.getProductWashCares());
-                Log.i("------", "Color: " + productFilter.getProductColors());
-                Log.i("------", "Material: " + productFilter.getProductMaterials());
-                Log.i("------", "Occasion: " + productFilter.getProductOccasions());
-                Log.i("------", "Season: " + productFilter.getProductSeasons());
-                Log.i("------", "BrandSize: " + productFilter.getProductBrandSizes());
-                Log.i("------", "CustomSize: " + productFilter.getProductCustomSizes());
-                Log.i("------", "Designer: " + productFilter.getProductDesigners());*/
                 savePrevLoadedFilterData();
 
                 ProductFilter productFilterObj = new ProductFilter(productFilter.getProductTypes(),
@@ -74,8 +77,7 @@ public class ProductFilterActivity extends AppCompatActivity {
                         productFilter.getProductBrandSizes(), productFilter.getProductCustomSizes(),
                         productFilter.getProductDesigners());
 
-                Log.i("FilterOBJ", "onClick: " + JsonUtils.toJson(productFilterObj));
-                // TODO make a call to API to bring all products related to filtered parameters
+                getFilteredProductsList(productFilterObj);
             }
         });
 
@@ -314,5 +316,38 @@ public class ProductFilterActivity extends AppCompatActivity {
                 productFilter.setProductDesigners(data);
                 break;
         }
+    }
+
+    private void getFilteredProductsList(ProductFilter productFilterObj) {
+        ShopperLoginPreferences preferences = ShopperLoginPreferences.createInstance(this);
+
+        // preferences.getSessionToken() -- instead of static token
+        progressDialogHandler.setProgress(true);
+        subscriptions.add(RestUtils.getAPIs().
+                getProducts("f5384cd93296f0a93d7d2c8e5e9155d5bc1e59737583c0be5f",productFilterObj)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(response -> {
+            progressDialogHandler.setProgress(false);
+            if(response.isSuccess()){
+                boolean success = true;
+                if(response.getData() == null) {
+                    success = false;
+                } else {
+                    List<BasicProduct> basicProductsList = response.getData();
+                    //Log.i("------", "getFilteredProductsList: " + basicProductsList);
+                }
+                if(!success) {
+                    showMessage(binding.getRoot(), getString(R.string.server_error));
+                }
+            } else {
+                showMessage(binding.getRoot(), response.getMessage());
+            }
+        }, throwable -> {
+            progressDialogHandler.setProgress(false);
+            //Log.i("------", "Failure: " + throwable);
+            String message = RestUtils.processThrowable(this, throwable);
+            showMessage(binding.getRoot(), message);
+        }));
     }
 }
