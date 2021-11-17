@@ -25,16 +25,20 @@ public class SizeAdapter extends RecyclerView.Adapter<SizeAdapter.ViewHolder> {
     private final ArrayList<String> selectedBrandSizes = new ArrayList<>();
     private final ArrayList<String> selectedCustomSizes = new ArrayList<>();
 
-    private final List<String> prevSelectedBrandSize;
-    private final List<String> prevSelectedCustomSize;
+    //private final List<String> prevSelectedBrandSize;
+    //private final List<String> prevSelectedCustomSize;
 
 
     public SizeAdapter(List<String> customSizes, String[] letterSizes,
                        List<String> prevSelectedBrandSize, List<String> prevSelectedCustomSize) {
         this.customSizes = customSizes;
         this.letterSizes = letterSizes;
-        this.prevSelectedBrandSize = prevSelectedBrandSize;
-        this.prevSelectedCustomSize = prevSelectedCustomSize;
+        if(prevSelectedBrandSize != null) {
+            this.selectedBrandSizes.addAll(prevSelectedBrandSize);
+        }
+        if(prevSelectedCustomSize != null) {
+            this.selectedCustomSizes.addAll(prevSelectedCustomSize);
+        }
     }
 
     public ArrayList<String> getSelectedBrandSizes() {
@@ -95,17 +99,20 @@ public class SizeAdapter extends RecyclerView.Adapter<SizeAdapter.ViewHolder> {
             }
         });
 
-        if (selectedBrandSizes.contains(ONESIZE)) {
+        if (selectedBrandSizes.contains(ONESIZE) && position == 0) {
             holder.binding.chkBox.setChecked(true);
-        } else if (selectedBrandSizes.contains(letterSize)) {
+        } else if (selectedBrandSizes.contains(letterSize)
+                && (position >= 1 && position <= letterSizes.length)) {
             holder.binding.chkBox.setChecked(true);
-        } else if (selectedCustomSizes.contains(customSize)) {
+        } else if (selectedCustomSizes.contains(customSize)
+                && (position >= letterSizes.length + 1
+                && position <= customSizes.size() + letterSizes.length + 1)) {
             holder.binding.chkBox.setChecked(true);
         } else {
             holder.binding.chkBox.setChecked(false);
         }
 
-        if (prevSelectedBrandSize != null) {
+        /*if (prevSelectedBrandSize != null) {
             if (prevSelectedBrandSize.contains(ONESIZE)  && position == 0) {
                 holder.binding.chkBox.setChecked(true);
             } else if (prevSelectedBrandSize.contains(letterSize)
@@ -123,7 +130,7 @@ public class SizeAdapter extends RecyclerView.Adapter<SizeAdapter.ViewHolder> {
                     && position <= customSizes.size() + letterSizes.length + 1) {
                 holder.binding.chkBox.setChecked(true);
             }
-        }
+        }*/
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.esolution.vastrashopper.ui.products.filters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +13,7 @@ import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.apis.RestUtils;
 import com.esolution.vastrabasic.models.ProductFilter;
 import com.esolution.vastrabasic.models.product.BasicProduct;
+import com.esolution.vastrabasic.models.product.Product;
 import com.esolution.vastrabasic.utils.JsonUtils;
 import com.esolution.vastrabasic.utils.Utils;
 import com.esolution.vastrashopper.R;
@@ -28,7 +31,13 @@ import static com.esolution.vastrabasic.utils.Utils.showMessage;
 
 public class ProductFilterActivity extends AppCompatActivity {
 
-    protected CompositeDisposable subscriptions = new CompositeDisposable();
+    public static final String RESULT_FILTERED_PRODUCTS = "result_filtered_products";
+
+    public static Intent createIntent(Context context, ProductFilter productFilter) {
+        Intent intent = new Intent(context, ProductFilterActivity.class);
+        intent.putExtra(RESULT_FILTERED_PRODUCTS, productFilter);
+        return intent;
+    }
 
     private static final int TYPE = 1;
     private static final int PRICE = 2;
@@ -44,7 +53,6 @@ public class ProductFilterActivity extends AppCompatActivity {
 
     private ActivityProductFiltersBinding binding;
     private ProductFilter productFilter;
-    private ProgressDialogHandler progressDialogHandler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,9 +60,12 @@ public class ProductFilterActivity extends AppCompatActivity {
         binding = ActivityProductFiltersBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        progressDialogHandler = new ProgressDialogHandler(this);
+        if (!getIntentData()) {
+            productFilter = new ProductFilter();
+            return;
+        }
 
-        productFilter = new ProductFilter();
+        //productFilter = new ProductFilter();
         loadFragment(new TypeFragment(productFilter.getProductTypes(),
                 productFilter.getAgeGroup(), productFilter.getGender()), TYPE);
         changeFilterTypeView(TYPE);
@@ -64,20 +75,8 @@ public class ProductFilterActivity extends AppCompatActivity {
         binding.btnApply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 savePrevLoadedFilterData();
-
-                ProductFilter productFilterObj = new ProductFilter(productFilter.getProductTypes(),
-                        productFilter.getMinPrice(),
-                        productFilter.getMaxPrice(),
-                        productFilter.getProductPatterns(),
-                        productFilter.getProductKnitWovens(), productFilter.getProductWashCares(),
-                        productFilter.getProductColors(), productFilter.getProductMaterials(),
-                        productFilter.getProductOccasions(), productFilter.getProductSeasons(),
-                        productFilter.getProductBrandSizes(), productFilter.getProductCustomSizes(),
-                        productFilter.getProductDesigners());
-
-                getFilteredProductsList(productFilterObj);
+                sendFilterResult();
             }
         });
 
@@ -94,6 +93,14 @@ public class ProductFilterActivity extends AppCompatActivity {
                 clearFilterData();
             }
         });
+    }
+
+    private boolean getIntentData() {
+        if (getIntent() != null) {
+            productFilter = (ProductFilter) getIntent().getSerializableExtra(RESULT_FILTERED_PRODUCTS);
+            return productFilter != null;
+        }
+        return false;
     }
 
     private void clearFilterData() {
@@ -318,36 +325,10 @@ public class ProductFilterActivity extends AppCompatActivity {
         }
     }
 
-    private void getFilteredProductsList(ProductFilter productFilterObj) {
-        ShopperLoginPreferences preferences = ShopperLoginPreferences.createInstance(this);
-
-        // preferences.getSessionToken() -- instead of static token
-        progressDialogHandler.setProgress(true);
-        subscriptions.add(RestUtils.getAPIs().
-                getProducts("f5384cd93296f0a93d7d2c8e5e9155d5bc1e59737583c0be5f",productFilterObj)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(response -> {
-            progressDialogHandler.setProgress(false);
-            if(response.isSuccess()){
-                boolean success = true;
-                if(response.getData() == null) {
-                    success = false;
-                } else {
-                    List<BasicProduct> basicProductsList = response.getData();
-                    //Log.i("------", "getFilteredProductsList: " + basicProductsList);
-                }
-                if(!success) {
-                    showMessage(binding.getRoot(), getString(R.string.server_error));
-                }
-            } else {
-                showMessage(binding.getRoot(), response.getMessage());
-            }
-        }, throwable -> {
-            progressDialogHandler.setProgress(false);
-            //Log.i("------", "Failure: " + throwable);
-            String message = RestUtils.processThrowable(this, throwable);
-            showMessage(binding.getRoot(), message);
-        }));
+    private void sendFilterResult() {
+        Intent data = new Intent();
+        data.putExtra(RESULT_FILTERED_PRODUCTS, productFilter);
+        setResult(RESULT_OK, data);
+        finish();
     }
 }

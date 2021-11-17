@@ -19,23 +19,23 @@ import java.util.List;
 public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> {
 
     private final List<Color> colors;
-    private final ArrayList<Integer> selectedColors = new ArrayList<>();
-
-    private final List<Integer> prevSelectedColors;
+    private final List<Integer> selectedColors = new ArrayList<>();
 
     public ColorAdapter(@NotNull List<Color> colors, List<Integer> prevSelectedColors) {
         this.colors = colors;
-        this.prevSelectedColors = prevSelectedColors;
+        if (prevSelectedColors != null) {
+            this.selectedColors.addAll(prevSelectedColors);
+        }
     }
 
     public ArrayList<Integer> getSelectedColors() {
-        return selectedColors;
+        return (ArrayList<Integer>) selectedColors;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(RowColorBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false));
+        return new ViewHolder(RowColorBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
@@ -48,8 +48,8 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
         holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
-                    if(!selectedColors.contains(color.getId())){
+                if (isChecked) {
+                    if (!selectedColors.contains(color.getId())) {
                         selectedColors.add(color.getId());
                     }
                 } else {
@@ -59,19 +59,10 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
         });
 
         // Retains selection on scroll
-        if(selectedColors.contains(color.getId())) {
+        if (selectedColors.contains(color.getId())) {
             holder.binding.chkBox.setChecked(true);
         } else {
             holder.binding.chkBox.setChecked(false);
-        }
-
-        // PrevSelected Values
-        if(prevSelectedColors != null) {
-            if(prevSelectedColors.contains(color.getId())) {
-                holder.binding.chkBox.setChecked(true);
-            } else {
-                holder.binding.chkBox.setChecked(false);
-            }
         }
     }
 
@@ -80,7 +71,7 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
         return colors.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         RowColorBinding binding;
 

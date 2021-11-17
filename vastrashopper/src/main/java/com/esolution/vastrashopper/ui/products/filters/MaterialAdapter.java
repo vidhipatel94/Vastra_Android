@@ -22,11 +22,11 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHo
     private final List<Material> materials;
     private final ArrayList<Integer> selectedMaterials = new ArrayList<>();
 
-    private final List<Integer> prevSelectedMaterials;
-
     public MaterialAdapter(@NotNull List<Material> materials, List<Integer> prevSelectedMaterials) {
         this.materials = materials;
-        this.prevSelectedMaterials = prevSelectedMaterials;
+        if(prevSelectedMaterials != null) {
+            this.selectedMaterials.addAll(prevSelectedMaterials);
+        }
     }
 
     public ArrayList<Integer> getSelectedMaterials() {
@@ -62,14 +62,6 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHo
             holder.binding.chkBox.setChecked(true);
         } else {
             holder.binding.chkBox.setChecked(false);
-        }
-
-        if(prevSelectedMaterials != null) {
-            if(prevSelectedMaterials.contains(material.getId())) {
-                holder.binding.chkBox.setChecked(true);
-            } else {
-                holder.binding.chkBox.setChecked(false);
-            }
         }
     }
 

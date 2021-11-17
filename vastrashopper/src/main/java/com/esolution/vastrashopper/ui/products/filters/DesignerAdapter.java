@@ -22,11 +22,13 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.ViewHo
     private final ArrayList<Designer> designers;
     private final ArrayList<Integer> selectedDesigners = new ArrayList<>();
 
-    private final List<Integer> prevSelectedDesigners;
+    //private final List<Integer> prevSelectedDesigners;
 
     public DesignerAdapter(@NotNull ArrayList<Designer> designers, List<Integer> prevSelectedDesigners) {
         this.designers = designers;
-        this.prevSelectedDesigners = prevSelectedDesigners;
+        if(prevSelectedDesigners != null) {
+            this.selectedDesigners.addAll(prevSelectedDesigners);
+        }
     }
 
     public ArrayList<Integer> getSelectedDesigners() {
@@ -64,13 +66,13 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.ViewHo
             holder.binding.chkBox.setChecked(false);
         }
 
-        if(prevSelectedDesigners != null) {
+       /* if(prevSelectedDesigners != null) {
             if(prevSelectedDesigners.contains(designer.getId())){
                 holder.binding.chkBox.setChecked(true);
             } else {
                 holder.binding.chkBox.setChecked(false);
             }
-        }
+        }*/
     }
 
     @Override

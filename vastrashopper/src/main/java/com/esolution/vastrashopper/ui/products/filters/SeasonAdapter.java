@@ -17,11 +17,13 @@ public class SeasonAdapter extends RecyclerView.Adapter<SeasonAdapter.ViewHolder
 
     private final String[] seasons;
     private final ArrayList<Integer> selectedSeasons = new ArrayList<>();
-    private final List<Integer> prevSelectedSeasons;
+    //private final List<Integer> prevSelectedSeasons;
 
     public SeasonAdapter(String[] seasons, List<Integer> prevSelectedSeasons) {
         this.seasons = seasons;
-        this.prevSelectedSeasons = prevSelectedSeasons;
+        if(prevSelectedSeasons != null) {
+            this.selectedSeasons.addAll(prevSelectedSeasons);
+        }
     }
 
     public ArrayList<Integer> getSelectedSeasons() {
@@ -54,13 +56,13 @@ public class SeasonAdapter extends RecyclerView.Adapter<SeasonAdapter.ViewHolder
             }
         });
 
-        if(prevSelectedSeasons != null) {
+        /*if(prevSelectedSeasons != null) {
             if(prevSelectedSeasons.contains(position + 1)) {
                 holder.binding.chkBox.setChecked(true);
             } else {
                 holder.binding.chkBox.setChecked(false);
             }
-        }
+        }*/
     }
 
     @Override

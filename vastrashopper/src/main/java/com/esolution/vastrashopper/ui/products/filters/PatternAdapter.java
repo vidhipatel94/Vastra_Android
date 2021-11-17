@@ -21,11 +21,13 @@ public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHold
 
     private final String[] patterns;
     protected final ArrayList<Integer> selectedPatterns = new ArrayList<>();
-    protected final List<Integer> prevSelectedPatterns;
+    //protected final List<Integer> prevSelectedPatterns;
 
     public PatternAdapter(@NotNull String[] patterns, List<Integer> prevSelectedPatterns) {
         this.patterns = patterns;
-        this.prevSelectedPatterns = prevSelectedPatterns;
+        if(prevSelectedPatterns != null) {
+            this.selectedPatterns.addAll(prevSelectedPatterns);
+        }
     }
 
     public ArrayList<Integer> getSelectedPatterns() {
@@ -59,13 +61,13 @@ public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHold
         });
 
         // For showing previously selected item on swapping the filter options
-        if (prevSelectedPatterns != null) {
+        /*if (prevSelectedPatterns != null) {
             if (prevSelectedPatterns.contains(position + 1)) {
                 holder.binding.chkBox.setChecked(true);
             } else {
                 holder.binding.chkBox.setChecked(false);
             }
-        }
+        }*/
     }
 
     @Override

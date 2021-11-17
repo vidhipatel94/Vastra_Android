@@ -20,11 +20,13 @@ public class WashCareAdapter extends RecyclerView.Adapter<WashCareAdapter.ViewHo
     private final String[] washcares;
     private final ArrayList<Integer> selectedWashCares = new ArrayList<>();
 
-    private final List<Integer> prevSelectedWashCares;
+    //private final List<Integer> prevSelectedWashCares;
 
     public WashCareAdapter(@NotNull String[] washcares, List<Integer> prevSelectedWashCares) {
         this.washcares = washcares;
-        this.prevSelectedWashCares = prevSelectedWashCares;
+        if(prevSelectedWashCares != null) {
+            this.selectedWashCares.addAll(prevSelectedWashCares);
+        }
     }
 
     public ArrayList<Integer> getSelectedWashCares() {
@@ -55,13 +57,13 @@ public class WashCareAdapter extends RecyclerView.Adapter<WashCareAdapter.ViewHo
             }
         });
 
-        if(prevSelectedWashCares != null) {
+        /*if(prevSelectedWashCares != null) {
             if(prevSelectedWashCares.contains(position+1)){
                 holder.binding.chkBox.setChecked(true);
             } else {
                 holder.binding.chkBox.setChecked(false);
             }
-        }
+        }*/
     }
 
     @Override

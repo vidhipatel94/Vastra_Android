@@ -27,7 +27,6 @@ public class TypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final ArrayList<ProductType> displayingProductTypes;
     protected final ArrayList<Integer> selectedDisplayingProductTypes = new ArrayList<>();
-    private List<Integer> prevSelectedTypes;
     private int prevSelectedAgeGroup = -1;
     private int prevSelectedGender = -1;
     public Listener listener;
@@ -36,7 +35,9 @@ public class TypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                        List<Integer> prevSelectedTypes,
                        int prevSelectedAgeGroup, int prevSelectedGender, Listener listener) {
         this.displayingProductTypes = displayingProductTypes;
-        this.prevSelectedTypes = prevSelectedTypes;
+        if(prevSelectedTypes != null){
+            this.selectedDisplayingProductTypes.addAll(prevSelectedTypes);
+        }
         this.prevSelectedAgeGroup = prevSelectedAgeGroup;
         this.prevSelectedGender = prevSelectedGender;
         this.listener = listener;
@@ -181,14 +182,6 @@ public class TypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             holder.binding.chkBox.setChecked(true);
         } else {
             holder.binding.chkBox.setChecked(false);
-        }
-
-        if(prevSelectedTypes != null) {
-            if(prevSelectedTypes.contains(productType.getId())) {
-                holder.binding.chkBox.setChecked(true);
-            } else {
-                holder.binding.chkBox.setChecked(false);
-            }
         }
     }
 

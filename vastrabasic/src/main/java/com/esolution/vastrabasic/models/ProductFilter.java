@@ -1,8 +1,9 @@
 package com.esolution.vastrabasic.models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ProductFilter {
+public class ProductFilter implements Serializable {
     float minPrice = 0.0f;
     float maxPrice = 10000.0f;
     int gender = -1;
@@ -20,27 +21,6 @@ public class ProductFilter {
     List<Integer> productDesigners;
 
     public ProductFilter() {
-    }
-
-    public ProductFilter(List<Integer> productTypes, float minPrice, float maxPrice,
-                         List<Integer> productPatterns, List<Integer> productKnitWovens,
-                         List<Integer> productWashCares, List<Integer> productColors,
-                         List<Integer> productMaterials, List<Integer> productOccasions,
-                         List<Integer> productSeasons, List<String> productBrandSizes,
-                         List<String> productCustomSizes, List<Integer> productDesigners) {
-        this.minPrice = minPrice;
-        this.maxPrice = maxPrice;
-        this.productTypes = productTypes;
-        this.productPatterns = productPatterns;
-        this.productKnitWovens = productKnitWovens;
-        this.productWashCares = productWashCares;
-        this.productColors = productColors;
-        this.productMaterials = productMaterials;
-        this.productOccasions = productOccasions;
-        this.productSeasons = productSeasons;
-        this.productBrandSizes = productBrandSizes;
-        this.productCustomSizes = productCustomSizes;
-        this.productDesigners = productDesigners;
     }
 
     public int getGender() {

@@ -21,11 +21,13 @@ public class OccasionAdapter extends RecyclerView.Adapter<OccasionAdapter.ViewHo
 
     private final String[] occasions;
     private final ArrayList<Integer> selectedOccasions = new ArrayList<>();
-    private final List<Integer> prevSelectedOccasions;
+    //private final List<Integer> prevSelectedOccasions;
 
     public OccasionAdapter(@NotNull String[] occasions, List<Integer> prevSelectedOccasions) {
         this.occasions = occasions;
-        this.prevSelectedOccasions = prevSelectedOccasions;
+        if(prevSelectedOccasions != null) {
+            this.selectedOccasions.addAll(prevSelectedOccasions);
+        }
     }
 
     public ArrayList<Integer> getSelectedOccasions() {
@@ -59,13 +61,13 @@ public class OccasionAdapter extends RecyclerView.Adapter<OccasionAdapter.ViewHo
             }
         });
 
-        if (prevSelectedOccasions != null) {
+        /*if (prevSelectedOccasions != null) {
             if (prevSelectedOccasions.contains(position + 1)) {
                 holder.binding.chkBox.setChecked(true);
             } else {
                 holder.binding.chkBox.setChecked(false);
             }
-        }
+        }*/
     }
 
     @Override

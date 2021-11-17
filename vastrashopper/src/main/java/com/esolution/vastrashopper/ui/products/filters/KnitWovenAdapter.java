@@ -17,11 +17,13 @@ public class KnitWovenAdapter extends RecyclerView.Adapter<KnitWovenAdapter.View
 
     private final String[] knit_wovens;
     private final ArrayList<Integer> selectedKnitWovens = new ArrayList<>();
-    private final List<Integer> prevSelectedKnitWovens;
+    //private final List<Integer> prevSelectedKnitWovens;
 
     public KnitWovenAdapter(String[] knit_wovens, List<Integer> prevSelectedKnitWovens) {
         this.knit_wovens = knit_wovens;
-        this.prevSelectedKnitWovens = prevSelectedKnitWovens;
+        if(prevSelectedKnitWovens != null) {
+            this.selectedKnitWovens.addAll(prevSelectedKnitWovens);
+        }
     }
 
     public ArrayList<Integer> getSelectedKnitWovens() {
@@ -54,13 +56,13 @@ public class KnitWovenAdapter extends RecyclerView.Adapter<KnitWovenAdapter.View
             }
         });
 
-        if(prevSelectedKnitWovens != null){
+        /*if(prevSelectedKnitWovens != null){
             if(prevSelectedKnitWovens.contains(position + 1)) {
                 holder.binding.chkBox.setChecked(true);
             } else {
                 holder.binding.chkBox.setChecked(false);
             }
-        }
+        }*/
     }
 
     @Override

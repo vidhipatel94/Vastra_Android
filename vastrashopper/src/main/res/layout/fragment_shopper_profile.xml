@@ -42,7 +42,7 @@
             android:fontFamily="@font/montserrat_medium"
             android:gravity="center"
             android:layout_gravity="center_horizontal"
-            android:text="Manish Malhotra"
+            android:text="Vandana Ghori"
             android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             android:textColor="@color/accent" />
