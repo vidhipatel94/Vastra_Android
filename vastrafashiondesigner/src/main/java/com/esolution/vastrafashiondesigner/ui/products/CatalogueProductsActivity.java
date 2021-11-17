@@ -23,6 +23,7 @@ import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
 import com.esolution.vastrafashiondesigner.databinding.ActivityCatalogueProductsBinding;
 import com.esolution.vastrafashiondesigner.ui.newproduct.AddProductInfo1Activity;
 import com.esolution.vastrafashiondesigner.ui.updateproduct.UpdateProductInfo1Activity;
+import com.esolution.vastrafashiondesigner.ui.updateproduct.UpdateProductInventoryActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -214,13 +215,13 @@ public class CatalogueProductsActivity extends BaseActivity {
     }
 
     private void openEditProductInfo(Product product) {
-        //        Intent intent = UpdateProductInfoActivity.createIntent(this, products.get(position).getId());
         Intent intent = UpdateProductInfo1Activity.createIntent(this, catalogue, product);
         startActivity(intent);
     }
 
     private void openEditInventory(Product product) {
-
+        Intent intent = UpdateProductInventoryActivity.createIntent(this, product);
+        startActivity(intent);
     }
 
     private void onClickDeleteProduct(int position) {

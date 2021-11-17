@@ -33,5 +33,8 @@
         <activity android:name=".ui.updateproduct.UpdateProductInfo2Activity" />
         <activity android:name=".ui.updateproduct.UpdateProductInfo3Activity" />
         <activity android:name=".ui.updateproduct.UpdateProductImagesActivity" />
+        <activity android:name=".ui.updateproduct.UpdateProductInventoryActivity" />
+        <activity android:name=".ui.updateproduct.UpdateProductColorsActivity" />
+        <activity android:name=".ui.updateproduct.UpdateProductSizesActivity" />
     </application>
 </manifest>

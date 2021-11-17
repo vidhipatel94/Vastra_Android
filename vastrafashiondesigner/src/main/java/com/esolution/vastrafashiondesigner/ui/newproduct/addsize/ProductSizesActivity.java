@@ -13,7 +13,6 @@ import androidx.fragment.app.FragmentManager;
 
 import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.apis.RestUtils;
-import com.esolution.vastrabasic.models.Catalogue;
 import com.esolution.vastrabasic.models.product.BasicProduct;
 import com.esolution.vastrabasic.models.product.Product;
 import com.esolution.vastrabasic.models.product.ProductSize;
@@ -32,21 +31,18 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ProductSizesActivity extends BaseActivity {
 
-    private static final String EXTRA_CATALOGUE = "extra_catalogue";
-    private static final String EXTRA_PRODUCT = "extra_product";
+    protected static final String EXTRA_PRODUCT = "extra_product";
 
-    public static Intent createIntent(Context context, Catalogue catalogue, Product product) {
+    public static Intent createIntent(Context context, Product product) {
         Intent intent = new Intent(context, ProductSizesActivity.class);
-        intent.putExtra(EXTRA_CATALOGUE, catalogue);
         intent.putExtra(EXTRA_PRODUCT, product);
         return intent;
     }
 
-    private ActivityProductSizesBinding binding;
+    protected ActivityProductSizesBinding binding;
     private ProgressDialogHandler progressDialogHandler;
 
-    private Catalogue catalogue;
-    private Product product;
+    protected Product product;
 
     private ArrayList<ProductSize> productSizes = new ArrayList<>();
 
@@ -65,6 +61,8 @@ public class ProductSizesActivity extends BaseActivity {
         progressDialogHandler = new ProgressDialogHandler(this);
 
         initView();
+
+        fillData();
     }
 
     @Override
@@ -74,9 +72,8 @@ public class ProductSizesActivity extends BaseActivity {
 
     private boolean getIntentData() {
         if (getIntent() != null) {
-            catalogue = (Catalogue) getIntent().getSerializableExtra(EXTRA_CATALOGUE);
             product = (Product) getIntent().getSerializableExtra(EXTRA_PRODUCT);
-            return catalogue != null && product != null;
+            return product != null;
         }
         return false;
     }
@@ -143,18 +140,59 @@ public class ProductSizesActivity extends BaseActivity {
         dialog.show(fragmentManager, SelectPrevAddedSizesDialog.class.getName());
     }
 
+    private List<ProductSize> prevSizes;
+
     private void openAddSizesDialog() {
+        prevSizes = new ArrayList<>(this.productSizes);
         FragmentManager fragmentManager = getSupportFragmentManager();
-        AddSizesDialog dialog = new AddSizesDialog(product.getId(), new AddSizesDialog.Listener() {
-            @Override
-            public void onSizeIsSelected(ArrayList<ProductSize> productSizes) {
-                ProductSizesActivity.this.productSizes = productSizes;
-                binding.sizesLayout.setVisibility(productSizes.isEmpty() ? View.INVISIBLE : View.VISIBLE);
-                setSizesTitleLayout();
-                setGridLayout();
-            }
-        });
+        AddSizesDialog dialog = new AddSizesDialog(product.getId(), productSizes,
+                productSizes1 -> {
+                    updateProductSizesList(productSizes1);
+                    updateView();
+                });
         dialog.show(fragmentManager, AddSizesDialog.class.getName());
+    }
+
+    private void updateProductSizesList(ArrayList<ProductSize> productSizes) {
+        this.productSizes = productSizes;
+
+        if (prevSizes == null) return;
+
+        for (int i = 0; i < this.productSizes.size(); i++) {
+            ProductSize productSize = this.productSizes.get(i);
+            for (ProductSize prevSize : prevSizes) {
+                if (productSize.getSizeType() == prevSize.getSizeType()) {
+                    boolean isUpdated = false;
+                    switch (productSize.getSizeType()) {
+                        case ProductSize.TYPE_ONE_SIZE:
+                            productSize = prevSize;
+                            isUpdated = true;
+                            break;
+                        case ProductSize.TYPE_LETTER_SIZE:
+                            if (productSize.getBrandSize().equals(prevSize.getBrandSize())) {
+                                productSize = prevSize;
+                                isUpdated = true;
+                            }
+                            break;
+                        case ProductSize.TYPE_CUSTOM_SIZE:
+                            if (productSize.getCustomSize().equals(prevSize.getCustomSize())) {
+                                productSize = prevSize;
+                                isUpdated = true;
+                            }
+                            break;
+                    }
+                    if (isUpdated) {
+                        this.productSizes.set(i, productSize);
+                    }
+                }
+            }
+        }
+    }
+
+    private void updateView() {
+        binding.sizesLayout.setVisibility(productSizes.isEmpty() ? View.INVISIBLE : View.VISIBLE);
+        setSizesTitleLayout();
+        setGridLayout();
     }
 
     private void setSizesTitleLayout() {
@@ -195,7 +233,15 @@ public class ProductSizesActivity extends BaseActivity {
 
         ArrayList<String> measurementList = new ArrayList<>();
         for (int i = 0; i < totalParameters * productSizes.size(); i++) {
-            measurementList.add(null);
+            int position = i + totalParameters;
+
+            int column = position % totalParameters;
+            String parameter = titleList.get(column);
+
+            int row = (int) Math.floor(position / (float) totalParameters) - 1;
+            ProductSize productSize = productSizes.get(row);
+
+            measurementList.add(getMeasurementText(productSize, parameter));
         }
 
         binding.gridView.setNumColumns(totalParameters);
@@ -302,6 +348,13 @@ public class ProductSizesActivity extends BaseActivity {
         return true;
     }
 
+    private void fillData() {
+        if (product.getSizes() != null) {
+            updateProductSizesList((ArrayList<ProductSize>) product.getSizes());
+            updateView();
+        }
+    }
+
     private boolean isFormValidated() {
         if (productSizes.isEmpty()) {
             showMessage(getRootView(), getString(R.string.error_empty_size));
@@ -311,7 +364,7 @@ public class ProductSizesActivity extends BaseActivity {
         return true;
     }
 
-    private void saveProduct() {
+    protected void saveProduct() {
         progressDialogHandler.setProgress(true);
         DesignerLoginPreferences preferences = DesignerLoginPreferences.createInstance(this);
         subscriptions.add(RestUtils.getAPIs().createProduct(preferences.getSessionToken(), product)

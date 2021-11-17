@@ -1,5 +1,6 @@
 package com.esolution.vastrashopper.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.esolution.vastrashopper.databinding.FragmentHomeBinding;
+import com.esolution.vastrashopper.ui.products.filters.ProductFilterActivity;
 
 public class HomeFragment extends Fragment {
 
@@ -33,6 +35,10 @@ public class HomeFragment extends Fragment {
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
+        });
+
+        binding.btnSearch.setOnClickListener((v) -> {
+            startActivity(new Intent(getActivity(), ProductFilterActivity.class));
         });
         return root;
     }

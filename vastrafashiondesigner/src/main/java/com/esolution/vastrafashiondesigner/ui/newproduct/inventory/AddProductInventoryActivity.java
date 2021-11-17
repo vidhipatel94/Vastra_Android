@@ -28,7 +28,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class AddProductInventoryActivity extends BaseActivity {
 
-    private static final String EXTRA_PRODUCT = "extra_product";
+    protected static final String EXTRA_PRODUCT = "extra_product";
 
     public static Intent createIntent(Context context, Product product) {
         Intent intent = new Intent(context, AddProductInventoryActivity.class);
@@ -36,13 +36,13 @@ public class AddProductInventoryActivity extends BaseActivity {
         return intent;
     }
 
-    private ActivityAddProductInventoryBinding binding;
+    protected ActivityAddProductInventoryBinding binding;
     private ProgressDialogHandler progressDialogHandler;
 
-    private Product product;
+    protected Product product;
 
-    private List<ProductInventory> inventories = new ArrayList<>();
-    private ProductInventoryAdapter adapter;
+    protected List<ProductInventory> inventories = new ArrayList<>();
+    protected ProductInventoryAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -87,6 +87,14 @@ public class AddProductInventoryActivity extends BaseActivity {
     }
 
     private void setInventoryListView() {
+        updateInventoriesList();
+
+        adapter = new ProductInventoryAdapter(product.getColors(), inventories);
+        binding.inventoryRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        binding.inventoryRecyclerView.setAdapter(adapter);
+    }
+
+    protected void updateInventoriesList() {
         inventories.clear();
 
         for (ProductColor color : product.getColors()) {
@@ -96,10 +104,6 @@ public class AddProductInventoryActivity extends BaseActivity {
                 inventories.add(inventory);
             }
         }
-
-        adapter = new ProductInventoryAdapter(product.getColors(), inventories);
-        binding.inventoryRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        binding.inventoryRecyclerView.setAdapter(adapter);
     }
 
     private void setToolbarLayout() {
@@ -117,7 +121,7 @@ public class AddProductInventoryActivity extends BaseActivity {
         return true;
     }
 
-    private void saveProductInventories() {
+    protected void saveProductInventories() {
         progressDialogHandler.setProgress(true);
         DesignerLoginPreferences preferences = DesignerLoginPreferences.createInstance(this);
         subscriptions.add(RestUtils.getAPIs().addProductInventories(preferences.getSessionToken(), inventories)
@@ -138,7 +142,7 @@ public class AddProductInventoryActivity extends BaseActivity {
                 }));
     }
 
-    private void openNextScreen() {
+    protected void openNextScreen() {
         Intent intent = new Intent(AddProductInventoryActivity.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);

@@ -10,6 +10,7 @@ import com.esolution.vastrabasic.apis.RestUtils;
 import com.esolution.vastrabasic.models.Catalogue;
 import com.esolution.vastrabasic.models.product.Product;
 import com.esolution.vastrabasic.utils.ImageUtils;
+import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
 import com.esolution.vastrafashiondesigner.databinding.RowAddProductImageBinding;
 import com.esolution.vastrafashiondesigner.ui.MainActivity;
@@ -36,6 +37,8 @@ public class UpdateProductImagesActivity extends AddProductImagesActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         progressDialogHandler = new ProgressDialogHandler(this);
+
+        binding.btnNext.setText(R.string.btn_save);
 
         fillData();
         setAllImagesRemovable();

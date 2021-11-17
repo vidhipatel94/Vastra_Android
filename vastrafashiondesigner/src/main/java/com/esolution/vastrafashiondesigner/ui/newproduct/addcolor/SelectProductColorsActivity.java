@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.apis.RestUtils;
-import com.esolution.vastrabasic.models.Catalogue;
 import com.esolution.vastrabasic.models.product.Color;
 import com.esolution.vastrabasic.models.product.Product;
 import com.esolution.vastrabasic.models.product.ProductColor;
@@ -30,26 +29,23 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SelectProductColorsActivity extends BaseActivity implements ProductColorAdapter.Listener {
 
-    private static final String EXTRA_CATALOGUE = "extra_catalogue";
-    private static final String EXTRA_PRODUCT = "extra_product";
+    protected static final String EXTRA_PRODUCT = "extra_product";
 
-    public static Intent createIntent(Context context, Catalogue catalogue, Product product) {
+    public static Intent createIntent(Context context, Product product) {
         Intent intent = new Intent(context, SelectProductColorsActivity.class);
-        intent.putExtra(EXTRA_CATALOGUE, catalogue);
         intent.putExtra(EXTRA_PRODUCT, product);
         return intent;
     }
 
-    private ActivitySelectProductColorsBinding binding;
+    protected ActivitySelectProductColorsBinding binding;
     private ProgressDialogHandler progressDialogHandler;
 
-    private Catalogue catalogue;
-    private Product product;
+    protected Product product;
 
-    private ArrayList<ProductColor> productColors = new ArrayList<>();
+    protected ArrayList<ProductColor> productColors = new ArrayList<>();
     private ArrayList<Color> colors = new ArrayList<>();
 
-    private ProductColorAdapter adapter;
+    protected ProductColorAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -77,9 +73,8 @@ public class SelectProductColorsActivity extends BaseActivity implements Product
 
     private boolean getIntentData() {
         if (getIntent() != null) {
-            catalogue = (Catalogue) getIntent().getSerializableExtra(EXTRA_CATALOGUE);
             product = (Product) getIntent().getSerializableExtra(EXTRA_PRODUCT);
-            return catalogue != null && product != null;
+            return product != null;
         }
         return false;
     }
@@ -117,7 +112,9 @@ public class SelectProductColorsActivity extends BaseActivity implements Product
                     if (response.isSuccess()) {
                         if (response.getData() != null) {
                             colors = response.getData();
-                            openSelectColorDialog(1);
+                            if (productColors.isEmpty()) {
+                                openSelectColorDialog(1);
+                            }
                         } else {
                             showMessage(binding.getRoot(), getString(R.string.server_error));
                         }
@@ -288,7 +285,7 @@ public class SelectProductColorsActivity extends BaseActivity implements Product
         return true;
     }
 
-    private void openNextScreen() {
-        startActivity(ProductSizesActivity.createIntent(this, catalogue, product));
+    protected void openNextScreen() {
+        startActivity(ProductSizesActivity.createIntent(this, product));
     }
 }

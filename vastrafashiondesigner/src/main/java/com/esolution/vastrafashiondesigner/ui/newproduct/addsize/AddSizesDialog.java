@@ -34,8 +34,11 @@ public class AddSizesDialog extends DialogFragment {
 
     private ArrayList<ProductSize> productSizes = new ArrayList<>();
 
-    public AddSizesDialog(int productId, Listener listener) {
+    public AddSizesDialog(int productId, ArrayList<ProductSize> productSizes, Listener listener) {
         this.productId = productId;
+        if (productSizes != null) {
+            this.productSizes.addAll(productSizes);
+        }
         this.listener = listener;
     }
 
@@ -44,6 +47,7 @@ public class AddSizesDialog extends DialogFragment {
     public Dialog onCreateDialog(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         binding = FragmentDialogAddSizesBinding.inflate(getLayoutInflater());
         initView();
+        fillData();
         AlertDialog alertDialog = new AlertDialog.Builder(requireActivity())
                 .setView(binding.getRoot())
                 .create();
@@ -131,6 +135,59 @@ public class AddSizesDialog extends DialogFragment {
                 customSizeBindings.remove(sizeBinding);
             });
         });
+    }
+
+    private void fillData() {
+        if (productSizes.isEmpty()) {
+            return;
+        }
+
+        for (int i = 0; i < productSizes.size(); i++) {
+            ProductSize productSize = productSizes.get(i);
+            if (productSize.getSizeType() == ProductSize.TYPE_ONE_SIZE) {
+                binding.radioOneSize.setChecked(true);
+            } else if (productSize.getSizeType() == ProductSize.TYPE_LETTER_SIZE) {
+                binding.radioLetterSize.setChecked(true);
+                String size = productSize.getBrandSize();
+                if (size.equals(getString(R.string.size_xs))) {
+                    binding.cbSizeXS.setChecked(true);
+                } else if (size.equals(getString(R.string.size_s))) {
+                    binding.cbSizeS.setChecked(true);
+                } else if (size.equals(getString(R.string.size_m))) {
+                    binding.cbSizeM.setChecked(true);
+                } else if (size.equals(getString(R.string.size_l))) {
+                    binding.cbSizeL.setChecked(true);
+                } else if (size.equals(getString(R.string.size_xl))) {
+                    binding.cbSizeXL.setChecked(true);
+                } else if (size.equals(getString(R.string.size_2xl))) {
+                    binding.cbSize2XL.setChecked(true);
+                } else if (size.equals(getString(R.string.size_3xl))) {
+                    binding.cbSize3XL.setChecked(true);
+                } else if (size.equals(getString(R.string.size_4xl))) {
+                    binding.cbSize4XL.setChecked(true);
+                } else if (size.equals(getString(R.string.size_5xl))) {
+                    binding.cbSize5XL.setChecked(true);
+                } else if (size.equals(getString(R.string.size_6xl))) {
+                    binding.cbSize6XL.setChecked(true);
+                } else if (size.equals(getString(R.string.size_7xl))) {
+                    binding.cbSize7XL.setChecked(true);
+                } else if (size.equals(getString(R.string.size_8xl))) {
+                    binding.cbSize8XL.setChecked(true);
+                } else if (size.equals(getString(R.string.size_9xl))) {
+                    binding.cbSize9XL.setChecked(true);
+                }
+            } else if (productSize.getSizeType() == ProductSize.TYPE_CUSTOM_SIZE) {
+                binding.radioCustomSize.setChecked(true);
+                if (i == 0) {
+                    binding.layoutCustomSize1.inputBox.setText(productSize.getCustomSize());
+                } else {
+                    if (i >= customSizeBindings.size()) {
+                        binding.btnAddMoreCustomSize.performClick();
+                    }
+                    customSizeBindings.get(i).inputBox.setText(productSize.getCustomSize());
+                }
+            }
+        }
     }
 
     private boolean isFormValidated() {

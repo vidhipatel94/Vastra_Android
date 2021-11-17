@@ -23,8 +23,8 @@ import java.util.List;
 
 public class ProductInventoryAdapter extends RecyclerView.Adapter<ProductInventoryAdapter.ViewHolder> {
 
-    private final List<ProductColor> colors = new ArrayList<>();
-    private final List<ProductInventory> inventories = new ArrayList<>();
+    private List<ProductColor> colors = new ArrayList<>();
+    private List<ProductInventory> inventories = new ArrayList<>();
 
     private final List<String> errorEditTextTags = new ArrayList<>();
 
@@ -39,6 +39,14 @@ public class ProductInventoryAdapter extends RecyclerView.Adapter<ProductInvento
 
     public boolean hasAnyError() {
         return !errorEditTextTags.isEmpty();
+    }
+
+    public void setColorsAndInventories(List<ProductColor> colors,List<ProductInventory> inventories) {
+        this.colors.clear();
+        this.colors.addAll(colors);
+        this.inventories.clear();
+        this.inventories.addAll(inventories);
+        notifyDataSetChanged();
     }
 
     @NotNull

@@ -312,6 +312,6 @@ public class AddProductImagesActivity extends BaseActivity {
     }
 
     protected void openNextScreen() {
-        startActivity(SelectProductColorsActivity.createIntent(this, catalogue, product));
+        startActivity(SelectProductColorsActivity.createIntent(this, product));
     }
 }

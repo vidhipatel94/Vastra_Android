@@ -3,6 +3,9 @@ package com.esolution.vastrabasic.apis;
 import com.esolution.vastrabasic.apis.request.LoginRequest;
 import com.esolution.vastrabasic.apis.request.RegisterDesignerRequest;
 import com.esolution.vastrabasic.apis.request.RegisterShopperRequest;
+import com.esolution.vastrabasic.apis.request.UpdateProductColorsRequest;
+import com.esolution.vastrabasic.apis.request.UpdateProductInventoryRequest;
+import com.esolution.vastrabasic.apis.request.UpdateProductSizesRequest;
 import com.esolution.vastrabasic.apis.response.APIResponse;
 import com.esolution.vastrabasic.apis.response.LoginResponse;
 import com.esolution.vastrabasic.apis.response.RegisterDesignerResponse;
@@ -129,9 +132,9 @@ public interface VastraAPIs {
     Observable<APIResponse<ProductSize>> addProductSize(@Header("token") String token, @Body ProductSize productSize);
 
     // add product size -> while updating inventory
-    @PUT("product/size")
-    Observable<APIResponse<ProductSize>> updateProductSize(@Header("token") String token,
-                                                           @Body ProductSize productSize);
+    @PUT("product/size/list")
+    Observable<APIResponse<List<ProductSize>>> updateProductSizes(@Header("token") String token,
+                                                                    @Body UpdateProductSizesRequest updateProductSizesRequest);
 
     // add product size -> while updating inventory -> also delete inventory
     @DELETE("product/size")
@@ -154,10 +157,14 @@ public interface VastraAPIs {
     Observable<APIResponse<JsonElement>> addProductInventories(@Header("token") String token,
                                                                @Body List<ProductInventory> productInventories);
 
-    // update inventories
-    @PUT("product/inventory/list")
-    Observable<APIResponse<JsonElement>> updateProductInventories(@Header("token") String token,
-                                                                  @Body List<ProductInventory> productInventories);
+    @PUT("product/color/list")
+    Observable<APIResponse<List<ProductColor>>> updateProductColors(@Header("token") String token,
+                                                                    @Body UpdateProductColorsRequest updateProductColorsRequest);
+
+    // update inventory
+    @PUT("product/inventory")
+    Observable<APIResponse<JsonElement>> updateProductInventory(@Header("token") String token,
+                                                                @Body UpdateProductInventoryRequest updateProductInventoryRequest);
 
 
     // ------------- Product Type --------------

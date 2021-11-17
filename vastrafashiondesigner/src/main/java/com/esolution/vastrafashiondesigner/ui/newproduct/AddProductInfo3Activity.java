@@ -252,6 +252,6 @@ public class AddProductInfo3Activity extends BaseActivity {
     }
 
     protected void openNextScreen() {
-        startActivity(UpdateProductImagesActivity.createIntent(this, catalogue, product));
+        startActivity(AddProductImagesActivity.createIntent(this, catalogue, product));
     }
 }

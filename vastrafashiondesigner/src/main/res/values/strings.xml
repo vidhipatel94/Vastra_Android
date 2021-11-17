@@ -208,5 +208,6 @@
     <string name="label_select_or_create_catalogue">Select existing or create new catalogue</string>
     <string name="edit_info">Update Info</string>
     <string name="edit_inventory">Update Inventory</string>
+    <string name="btn_update_colors">Edit Colors</string>
 
 </resources>
