@@ -1,6 +1,7 @@
 package com.esolution.vastrabasic.models.product;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class BasicProduct implements Serializable {
@@ -68,4 +69,5 @@ public class BasicProduct implements Serializable {
     public void setUserLiked(boolean userLiked) {
         isUserLiked = userLiked;
     }
+
 }

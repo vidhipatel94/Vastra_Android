@@ -56,13 +56,11 @@ public class KnitWovenAdapter extends RecyclerView.Adapter<KnitWovenAdapter.View
             }
         });
 
-        /*if(prevSelectedKnitWovens != null){
-            if(prevSelectedKnitWovens.contains(position + 1)) {
-                holder.binding.chkBox.setChecked(true);
-            } else {
-                holder.binding.chkBox.setChecked(false);
-            }
-        }*/
+        if(selectedKnitWovens.contains(position + 1)) {
+            holder.binding.chkBox.setChecked(true);
+        } else {
+            holder.binding.chkBox.setChecked(false);
+        }
     }
 
     @Override

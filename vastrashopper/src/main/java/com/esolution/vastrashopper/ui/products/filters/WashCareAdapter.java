@@ -57,13 +57,11 @@ public class WashCareAdapter extends RecyclerView.Adapter<WashCareAdapter.ViewHo
             }
         });
 
-        /*if(prevSelectedWashCares != null) {
-            if(prevSelectedWashCares.contains(position+1)){
-                holder.binding.chkBox.setChecked(true);
-            } else {
-                holder.binding.chkBox.setChecked(false);
-            }
-        }*/
+        if(selectedWashCares.contains(position+1)){
+            holder.binding.chkBox.setChecked(true);
+        } else {
+            holder.binding.chkBox.setChecked(false);
+        }
     }
 
     @Override

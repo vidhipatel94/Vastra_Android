@@ -65,14 +65,6 @@ public class DesignerAdapter extends RecyclerView.Adapter<DesignerAdapter.ViewHo
         } else {
             holder.binding.chkBox.setChecked(false);
         }
-
-       /* if(prevSelectedDesigners != null) {
-            if(prevSelectedDesigners.contains(designer.getId())){
-                holder.binding.chkBox.setChecked(true);
-            } else {
-                holder.binding.chkBox.setChecked(false);
-            }
-        }*/
     }
 
     @Override

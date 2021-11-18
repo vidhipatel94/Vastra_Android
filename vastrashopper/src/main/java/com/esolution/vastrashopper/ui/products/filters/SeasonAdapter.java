@@ -56,13 +56,11 @@ public class SeasonAdapter extends RecyclerView.Adapter<SeasonAdapter.ViewHolder
             }
         });
 
-        /*if(prevSelectedSeasons != null) {
-            if(prevSelectedSeasons.contains(position + 1)) {
-                holder.binding.chkBox.setChecked(true);
-            } else {
-                holder.binding.chkBox.setChecked(false);
-            }
-        }*/
+        if(selectedSeasons.contains(position + 1)) {
+            holder.binding.chkBox.setChecked(true);
+        } else {
+            holder.binding.chkBox.setChecked(false);
+        }
     }
 
     @Override

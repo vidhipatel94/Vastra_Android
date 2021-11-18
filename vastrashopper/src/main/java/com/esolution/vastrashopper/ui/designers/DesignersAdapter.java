@@ -1,16 +1,14 @@
 package com.esolution.vastrashopper.ui.designers;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.esolution.vastrabasic.models.Designer;
+import com.esolution.vastrabasic.utils.ImageUtils;
 import com.esolution.vastrashopper.databinding.RowDesignerBinding;
 
 import org.jetbrains.annotations.NotNull;
@@ -39,8 +37,7 @@ public class DesignersAdapter extends RecyclerView.Adapter<DesignersAdapter.View
 
         holder.binding.textViewFDName.setText(designer.getFirstName().concat(" " + designer.getLastName()));
         holder.binding.textViewTagLine.setText(designer.getTagline());
-        Glide.with(context).load(designer.getAvatarURL()).centerCrop()
-                .into(holder.binding.imageProfilePic);
+        ImageUtils.loadImageUrl(holder.binding.imageProfilePic, designer.getAvatarURL());
 
         holder.binding.parentLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override

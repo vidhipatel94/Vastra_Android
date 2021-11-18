@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.esolution.vastrabasic.models.product.BasicProduct;
 import com.esolution.vastrabasic.utils.ImageUtils;
 import com.esolution.vastrafashiondesigner.R;
-import com.esolution.vastrafashiondesigner.databinding.ListProductBinding;
+import com.esolution.vastrabasic.databinding.ListProductBinding;
 
 import org.jetbrains.annotations.NotNull;
 

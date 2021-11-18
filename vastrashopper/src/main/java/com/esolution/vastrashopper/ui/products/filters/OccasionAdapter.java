@@ -61,13 +61,11 @@ public class OccasionAdapter extends RecyclerView.Adapter<OccasionAdapter.ViewHo
             }
         });
 
-        /*if (prevSelectedOccasions != null) {
-            if (prevSelectedOccasions.contains(position + 1)) {
-                holder.binding.chkBox.setChecked(true);
-            } else {
-                holder.binding.chkBox.setChecked(false);
-            }
-        }*/
+        if (selectedOccasions.contains(position + 1)) {
+            holder.binding.chkBox.setChecked(true);
+        } else {
+            holder.binding.chkBox.setChecked(false);
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.esolution.vastrashopper.ui.home;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.apis.RestUtils;
@@ -30,6 +33,7 @@ import com.esolution.vastrashopper.data.ShopperLoginPreferences;
 import com.esolution.vastrashopper.databinding.FragmentHomeBinding;
 import com.esolution.vastrashopper.ui.products.filters.ProductFilterActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -45,6 +49,9 @@ public class HomeFragment extends Fragment {
     //private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
     private ProductFilter productFilter;
+    private ArrayList<BasicProduct> basicProductsList = new ArrayList<>();
+
+    public HomeAdapter homeAdapter;
 
     private ProgressDialogHandler progressDialogHandler;
 
@@ -58,6 +65,8 @@ public class HomeFragment extends Fragment {
 
         initialization();
 
+        getProductsFeed();
+
         /*final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -67,8 +76,6 @@ public class HomeFragment extends Fragment {
         });*/
 
         binding.btnSearch.setOnClickListener((v) -> {
-            //startActivity(new Intent(getActivity(), ProductFilterActivity.class));
-            //Intent intent = new Intent(getActivity(), ProductFilterActivity.class);
             Intent intent = ProductFilterActivity.createIntent(getContext(), productFilter);
             onActivityResultLauncher.launch(intent);
         });
@@ -99,14 +106,15 @@ public class HomeFragment extends Fragment {
         if (getActivity() != null) {
             progressDialogHandler = new ProgressDialogHandler(getActivity());
         }
+        binding.productList.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        homeAdapter = new HomeAdapter(getContext(), basicProductsList);
+        binding.productList.setAdapter(homeAdapter);
+        homeAdapter.notifyDataSetChanged();
     }
 
     private void getFilteredProductsList(ProductFilter productFilter) {
         ShopperLoginPreferences preferences = ShopperLoginPreferences.createInstance(getContext());
 
-        Log.i("------", "getFilteredProductsList: " + JsonUtils.toJson(productFilter));
-
-        // preferences.getSessionToken() -- instead of static token
         progressDialogHandler.setProgress(true);
         subscriptions.add(RestUtils.getAPIs().
                 getProducts(preferences.getSessionToken(), productFilter)
@@ -119,12 +127,41 @@ public class HomeFragment extends Fragment {
                         if (response.getData() == null) {
                             success = false;
                         } else {
-                            List<BasicProduct> basicProductsList = response.getData();
-                            for (int i = 0; i < basicProductsList.size(); i++) {
-                                Log.i("------", "getFilteredProductsList: " + basicProductsList.get(i).getId());
-                            }
-                            // Log.i("------", "getFilteredProductsList: " + basicProductsList.get(0).getId());
-                            //Log.i("------", "getFilteredProductsList: " + basicProductsList.get(1).getId());
+                            basicProductsList.clear();
+                            basicProductsList.addAll(response.getData());
+                            homeAdapter.notifyDataSetChanged();
+                        }
+                        if (!success) {
+                            showMessage(binding.getRoot(), getString(R.string.server_error));
+                        }
+                    } else {
+                        showMessage(binding.getRoot(), response.getMessage());
+                    }
+                }, throwable -> {
+                    progressDialogHandler.setProgress(false);
+                    //Log.i("------", "Failure: " + throwable);
+                    String message = RestUtils.processThrowable(getContext(), throwable);
+                    showMessage(binding.getRoot(), message);
+                }));
+    }
+
+    private void getProductsFeed() {
+        ShopperLoginPreferences preferences = ShopperLoginPreferences.createInstance(getContext());
+        progressDialogHandler.setProgress(true);
+        subscriptions.add(RestUtils.getAPIs().
+                getProductFeeds(preferences.getSessionToken())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    progressDialogHandler.setProgress(false);
+                    if (response.isSuccess()) {
+                        boolean success = true;
+                        if (response.getData() == null) {
+                            success = false;
+                        } else {
+                            basicProductsList.clear();
+                            basicProductsList.addAll(response.getData());
+                            homeAdapter.notifyDataSetChanged();
                         }
                         if (!success) {
                             showMessage(binding.getRoot(), getString(R.string.server_error));

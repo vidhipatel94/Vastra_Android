@@ -5,4 +5,5 @@
     <string name="internet_error">Internet Connection Problem! Try Again.</string>
     <string name="server_error">Something went wrong!</string>
     <string name="one_size">One Size</string>
+    <string name="like">Like</string>
 </resources>

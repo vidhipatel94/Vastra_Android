@@ -61,13 +61,11 @@ public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHold
         });
 
         // For showing previously selected item on swapping the filter options
-        /*if (prevSelectedPatterns != null) {
-            if (prevSelectedPatterns.contains(position + 1)) {
-                holder.binding.chkBox.setChecked(true);
-            } else {
-                holder.binding.chkBox.setChecked(false);
-            }
-        }*/
+        if (selectedPatterns.contains(position + 1)) {
+            holder.binding.chkBox.setChecked(true);
+        } else {
+            holder.binding.chkBox.setChecked(false);
+        }
     }
 
     @Override

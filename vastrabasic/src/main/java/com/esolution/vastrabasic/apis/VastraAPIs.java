@@ -62,7 +62,6 @@ public interface VastraAPIs {
     @GET("fd/user/list")
     Observable<APIResponse<List<Designer>>> getDesigners();
 
-
     // ------------- Catalogue --------------
 
     @POST("catalogue")
@@ -105,6 +104,9 @@ public interface VastraAPIs {
     @GET("product/exist/fd")
     Observable<APIResponse<Boolean>> isDesignerProductsExist(@Header("token") String token,
                                                              @Query("designerId") int designerId);
+
+    @GET("/product/list/feed")
+    Observable<APIResponse<List<BasicProduct>>> getProductFeeds(@Header("token") String token);
 
     // ------------- Product Color --------------
 
