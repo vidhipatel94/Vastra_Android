@@ -130,6 +130,11 @@ public class HomeFragment extends Fragment {
                             basicProductsList.clear();
                             basicProductsList.addAll(response.getData());
                             homeAdapter.notifyDataSetChanged();
+                            /*for (int i = 0; i < basicProductsList.size(); i++) {
+                                Log.i("----", "Filtered Products: " +
+                                        basicProductsList.get(i).getId() + " " +
+                                        basicProductsList.get(i).getTitle());
+                            }*/
                         }
                         if (!success) {
                             showMessage(binding.getRoot(), getString(R.string.server_error));
@@ -139,7 +144,7 @@ public class HomeFragment extends Fragment {
                     }
                 }, throwable -> {
                     progressDialogHandler.setProgress(false);
-                    //Log.i("------", "Failure: " + throwable);
+                    Log.i("------", "Failure: " + throwable);
                     String message = RestUtils.processThrowable(getContext(), throwable);
                     showMessage(binding.getRoot(), message);
                 }));
@@ -162,6 +167,11 @@ public class HomeFragment extends Fragment {
                             basicProductsList.clear();
                             basicProductsList.addAll(response.getData());
                             homeAdapter.notifyDataSetChanged();
+                            /*for (int i = 0; i < basicProductsList.size(); i++) {
+                                Log.i("----", "Fragment Products: " +
+                                        basicProductsList.get(i).getId() + " " +
+                                        basicProductsList.get(i).getTitle());
+                            }*/
                         }
                         if (!success) {
                             showMessage(binding.getRoot(), getString(R.string.server_error));

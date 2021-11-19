@@ -1,5 +1,6 @@
 package com.esolution.vastrashopper.ui.products.filters;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -165,6 +166,12 @@ public class TypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         holder.binding.chkBox.setText(productType.getName());
 
+        if(selectedDisplayingProductTypes.contains(productType.getId())) {
+            holder.binding.chkBox.setChecked(true);
+        } else {
+            holder.binding.chkBox.setChecked(false);
+        }
+
         holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -177,12 +184,6 @@ public class TypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
             }
         });
-
-        if (selectedDisplayingProductTypes.contains(productType.getId())) {
-            holder.binding.chkBox.setChecked(true);
-        } else {
-            holder.binding.chkBox.setChecked(false);
-        }
     }
 
     @Override

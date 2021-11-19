@@ -35,4 +35,9 @@
     <string name="baby">Baby (1-2 years)</string>
     <string name="kids">Kids</string>
     <string name="adult">Adult</string>
+    <string name="wishlist">wishlist</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="title_product_details">Product Details</string>
+    <string name="title_material_and_care"><![CDATA[Material & Care]]></string>
+    <string name="title_size_and_fit"><![CDATA[Size & Fit]]></string>
 </resources>

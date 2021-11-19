@@ -45,6 +45,12 @@ public class WashCareAdapter extends RecyclerView.Adapter<WashCareAdapter.ViewHo
 
         holder.binding.chkBox.setText(washcare);
 
+        if(selectedWashCares.contains(position+1)){
+            holder.binding.chkBox.setChecked(true);
+        } else {
+            holder.binding.chkBox.setChecked(false);
+        }
+
         holder.binding.chkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             final int value = position + 1;
             @Override
@@ -56,12 +62,6 @@ public class WashCareAdapter extends RecyclerView.Adapter<WashCareAdapter.ViewHo
                 }
             }
         });
-
-        if(selectedWashCares.contains(position+1)){
-            holder.binding.chkBox.setChecked(true);
-        } else {
-            holder.binding.chkBox.setChecked(false);
-        }
     }
 
     @Override
