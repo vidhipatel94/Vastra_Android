@@ -41,13 +41,22 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         BasicProduct basicProduct = basicProductList.get(position);
 
         holder.binding.title.setText(basicProduct.getTitle());
-        holder.binding.rating.setText(String.valueOf(basicProduct.getOverallRating()));
+
+        if(basicProduct.getOverallRating() != 0) {
+            holder.binding.rating.setText(String.valueOf(basicProduct.getOverallRating()));
+        } else {
+            holder.binding.rating.setVisibility(View.INVISIBLE);
+        }
+
         holder.binding.iconMenu.setVisibility(View.INVISIBLE);
         holder.binding.designerName.setText(basicProduct.getDesignerName());
         holder.binding.brandName.setText(basicProduct.getBrandName());
-        holder.binding.totalLikes.setText(String.valueOf(basicProduct.getTotalLikes()));
+        holder.binding.totalLikes.setText(String.valueOf(basicProduct.getTotalLikes()) + " Likes");
         holder.binding.price.setText("$" + String.valueOf(basicProduct.getPrice()));
-        ImageUtils.loadImageUrl(holder.binding.image, basicProduct.getImages().get(0));
+
+        if(basicProduct.getImages() != null) {
+            ImageUtils.loadImageUrl(holder.binding.image, basicProduct.getImages().get(0));
+        }
 
         holder.binding.parentLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override

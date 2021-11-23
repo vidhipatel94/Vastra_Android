@@ -38,7 +38,9 @@ public class ProfileFragment extends BaseFragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentProfileBinding.inflate(inflater, container, false);
-        progressDialogHandler = new ProgressDialogHandler(getActivity());
+        if(getActivity() != null) {
+            progressDialogHandler = new ProgressDialogHandler(getActivity());
+        }
 
         initView();
 

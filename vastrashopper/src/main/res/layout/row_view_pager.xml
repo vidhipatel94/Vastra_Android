@@ -7,7 +7,7 @@
         android:id="@+id/myViewPagerImage"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:src="@drawable/img"
         android:contentDescription="@string/product_image"/>
 

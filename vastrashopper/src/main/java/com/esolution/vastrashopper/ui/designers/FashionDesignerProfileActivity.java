@@ -40,6 +40,8 @@ public class FashionDesignerProfileActivity extends AppCompatActivity {
 
         /*for (int i = 0; i < totalCatalogues; i++) {
             Log.i("-----", "initView: " + i + designer.getFirstName() + " " + designer.getLastName());
+            RowCatalogueBinding rowCatalogueBinding = RowCatalogueBinding.inflate(getLayoutInflater());
+            binding.cataloguesLayout.addView(rowCatalogueBinding.getRoot());
         }*/
 
         binding.toolbarLayout.iconBack.setOnClickListener(new View.OnClickListener() {
