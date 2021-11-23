@@ -6,4 +6,11 @@
     <string name="server_error">Something went wrong!</string>
     <string name="one_size">One Size</string>
     <string name="like">Like</string>
+    <string name="btn_back">back</string>
+    <string name="title_chat">Chat</string>
+    <string name="title_follow">Follow</string>
+    <string name="noOfFollowers">15K</string>
+    <string name="label_followers">Followers</string>
+    <string name="label_posts">Posts</string>
+    <string name="title_profile">Profile</string>
 </resources>

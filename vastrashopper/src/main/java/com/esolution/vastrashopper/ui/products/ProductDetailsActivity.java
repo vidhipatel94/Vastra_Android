@@ -2,11 +2,14 @@ package com.esolution.vastrashopper.ui.products;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.esolution.vastrabasic.models.product.BasicProduct;
 import com.esolution.vastrabasic.utils.ImageUtils;
+import com.esolution.vastrashopper.R;
 import com.esolution.vastrashopper.databinding.ActivityProductDetailsBinding;
 
 public class ProductDetailsActivity extends AppCompatActivity {
@@ -32,11 +35,18 @@ public class ProductDetailsActivity extends AppCompatActivity {
     }
 
     private void setProductData(BasicProduct basicProduct) {
-        ImageUtils.loadImageUrl(binding.productImages, basicProduct.getImages().get(0));
         binding.designerName.setText("By " + basicProduct.getDesignerName());
         binding.title.setText(basicProduct.getTitle());
-        binding.rating.setText(String.valueOf(basicProduct.getOverallRating()));
+        if(basicProduct.getOverallRating() > 0.0f) {
+            binding.rating.setVisibility(View.VISIBLE);
+            binding.rating.setText(String.valueOf(basicProduct.getOverallRating()));
+        } else {
+            binding.rating.setVisibility(View.INVISIBLE);
+        }
         binding.price.setText(String.valueOf(basicProduct.getPrice()));
         binding.totalLikes.setText(String.valueOf(basicProduct.getTotalLikes()) + " Likes");
+        if(basicProduct.getImages() != null) {
+            binding.viewPager.setAdapter(new ViewPagerAdapter(this, basicProduct.getImages()));
+        }
     }
 }

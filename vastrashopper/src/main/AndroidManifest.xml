@@ -15,6 +15,7 @@
             </intent-filter>-->
         </activity>
         <activity android:name=".ui.products.ProductDetailsActivity"/>
+        <activity android:name=".ui.designers.FashionDesignerProfileActivity"/>
     </application>
 
 </manifest>

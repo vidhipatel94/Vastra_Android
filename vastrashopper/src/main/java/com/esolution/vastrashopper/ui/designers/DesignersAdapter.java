@@ -1,9 +1,11 @@
 package com.esolution.vastrashopper.ui.designers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +28,8 @@ public class DesignersAdapter extends RecyclerView.Adapter<DesignersAdapter.View
     @NotNull
     @Override
     public DesignersAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
-        return new ViewHolder(RowDesignerBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(RowDesignerBinding.inflate(LayoutInflater.from(parent.getContext()),
+                parent, false));
     }
 
     @Override
@@ -43,6 +46,9 @@ public class DesignersAdapter extends RecyclerView.Adapter<DesignersAdapter.View
             @Override
             public void onClick(View v) {
                 //Toast.makeText(v.getContext(), "Fashion Designer " + position + " Selected.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, FashionDesignerProfileActivity.class);
+                intent.putExtra("Designer", designer);
+                context.startActivity(intent);
             }
         });
     }
