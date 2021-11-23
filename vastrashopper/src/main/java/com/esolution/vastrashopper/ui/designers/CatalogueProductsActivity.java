@@ -15,6 +15,7 @@ import com.esolution.vastrabasic.models.Catalogue;
 import com.esolution.vastrabasic.models.product.BasicProduct;
 import com.esolution.vastrabasic.ui.BaseActivity;
 import com.esolution.vastrabasic.utils.JsonUtils;
+import com.esolution.vastrashopper.R;
 import com.esolution.vastrashopper.data.ShopperLoginPreferences;
 import com.esolution.vastrashopper.databinding.ActivityDesignerCatalogueProductsBinding;
 import com.esolution.vastrashopper.ui.products.ProductDetailsActivity;
@@ -117,6 +118,7 @@ public class CatalogueProductsActivity extends BaseActivity implements ProductAd
         product.setTotalLikes(product.isUserLiked() ?
                 product.getTotalLikes() + 1 : product.getTotalLikes() - 1);
         adapter.notifyItemChanged(position);
+        showMessage(binding.getRoot(), getString(R.string.not_implemented));
     }
 
     @Override

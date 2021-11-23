@@ -156,6 +156,7 @@ public class CatalogueProductsActivity extends BaseActivity {
                 product.setTotalLikes(product.isUserLiked() ?
                         product.getTotalLikes() + 1 : product.getTotalLikes() - 1);
                 adapter.notifyItemChanged(position);
+                showMessage(binding.getRoot(), getString(R.string.not_implemented));
             }
         });
         binding.productsRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
