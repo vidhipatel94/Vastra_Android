@@ -52,12 +52,7 @@ public class DesignerLoginPreferences {
     }
 
     public void logout() {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(KEY_LOGGED_IN_USER, null);
-        editor.putInt(KEY_LOGGED_IN_USER_TYPE, 0);
-        editor.putString(KEY_SESSION_TOKEN, null);
-        editor.putBoolean(KEY_IS_ANY_CATALOGUE_ADDED, false);
-        editor.apply();
+        sharedPreferences.edit().clear().apply();
     }
 
     public int getLoggedInUserType() {

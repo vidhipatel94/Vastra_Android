@@ -3,7 +3,6 @@ package com.esolution.vastrafashiondesigner.ui;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -11,8 +10,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.apis.RestUtils;
-import com.esolution.vastrabasic.models.Catalogue;
 import com.esolution.vastrabasic.ui.BaseActivity;
+import com.esolution.vastrafashiondesigner.FashionDesignerHandler;
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
 import com.esolution.vastrafashiondesigner.databinding.ActivityMainBinding;
@@ -33,7 +32,14 @@ public class MainActivity extends BaseActivity {
 
         progressDialogHandler = new ProgressDialogHandler(this);
 
-        if (!DesignerLoginPreferences.createInstance(this).isAnyCatalogueAdded()) {
+        DesignerLoginPreferences preferences = DesignerLoginPreferences.createInstance(this);
+
+        if (!preferences.isLoggedIn()) {
+            onLoggedOut();
+            return;
+        }
+
+        if (!preferences.isAnyCatalogueAdded()) {
             checkIfAnyProductIsAdded();
         }
 
@@ -48,6 +54,13 @@ public class MainActivity extends BaseActivity {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupWithNavController(binding.navView, navController);
+    }
+
+    private void onLoggedOut() {
+        if (FashionDesignerHandler.getListener() != null) {
+            FashionDesignerHandler.getListener().onLoggedOut();
+        }
+        finish();
     }
 
     private void checkIfAnyProductIsAdded() {

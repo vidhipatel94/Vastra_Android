@@ -50,8 +50,7 @@ public class ShopperLoginPreferences {
     }
 
     public void logout() {
-        sharedPreferences.edit().putString(KEY_LOGGED_IN_USER, null).apply();
-        sharedPreferences.edit().putString(KEY_SESSION_TOKEN, null).apply();
+        sharedPreferences.edit().clear().apply();
     }
 
     public int getLoggedInUserType() {

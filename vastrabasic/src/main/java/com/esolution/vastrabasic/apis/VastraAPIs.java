@@ -53,6 +53,9 @@ public interface VastraAPIs {
     @POST("login")
     Observable<APIResponse<LoginResponse>> login(@Body LoginRequest loginRequest);
 
+    @DELETE("logout")
+    Observable<APIResponse<JsonElement>> logout(@Header("token") String token);
+
     @PUT("user")
     Observable<APIResponse<JsonElement>> updateShopper(@Header("token") String token, @Body User user);
 

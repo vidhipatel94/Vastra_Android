@@ -7,6 +7,13 @@
         <entry key="app/src/main/res/layout/activity_email_verification.xml" value="0.30480072463768115" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1595744680851064" />
         <entry key="app/src/main/res/layout/activity_registration_form.xml" value="0.1580547112462006" />
+        <entry key="vastrabasic/src/main/res/drawable/bg_circle_image_filled.xml" value="0.19635416666666666" />
+        <entry key="vastrabasic/src/main/res/drawable/ic_camera_gray_500_24dp.xml" value="0.19635416666666666" />
+        <entry key="vastrabasic/src/main/res/drawable/ic_down_arrow_gray_500_24.xml" value="0.19635416666666666" />
+        <entry key="vastrabasic/src/main/res/drawable/ic_person_gray_500_24dp.xml" value="0.19635416666666666" />
+        <entry key="vastrabasic/src/main/res/layout/layout_toolbar.xml" value="0.328125" />
+        <entry key="vastrabasic/src/main/res/layout/layout_toolbar_menu_item.xml" value="0.328125" />
+        <entry key="vastrabasic/src/main/res/layout/layout_toolbar_menu_item_text.xml" value="0.328125" />
         <entry key="vastrafashiondesigner/src/main/res/drawable/bg_button_outline.xml" value="0.287962962962963" />
         <entry key="vastrafashiondesigner/src/main/res/drawable/bg_gradient_top_right.xml" value="0.287962962962963" />
         <entry key="vastrafashiondesigner/src/main/res/drawable/bg_grey_box.xml" value="0.287962962962963" />
@@ -28,6 +35,7 @@
         <entry key="vastrafashiondesigner/src/main/res/layout/activity_register_create_catalogue.xml" value="0.1580547112462006" />
         <entry key="vastrafashiondesigner/src/main/res/layout/activity_register_designer_info.xml" value="0.325" />
         <entry key="vastrafashiondesigner/src/main/res/layout/activity_select_product_colors.xml" value="0.1580547112462006" />
+        <entry key="vastrafashiondesigner/src/main/res/layout/activity_update_fashiondesigner_profile.xml" value="0.328125" />
         <entry key="vastrafashiondesigner/src/main/res/layout/activity_update_product_info.xml" value="0.328125" />
         <entry key="vastrafashiondesigner/src/main/res/layout/fragment_catalogues.xml" value="0.1580547112462006" />
         <entry key="vastrafashiondesigner/src/main/res/layout/fragment_dialog_add_sizes.xml" value="0.1595744680851064" />
@@ -48,6 +56,7 @@
         <entry key="vastrafashiondesigner/src/main/res/layout/row_catalogue.xml" value="0.322463768115942" />
         <entry key="vastrafashiondesigner/src/main/res/layout/row_catalogue_item.xml" value="0.322463768115942" />
         <entry key="vastrafashiondesigner/src/main/res/layout/row_product_size_inventory.xml" value="0.1595744680851064" />
+        <entry key="vastrafashiondesigner/src/main/res/menu/bottom_nav_menu.xml" value="0.2712962962962963" />
         <entry key="vastrafashiondesigner/src/main/res/menu/popup_menu_product.xml" value="0.325" />
         <entry key="vastrashopper/src/main/res/layout/activity_main.xml" value="0.325" />
         <entry key="vastrashopper/src/main/res/layout/activity_register_designer_info.xml" value="0.325" />
@@ -55,6 +64,7 @@
         <entry key="vastrashopper/src/main/res/layout/fragment_designers.xml" value="0.325" />
         <entry key="vastrashopper/src/main/res/layout/fragment_home.xml" value="0.325" />
         <entry key="vastrashopper/src/main/res/layout/fragment_profile.xml" value="0.325" />
+        <entry key="vastrashopper/src/main/res/layout/fragment_shopper_profile.xml" value="0.328125" />
         <entry key="vastrashopper/src/main/res/menu/bottom_nav_menu.xml" value="0.325" />
       </map>
     </option>

@@ -41,4 +41,18 @@
     <string name="title_material_and_care"><![CDATA[Material & Care]]></string>
     <string name="title_size_and_fit"><![CDATA[Size & Fit]]></string>
     <string name="product_image">Product</string>
+    <string name="label_name">Name</string>
+    <string name="label_email">Email</string>
+    <string name="label_address">Address</string>
+    <string name="label_postal_code">Postal Code</string>
+    <string name="label_province">Province</string>
+    <string name="label_city">City</string>
+    <string name="link_change_password">Change password?</string>
+    <string name="btn_save">Save</string>
+    <string name="ok">Ok</string>
+    <string name="title_my_profile">My Profile</string>
+    <string name="dialog_province_msg">Select Province</string>
+    <string name="logout">Logout</string>
+    <string name="msg_logout">Are you sure you want to logout?</string>
+    <string name="cancel">Cancel</string>
 </resources>

@@ -2,9 +2,13 @@ package com.esolution.vastra;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 
+import com.esolution.vastra.ui.SplashScreenActivity;
 import com.esolution.vastrabasic.data.VastraBasicPreferences;
 import com.esolution.vastrabasic.utils.Utils;
+import com.esolution.vastrafashiondesigner.FashionDesignerHandler;
+import com.esolution.vastrashopper.ShopperHandler;
 
 public class VastraApplication extends Application {
     @Override
@@ -17,5 +21,23 @@ public class VastraApplication extends Application {
         if (vastraBasicPreferences.getUniqueAppInstallID() == null) {
             vastraBasicPreferences.setUniqueAppInstallID(Utils.generateUUID());
         }
+
+        FashionDesignerHandler.instance(new FashionDesignerHandler.Listener() {
+            @Override
+            public void onLoggedOut() {
+                Intent intent = new Intent(getApplicationContext(), SplashScreenActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+
+        ShopperHandler.instance(new ShopperHandler.Listener() {
+            @Override
+            public void onLoggedOut() {
+                Intent intent = new Intent(getApplicationContext(), SplashScreenActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
     }
 }

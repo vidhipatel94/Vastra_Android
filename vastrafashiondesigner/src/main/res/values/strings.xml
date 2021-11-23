@@ -204,5 +204,8 @@
     <string name="edit_info">Update Info</string>
     <string name="edit_inventory">Update Inventory</string>
     <string name="btn_update_colors">Edit Colors</string>
+    <string name="title_my_profile">My Profile</string>
+    <string name="logout">Logout</string>
+    <string name="msg_logout">Are you sure you want to logout?</string>
 
 </resources>

@@ -12,12 +12,12 @@
         android:title="@string/title_orders" />
 
     <item
-        android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_person_black_24dp"
-        android:title="@string/title_profile" />
-
-    <item
         android:id="@+id/navigation_chat"
         android:icon="@drawable/ic_chat_grey_500_24dp"
         android:title="@string/title_chat" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="@string/title_profile" />
 </menu>
