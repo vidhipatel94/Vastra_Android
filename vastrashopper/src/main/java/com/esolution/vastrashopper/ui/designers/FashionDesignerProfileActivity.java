@@ -81,6 +81,9 @@ public class FashionDesignerProfileActivity extends BaseActivity {
         binding.brandName.setText(designer.getBrandName());
         binding.textTagLine.setText(designer.getTagline());
 
+        binding.noOfFollowers.setText(String.valueOf(designer.getTotalFollowers()));
+        binding.noOfPosts.setText(String.valueOf(designer.getTotalProducts()));
+
         binding.btnChat.setOnClickListener(v -> {
             showMessage(binding.getRoot(), getString(R.string.not_implemented));
         });

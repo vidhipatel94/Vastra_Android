@@ -52,7 +52,7 @@ public class DesignersFragment extends Fragment {
         initView();
         bindRecyclerViewAdapter();
 
-        if(getActivity() != null) {
+        if (getActivity() != null) {
             progressDialogHandler = new ProgressDialogHandler(getActivity());
         }
 
@@ -76,30 +76,30 @@ public class DesignersFragment extends Fragment {
     private void getDesigners() {
         progressDialogHandler.setProgress(true);
         subscriptions.add(RestUtils.getAPIs().getDesigners()
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(response -> {
-            progressDialogHandler.setProgress(false);
-            if(response.isSuccess()){
-                boolean success = true;
-                if(response.getData() == null) {
-                    success = false;
-                } else {
-                    designersList.clear();
-                    designersList.addAll(response.getData());
-                    designersAdapter.notifyDataSetChanged();
-                }
-                if(!success) {
-                    showMessage(binding.getRoot(), getString(R.string.server_error));
-                }
-            } else {
-                showMessage(binding.getRoot(), response.getMessage());
-            }
-        }, throwable -> {
-            progressDialogHandler.setProgress(false);
-            String message = RestUtils.processThrowable(getContext(), throwable);
-            showMessage(binding.getRoot(), message);
-        }));
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    progressDialogHandler.setProgress(false);
+                    if (response.isSuccess()) {
+                        boolean success = true;
+                        if (response.getData() == null) {
+                            success = false;
+                        } else {
+                            designersList.clear();
+                            designersList.addAll(response.getData());
+                            designersAdapter.notifyDataSetChanged();
+                        }
+                        if (!success) {
+                            showMessage(binding.getRoot(), getString(R.string.server_error));
+                        }
+                    } else {
+                        showMessage(binding.getRoot(), response.getMessage());
+                    }
+                }, throwable -> {
+                    progressDialogHandler.setProgress(false);
+                    String message = RestUtils.processThrowable(getContext(), throwable);
+                    showMessage(binding.getRoot(), message);
+                }));
     }
 
     @Override

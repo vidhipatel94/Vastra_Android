@@ -6,6 +6,9 @@ public class Designer extends User {
     String brandName;
     String tagline;
 
+    int totalFollowers;
+    int totalProducts;
+
     protected Designer() {
     }
 
@@ -37,5 +40,13 @@ public class Designer extends User {
 
     public void setTagline(String tagline) {
         this.tagline = tagline;
+    }
+
+    public int getTotalFollowers() {
+        return totalFollowers;
+    }
+
+    public int getTotalProducts() {
+        return totalProducts;
     }
 }
