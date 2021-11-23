@@ -13,4 +13,6 @@
     <string name="label_followers">Followers</string>
     <string name="label_posts">Posts</string>
     <string name="title_profile">Profile</string>
+    <string name="link_show_all">Show All</string>
+    <string name="msg_empty_products">No products are added.</string>
 </resources>

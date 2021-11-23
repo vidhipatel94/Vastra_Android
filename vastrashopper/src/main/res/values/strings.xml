@@ -58,4 +58,5 @@
     <string name="cancel">Cancel</string>
     <string name="msg_empty_filter_product_list">No matching products found.</string>
     <string name="not_implemented">Not implemented yet.</string>
+    <string name="msg_no_catalogues">No catalogues.</string>
 </resources>

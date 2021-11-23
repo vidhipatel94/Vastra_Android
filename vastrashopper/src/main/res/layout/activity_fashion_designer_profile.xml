@@ -25,9 +25,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="8dp"
+                android:paddingLeft="16dp"
                 android:paddingTop="8dp"
-                android:paddingRight="8dp"
+                android:paddingRight="16dp"
                 android:paddingBottom="8dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -45,7 +45,7 @@
                     android:layout_weight="1" />
 
                 <ImageView
-                    android:id="@+id/imageChatPic"
+                    android:id="@+id/btnChat"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:background="@drawable/bg_chat_icon_filled"
@@ -56,7 +56,7 @@
                     app:tint="@color/text_secondary_black" />
 
                 <ImageView
-                    android:id="@+id/imageFollowPic"
+                    android:id="@+id/btnFollow"
                     android:layout_width="46dp"
                     android:layout_height="46dp"
                     android:layout_marginStart="12dp"
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/montserrat_medium"
+                android:fontFamily="@font/montserrat_semi_bold"
                 android:paddingStart="16dp"
                 android:paddingEnd="0dp"
                 android:text="Manish Malhotra"
@@ -92,7 +92,7 @@
                 android:paddingEnd="0dp"
                 android:text="Vastra"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/primary" />
+                android:textColor="@color/text_primary_black" />
 
             <TextView
                 android:id="@+id/textTagLine"
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:ellipsize="end"
-                android:fontFamily="@font/montserrat_medium"
+                android:fontFamily="@font/montserrat_regular"
                 android:gravity="center_vertical"
                 android:maxLines="2"
                 android:paddingStart="16dp"
@@ -162,13 +162,37 @@
                     android:textColor="@color/primary" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/cataloguesLayout"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:clipToPadding="false"
-                android:orientation="vertical" />
+                android:layout_height="match_parent">
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:id="@+id/cataloguesLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:clipToPadding="false"
+                        android:orientation="vertical" />
+
+                </androidx.core.widget.NestedScrollView>
+
+                <TextView
+                    android:id="@+id/emptyListTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="24dp"
+                    android:text="@string/msg_no_catalogues"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="@color/text_secondary_black"
+                    android:visibility="invisible" />
+            </FrameLayout>
 
         </LinearLayout>
 

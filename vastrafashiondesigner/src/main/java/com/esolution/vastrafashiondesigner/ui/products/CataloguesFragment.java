@@ -20,9 +20,10 @@ import com.esolution.vastrabasic.apis.RestUtils;
 import com.esolution.vastrabasic.models.BasicCatalogue;
 import com.esolution.vastrabasic.models.product.BasicProduct;
 import com.esolution.vastrabasic.ui.BaseFragment;
+import com.esolution.vastrabasic.ui.products.CatalogueProductsAdapter;
 import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
 import com.esolution.vastrafashiondesigner.databinding.FragmentCataloguesBinding;
-import com.esolution.vastrafashiondesigner.databinding.RowCatalogueBinding;
+import com.esolution.vastrabasic.databinding.RowCatalogueBinding;
 import com.esolution.vastrafashiondesigner.ui.startup.RegisterCreateCatalogueActivity;
 
 import java.util.ArrayList;

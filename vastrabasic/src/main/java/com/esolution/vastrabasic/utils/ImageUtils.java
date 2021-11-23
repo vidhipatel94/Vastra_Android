@@ -1,5 +1,6 @@
 package com.esolution.vastrabasic.utils;
 
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
@@ -22,6 +23,17 @@ public class ImageUtils {
         Glide.with(imageView.getContext())
                 .load(url)
                 .placeholder(ContextCompat.getDrawable(imageView.getContext(), R.drawable.image_placeholder))
+                .into(imageView);
+    }
+
+    public static void loadImageUrl(ImageView imageView, String url, Drawable placeholder) {
+        if (imageView == null) {
+            return;
+        }
+        url = RestUtils.BASE_URL + url;
+        Glide.with(imageView.getContext())
+                .load(url)
+                .placeholder(placeholder)
                 .into(imageView);
     }
 }

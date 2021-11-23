@@ -1,18 +1,14 @@
-package com.esolution.vastrafashiondesigner.ui.products;
+package com.esolution.vastrabasic.ui.products;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.esolution.vastrabasic.databinding.GridProductBinding;
 import com.esolution.vastrabasic.models.product.BasicProduct;
 import com.esolution.vastrabasic.utils.ImageUtils;
-import com.esolution.vastrafashiondesigner.R;
-import com.esolution.vastrafashiondesigner.databinding.GridProductBinding;
-import com.esolution.vastrabasic.databinding.ListProductBinding;
 
 import org.jetbrains.annotations.NotNull;
 
