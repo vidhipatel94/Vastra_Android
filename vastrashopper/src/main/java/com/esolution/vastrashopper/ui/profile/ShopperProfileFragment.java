@@ -3,6 +3,7 @@ package com.esolution.vastrashopper.ui.profile;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,10 @@ import androidx.core.content.ContextCompat;
 import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.apis.RestUtils;
 import com.esolution.vastrabasic.databinding.LayoutToolbarMenuItemBinding;
+import com.esolution.vastrabasic.models.User;
 import com.esolution.vastrabasic.ui.BaseFragment;
 import com.esolution.vastrabasic.utils.AlertDialogHelper;
+import com.esolution.vastrabasic.utils.ImageUtils;
 import com.esolution.vastrashopper.R;
 import com.esolution.vastrashopper.ShopperHandler;
 import com.esolution.vastrashopper.data.ShopperLoginPreferences;
@@ -28,17 +31,29 @@ public class ShopperProfileFragment extends BaseFragment {
 
     private FragmentShopperProfileBinding binding;
 
-    private static final String[] PROVINCES = new String[]{
-            "Ontario", "New Brunswick", "Sasketchwan", "British Columbia", "Nova Scotia", "Quebec", "Alberta"
-    };
+    private ShopperLoginPreferences shopperLoginPreferences;
+    private User user;
+
+    private String[] provinces;
+    private int selectedProvincePosition = -1;
 
     private ProgressDialogHandler progressDialogHandler;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentShopperProfileBinding.inflate(inflater, container, false);
+
+        shopperLoginPreferences = ShopperLoginPreferences.createInstance(requireContext());
+        user = shopperLoginPreferences.getShopper();
+
+        provinces = getResources().getStringArray(R.array.provinces);
+
         progressDialogHandler = new ProgressDialogHandler(getActivity());
+
         initView();
+
+        fillData();
+
         return binding.getRoot();
     }
 
@@ -68,24 +83,31 @@ public class ShopperProfileFragment extends BaseFragment {
             }
         });
 
-        binding.changeProfilePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(requireContext(), "Not implemented yet", Toast.LENGTH_SHORT).show();
-            }
+        binding.profilePic.setOnClickListener(v -> {
+            showMessage(binding.getRoot(), getString(R.string.not_implemented));
+        });
+
+        binding.btnSave.setOnClickListener((v) -> {
+            showMessage(binding.getRoot(), getString(R.string.not_implemented));
+        });
+
+        binding.linkForgotPassword.setOnClickListener((v) -> {
+            showMessage(binding.getRoot(), getString(R.string.not_implemented));
         });
     }
 
     private void openProvinceDialog() {
+        closeKeyboard();
         new AlertDialog.Builder(requireContext())
-                .setSingleChoiceItems(PROVINCES, 0, null)
+                .setSingleChoiceItems(provinces, Math.max(selectedProvincePosition, 0), null)
                 .setTitle(R.string.dialog_province_msg)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                        binding.inputProvince.setText(PROVINCES[selectedPosition]);
+                        selectedProvincePosition = selectedPosition;
+                        binding.inputProvince.setText(provinces[selectedPosition]);
                     }
                 }).show();
     }
@@ -138,6 +160,30 @@ public class ShopperProfileFragment extends BaseFragment {
     private void onLoggedOut() {
         if (ShopperHandler.getListener() != null) {
             ShopperHandler.getListener().onLoggedOut();
+        }
+    }
+
+    private void fillData() {
+        if (user == null) return;
+
+        binding.inputProfileName.setText(user.getFirstName() + " " + user.getLastName());
+        binding.inputEmail.setText(user.getEmail());
+        binding.inputCity.setText(user.getCity());
+        binding.inputAddress.setText(user.getAddress());
+        binding.inputPostalCode.setText(user.getPostalCode());
+
+        if (!TextUtils.isEmpty(user.getAvatarURL())) {
+            ImageUtils.loadImageUrl(binding.profilePic, user.getAvatarURL());
+        }
+
+        if (!TextUtils.isEmpty(user.getProvince())) {
+            for (int i = 0; i < provinces.length; i++) {
+                if (provinces[i].equals(user.getProvince())) {
+                    selectedProvincePosition = i;
+                    binding.inputProvince.setText(provinces[i]);
+                    break;
+                }
+            }
         }
     }
 

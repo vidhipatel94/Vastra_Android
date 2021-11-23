@@ -3,6 +3,7 @@ package com.esolution.vastrafashiondesigner.ui.profile;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,10 @@ import androidx.core.content.ContextCompat;
 import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.apis.RestUtils;
 import com.esolution.vastrabasic.databinding.LayoutToolbarMenuItemBinding;
+import com.esolution.vastrabasic.models.Designer;
 import com.esolution.vastrabasic.ui.BaseFragment;
 import com.esolution.vastrabasic.utils.AlertDialogHelper;
+import com.esolution.vastrabasic.utils.ImageUtils;
 import com.esolution.vastrafashiondesigner.FashionDesignerHandler;
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
@@ -28,11 +31,13 @@ public class ProfileFragment extends BaseFragment {
 
     private FragmentProfileBinding binding;
 
-    private static final String[] PROVINCES = new String[]{
-            "Ontario", "New Brunswick", "Sasketchwan", "British Columbia", "Nova Scotia", "Quebec", "Alberta"
-    };
-
     private ProgressDialogHandler progressDialogHandler;
+
+    private DesignerLoginPreferences designerLoginPreferences;
+    private Designer designer;
+
+    private String[] provinces;
+    private int selectedProvincePosition = -1;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -42,7 +47,14 @@ public class ProfileFragment extends BaseFragment {
             progressDialogHandler = new ProgressDialogHandler(getActivity());
         }
 
+        designerLoginPreferences = DesignerLoginPreferences.createInstance(requireContext());
+        designer = designerLoginPreferences.getDesigner();
+
+        provinces = getResources().getStringArray(R.array.provinces);
+
         initView();
+
+        fillData();
 
         return binding.getRoot();
     }
@@ -73,24 +85,31 @@ public class ProfileFragment extends BaseFragment {
             }
         });
 
-        binding.changeProfilePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(requireContext(), "Not implemented yet", Toast.LENGTH_SHORT).show();
-            }
+        binding.profilePic.setOnClickListener(v -> {
+            showMessage(binding.getRoot(), getString(R.string.not_implemented));
+        });
+
+        binding.btnSave.setOnClickListener((v) -> {
+            showMessage(binding.getRoot(), getString(R.string.not_implemented));
+        });
+
+        binding.linkForgotPassword.setOnClickListener((v) -> {
+            showMessage(binding.getRoot(), getString(R.string.not_implemented));
         });
     }
 
     private void openProvinceDialog() {
+        closeKeyboard();
         new AlertDialog.Builder(requireContext())
-                .setSingleChoiceItems(PROVINCES, 0, null)
+                .setSingleChoiceItems(provinces, Math.max(selectedProvincePosition, 0), null)
                 .setTitle(R.string.dialog_province_msg)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                        binding.inputProvince.setText(PROVINCES[selectedPosition]);
+                        selectedProvincePosition = selectedPosition;
+                        binding.inputProvince.setText(provinces[selectedPosition]);
                     }
                 }).show();
     }
@@ -143,6 +162,32 @@ public class ProfileFragment extends BaseFragment {
     private void onLoggedOut() {
         if (FashionDesignerHandler.getListener() != null) {
             FashionDesignerHandler.getListener().onLoggedOut();
+        }
+    }
+
+    private void fillData() {
+        if (designer == null) return;
+
+        binding.inputProfileName.setText(designer.getFirstName() + " " + designer.getLastName());
+        binding.inputEmail.setText(designer.getEmail());
+        binding.inputCity.setText(designer.getCity());
+        binding.inputAddress.setText(designer.getAddress());
+        binding.inputPostalCode.setText(designer.getPostalCode());
+        binding.inputBrandName.setText(designer.getBrandName());
+        binding.inputTagline.setText(designer.getTagline());
+
+        if (!TextUtils.isEmpty(designer.getAvatarURL())) {
+            ImageUtils.loadImageUrl(binding.profilePic, designer.getAvatarURL());
+        }
+
+        if (!TextUtils.isEmpty(designer.getProvince())) {
+            for (int i = 0; i < provinces.length; i++) {
+                if (provinces[i].equals(designer.getProvince())) {
+                    selectedProvincePosition = i;
+                    binding.inputProvince.setText(provinces[i]);
+                    break;
+                }
+            }
         }
     }
 

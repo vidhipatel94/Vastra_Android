@@ -1,18 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="provinces">
-        <item>Ontario</item>
-        <item>British Columbia</item>
-        <item>Alberta</item>
-        <item>Quebec</item>
-        <item>Manitoba</item>
-        <item>New Brunswick</item>
-        <item>Newfoundland and Labrador</item>
-        <item>Nova Scotia</item>
-        <item>Saskatchewan</item>
-        <item>Prince Edward Island</item>
-        <item>Northwest Territories</item>
-        <item>Nunavut</item>
-        <item>Yukon</item>
-    </string-array>
+
 </resources>
