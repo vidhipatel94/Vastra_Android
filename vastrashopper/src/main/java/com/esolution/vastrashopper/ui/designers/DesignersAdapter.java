@@ -5,10 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.esolution.vastrabasic.models.Designer;
 import com.esolution.vastrabasic.utils.ImageUtils;
+import com.esolution.vastrashopper.R;
 import com.esolution.vastrashopper.databinding.RowDesignerBinding;
 
 import org.jetbrains.annotations.NotNull;
@@ -38,7 +40,8 @@ public class DesignersAdapter extends RecyclerView.Adapter<DesignersAdapter.View
 
         holder.binding.textViewFDName.setText(designer.getFirstName().concat(" " + designer.getLastName()));
         holder.binding.textViewTagLine.setText(designer.getTagline());
-        ImageUtils.loadImageUrl(holder.binding.imageProfilePic, designer.getAvatarURL());
+        ImageUtils.loadImageUrl(holder.binding.imageProfilePic, designer.getAvatarURL(),
+                ContextCompat.getDrawable(context, R.drawable.designer));
 
         holder.binding.parentLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
