@@ -154,8 +154,7 @@ public class FashionDesignerProfileActivity extends BaseActivity {
     }
 
     private void openCatalogueProducts(BasicCatalogue catalogue) {
-//        Intent intent = CatalogueProductsActivity.createIntent(requireContext(), catalogue);
-//        activityResultLauncher.launch(intent);
+        startActivity(CatalogueProductsActivity.createIntent(this, catalogue));
     }
 
     private void onClickProduct(BasicProduct basicProduct) {

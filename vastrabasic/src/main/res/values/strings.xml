@@ -15,4 +15,5 @@
     <string name="title_profile">Profile</string>
     <string name="link_show_all">Show All</string>
     <string name="msg_empty_products">No products are added.</string>
+    <string name="likes_count">%d likes</string>
 </resources>
