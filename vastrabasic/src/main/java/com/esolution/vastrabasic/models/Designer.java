@@ -9,6 +9,8 @@ public class Designer extends User {
     int totalFollowers;
     int totalProducts;
 
+    boolean isFollowing;
+
     protected Designer() {
     }
 
@@ -48,5 +50,13 @@ public class Designer extends User {
 
     public int getTotalProducts() {
         return totalProducts;
+    }
+
+    public boolean isFollowing() {
+        return isFollowing;
+    }
+
+    public void setFollowing(boolean following) {
+        isFollowing = following;
     }
 }

@@ -8,8 +8,12 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1595744680851064" />
         <entry key="app/src/main/res/layout/activity_registration_form.xml" value="0.1580547112462006" />
         <entry key="vastrabasic/src/main/res/drawable/bg_circle_image_filled.xml" value="0.19635416666666666" />
+        <entry key="vastrabasic/src/main/res/drawable/bg_follow_icon_filled.xml" value="0.31203703703703706" />
+        <entry key="vastrabasic/src/main/res/drawable/bg_followed_icon_filled.xml" value="0.31203703703703706" />
         <entry key="vastrabasic/src/main/res/drawable/ic_camera_gray_500_24dp.xml" value="0.19635416666666666" />
         <entry key="vastrabasic/src/main/res/drawable/ic_down_arrow_gray_500_24.xml" value="0.19635416666666666" />
+        <entry key="vastrabasic/src/main/res/drawable/ic_person_follow_gray_500_24dp.xml" value="0.31203703703703706" />
+        <entry key="vastrabasic/src/main/res/drawable/ic_person_followed_24dp.xml" value="0.31203703703703706" />
         <entry key="vastrabasic/src/main/res/drawable/ic_person_gray_500_24dp.xml" value="0.19635416666666666" />
         <entry key="vastrabasic/src/main/res/drawable/ic_thumb_up_grey_500_24dp.xml" value="0.31203703703703706" />
         <entry key="vastrabasic/src/main/res/drawable/ic_thumb_up_off_grey_500_24dp.xml" value="0.31203703703703706" />

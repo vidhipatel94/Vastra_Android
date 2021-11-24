@@ -19,6 +19,7 @@ import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.apis.RestUtils;
 import com.esolution.vastrabasic.models.Designer;
 import com.esolution.vastrashopper.R;
+import com.esolution.vastrashopper.data.ShopperLoginPreferences;
 import com.esolution.vastrashopper.databinding.FragmentDesignersBinding;
 
 import java.util.ArrayList;
@@ -75,7 +76,8 @@ public class DesignersFragment extends Fragment {
 
     private void getDesigners() {
         progressDialogHandler.setProgress(true);
-        subscriptions.add(RestUtils.getAPIs().getDesigners()
+        subscriptions.add(RestUtils.getAPIs()
+                .getDesigners(ShopperLoginPreferences.createInstance(requireContext()).getSessionToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {

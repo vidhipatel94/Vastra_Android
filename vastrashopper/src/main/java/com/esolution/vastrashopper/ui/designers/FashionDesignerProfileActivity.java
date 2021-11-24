@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.apis.RestUtils;
+import com.esolution.vastrabasic.apis.request.FollowerRequest;
 import com.esolution.vastrabasic.databinding.RowCatalogueBinding;
 import com.esolution.vastrabasic.models.BasicCatalogue;
 import com.esolution.vastrabasic.models.Designer;
@@ -84,13 +85,31 @@ public class FashionDesignerProfileActivity extends BaseActivity {
         binding.noOfFollowers.setText(String.valueOf(designer.getTotalFollowers()));
         binding.noOfPosts.setText(String.valueOf(designer.getTotalProducts()));
 
+        setFollowing(designer.isFollowing());
+
         binding.btnChat.setOnClickListener(v -> {
             showMessage(binding.getRoot(), getString(R.string.not_implemented));
         });
 
         binding.btnFollow.setOnClickListener(v -> {
-            showMessage(binding.getRoot(), getString(R.string.not_implemented));
+            setFollowing(!designer.isFollowing());
+            saveFollowing();
         });
+    }
+
+    private void setFollowing(boolean isFollowing) {
+        designer.setFollowing(isFollowing);
+        binding.btnFollow.setImageDrawable(ContextCompat.getDrawable(this,
+                isFollowing ? R.drawable.ic_person_followed_24dp : R.drawable.ic_person_follow_gray_500_24dp));
+        binding.btnFollow.setBackground(ContextCompat.getDrawable(this,
+                isFollowing ? R.drawable.bg_followed_icon_filled : R.drawable.bg_follow_icon_filled));
+        binding.btnFollow.setColorFilter(ContextCompat.getColor(this,
+                isFollowing ? R.color.accent : R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+
+        int paddingDp = isFollowing ? 11 : 12;
+        float density = getResources().getDisplayMetrics().density;
+        int paddingPixel = (int) (paddingDp * density);
+        binding.btnFollow.setPadding(paddingPixel, paddingPixel, paddingPixel, paddingPixel);
     }
 
     private void getCatalogues() {
@@ -164,5 +183,61 @@ public class FashionDesignerProfileActivity extends BaseActivity {
         Intent intent = new Intent(this, ProductDetailsActivity.class);
         intent.putExtra("Product", basicProduct);
         startActivity(intent);
+    }
+
+    private void saveFollowing() {
+        if (designer.isFollowing()) {
+            addFollower();
+        } else {
+            removeFollower();
+        }
+    }
+
+    private void addFollower() {
+        progressDialogHandler.setProgress(true);
+        ShopperLoginPreferences preferences = ShopperLoginPreferences.createInstance(this);
+        FollowerRequest request = new FollowerRequest(designer.getId(), preferences.getShopper().getUserId());
+        subscriptions.add(RestUtils.getAPIs().addFollower(preferences.getSessionToken(), request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    progressDialogHandler.setProgress(false);
+                    if (!response.isSuccess()) {
+                        showMessage(binding.getRoot(), response.getMessage());
+                        setFollowing(false);
+                    }
+                }, throwable -> {
+                    throwable.printStackTrace();
+                    progressDialogHandler.setProgress(false);
+                    String message = RestUtils.processThrowable(this, throwable);
+                    if (binding != null) {
+                        showMessage(binding.getRoot(), message);
+                        setFollowing(false);
+                    }
+                }));
+    }
+
+    private void removeFollower() {
+        progressDialogHandler.setProgress(true);
+        ShopperLoginPreferences preferences = ShopperLoginPreferences.createInstance(this);
+        FollowerRequest request = new FollowerRequest(designer.getId(), preferences.getShopper().getUserId());
+        subscriptions.add(RestUtils.getAPIs().removeFollower(preferences.getSessionToken(), request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    progressDialogHandler.setProgress(false);
+                    if (!response.isSuccess()) {
+                        showMessage(binding.getRoot(), response.getMessage());
+                        setFollowing(true);
+                    }
+                }, throwable -> {
+                    throwable.printStackTrace();
+                    progressDialogHandler.setProgress(false);
+                    String message = RestUtils.processThrowable(this, throwable);
+                    if (binding != null) {
+                        showMessage(binding.getRoot(), message);
+                        setFollowing(true);
+                    }
+                }));
     }
 }

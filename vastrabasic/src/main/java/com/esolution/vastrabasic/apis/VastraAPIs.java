@@ -1,5 +1,6 @@
 package com.esolution.vastrabasic.apis;
 
+import com.esolution.vastrabasic.apis.request.FollowerRequest;
 import com.esolution.vastrabasic.apis.request.LoginRequest;
 import com.esolution.vastrabasic.apis.request.RegisterDesignerRequest;
 import com.esolution.vastrabasic.apis.request.RegisterShopperRequest;
@@ -33,6 +34,7 @@ import okhttp3.MultipartBody;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -63,7 +65,7 @@ public interface VastraAPIs {
     Observable<APIResponse<JsonElement>> updateDesigner(@Header("token") String token, @Body Designer designer);
 
     @GET("fd/user/list")
-    Observable<APIResponse<List<Designer>>> getDesigners();
+    Observable<APIResponse<List<Designer>>> getDesigners(@Header("token") String token);
 
     // ------------- Catalogue --------------
 
@@ -197,5 +199,17 @@ public interface VastraAPIs {
     @Multipart
     @POST("upload")
     Observable<APIResponse<String>> uploadImage(@Header("token") String token, @Part MultipartBody.Part file);
+
+
+    // ------------- Product Inventory --------------
+
+    @POST("followers")
+    Observable<APIResponse<JsonElement>> addFollower(@Header("token") String token,
+                                                     @Body FollowerRequest followerRequest);
+
+//    @DELETE("followers")
+    @HTTP(method = "DELETE", path = "followers", hasBody = true)
+    Observable<APIResponse<JsonElement>> removeFollower(@Header("token") String token,
+                                                        @Body FollowerRequest followerRequest);
 
 }
