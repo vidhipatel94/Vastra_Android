@@ -53,6 +53,9 @@ public class HomeFragment extends Fragment {
 
     public HomeAdapter homeAdapter;
 
+    public HomeFragment() {
+    }
+
     private ProgressDialogHandler progressDialogHandler;
 
     public View onCreateView(@NonNull LayoutInflater inflater,

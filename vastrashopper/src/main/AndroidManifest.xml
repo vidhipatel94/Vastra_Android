@@ -17,6 +17,8 @@
         <activity android:name=".ui.products.ProductDetailsActivity" />
         <activity android:name=".ui.designers.FashionDesignerProfileActivity" />
         <activity android:name=".ui.designers.CatalogueProductsActivity" />
+        <activity android:name=".ui.products.ProductCartActivity" />
+        <activity android:name=".ui.products.ProductPlaceOrderActivity" />
     </application>
 
 </manifest>

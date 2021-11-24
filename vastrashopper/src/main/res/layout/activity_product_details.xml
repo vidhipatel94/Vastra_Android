@@ -209,6 +209,16 @@
                 android:layout_marginTop="4dp" />
 
             <TextView
+                android:id="@+id/emptySizesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_size_found"
+                android:fontFamily="@font/montserrat_light"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/text_primary_black"
+                android:textSize="12sp"/>
+
+            <TextView
                 android:id="@+id/titleProductColor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -231,6 +241,16 @@
                 android:paddingBottom="4dp"
                 android:gravity="center"
                 android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/emptyColorsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_color_found"
+                android:fontFamily="@font/montserrat_light"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/text_primary_black"
+                android:textSize="12sp"/>
 
         </LinearLayout>
 

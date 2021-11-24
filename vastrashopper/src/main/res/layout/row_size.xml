@@ -22,17 +22,5 @@
         android:fontFamily="@font/montserrat_light"
         android:textAllCaps="true"
         android:textSize="14sp"/>
-    
-    <TextView
-        android:id="@+id/msgNoSizeTextView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-        android:fontFamily="@font/montserrat_light"
-        android:textSize="14sp"
-        android:visibility="invisible"/>
-
 </FrameLayout>
 
