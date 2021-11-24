@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginStart="6dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginEnd="6dp"
+    android:layout_marginBottom="6dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -20,11 +26,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="6dp"
-                android:layout_marginBottom="6dp"
                 android:elevation="2dp"
+                android:layout_marginTop="8dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="10dp">
 
@@ -57,9 +60,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat_medium"
                 android:maxLines="1"
-                android:paddingStart="8dp"
                 android:paddingTop="8dp"
-                android:paddingEnd="8dp"
                 android:text="Vastra"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textColor="@color/text_primary_black"
@@ -73,9 +74,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat_medium"
                 android:lines="1"
-                android:paddingStart="8dp"
                 android:paddingTop="8dp"
-                android:paddingEnd="8dp"
                 android:text="Regular Fit Polka Dot Shirt 2"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textColor="@color/text_primary_black"
@@ -89,8 +88,6 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat_regular"
                 android:maxLines="2"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
                 android:text="Manish Malhotra"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="@color/accent"
@@ -108,8 +105,6 @@
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:fontFamily="@font/montserrat_light"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
                     android:text="234 likes"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@color/text_secondary_black"
@@ -122,8 +117,6 @@
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:gravity="end"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
                     android:paddingBottom="8dp"
                     android:text="$275.99"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
@@ -143,9 +136,8 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat_medium"
                 android:maxLines="1"
-                android:paddingStart="8dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
                 android:text="@string/title_product_details"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textColor="@color/text_primary_black"
@@ -158,9 +150,8 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat_light"
                 android:maxLines="2"
-                android:paddingStart="8dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
                 android:text="Blue printed casual shirt, has a mandarin collar, button placket, long sleeves, curved hem"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="@color/text_primary_black"
@@ -173,9 +164,8 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat_medium"
                 android:maxLines="1"
-                android:paddingStart="8dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
                 android:text="@string/title_material_and_care"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textColor="@color/text_primary_black"
@@ -187,9 +177,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_light"
                 android:maxLines="3"
-                android:paddingStart="8dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
                 android:text="Cotton \nMachine-Wash"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="@color/text_primary_black"
@@ -202,28 +191,22 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat_medium"
                 android:maxLines="1"
-                android:paddingStart="8dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="8dp"
+                android:paddingTop="4dp"
                 android:text="@string/title_size_and_fit"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textColor="@color/text_primary_black"
                 android:textSize="14sp" />
 
-            <HorizontalScrollView
+            <org.apmem.tools.layouts.FlowLayout
+                android:id="@+id/sizeFlowLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fillViewport="true">
-
-                <LinearLayout
-                    android:id="@+id/sizeLinearLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:orientation="horizontal" />
-
-            </HorizontalScrollView>
+                android:paddingTop="4dp"
+                android:orientation="horizontal"
+                android:layoutDirection="ltr"
+                android:paddingBottom="4dp"
+                android:gravity="center"
+                android:layout_marginTop="4dp" />
 
             <TextView
                 android:id="@+id/titleProductColor"
@@ -232,27 +215,22 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat_medium"
                 android:maxLines="1"
-                android:paddingStart="8dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="8dp"
+                android:paddingTop="4dp"
                 android:text="@string/title_product_color"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textColor="@color/text_primary_black"
                 android:textSize="14sp" />
 
-            <HorizontalScrollView
+            <org.apmem.tools.layouts.FlowLayout
+                android:id="@+id/colorFlowLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fillViewport="true">
-
-                <LinearLayout
-                    android:id="@+id/colorLinearLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal" />
-
-            </HorizontalScrollView>
+                android:paddingTop="4dp"
+                android:orientation="horizontal"
+                android:layoutDirection="ltr"
+                android:paddingBottom="4dp"
+                android:gravity="center"
+                android:layout_marginTop="4dp" />
 
         </LinearLayout>
 
@@ -264,12 +242,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="4dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="4dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <android.widget.Button
-            android:id="@+id/btn_add_to_cart"
+            android:id="@+id/btnAddToCart"
             style="@style/Vastra.Button.Filled"
             android:layout_width="250dp"
             android:layout_height="wrap_content"

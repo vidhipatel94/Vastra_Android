@@ -59,4 +59,11 @@
     <string name="msg_empty_filter_product_list">No matching products found.</string>
     <string name="not_implemented">Not implemented yet.</string>
     <string name="msg_no_catalogues">No catalogues.</string>
+    <string name="by">"By "</string>
+    <string name="likes">Likes</string>
+    <string name="noSizeFound">No sizes available.</string>
+    <string name="noColorFound">No colors available.</string>
+    <string name="product_not_available_message">Product is not available for selected size and color.</string>
+    <string name="product_available_message">Thank you for choosing product from Vastra. We will be back soon for ordering your product.</string>
+    <string name="select_product_message">Please select any product color and size to add into cart.</string>
 </resources>

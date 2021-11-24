@@ -62,7 +62,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProductDetailsActivity.class);
-                intent.putExtra("Product", basicProduct);
+                intent.putExtra("ProductId", basicProduct.getId());
                 context.startActivity(intent);
             }
         });
