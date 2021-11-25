@@ -15,6 +15,7 @@ import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.apis.RestUtils;
 import com.esolution.vastrabasic.models.product.Product;
 import com.esolution.vastrabasic.models.product.ProductColor;
+import com.esolution.vastrabasic.models.product.ProductMaterial;
 import com.esolution.vastrabasic.models.product.ProductSize;
 import com.esolution.vastrabasic.ui.BaseActivity;
 import com.esolution.vastrabasic.utils.JsonUtils;
@@ -34,8 +35,6 @@ public class ProductDetailsActivity extends BaseActivity {
 
     protected CompositeDisposable subscriptions = new CompositeDisposable();
     private ActivityProductDetailsBinding binding;
-//    private ArrayList<RowSizeBinding> rowSizeBindingArrayList = new ArrayList<>();
- //   private ArrayList<RowColorProductDetailBinding> rowColorProductDetailBinding = new ArrayList<>();
     private Product product;
     private int productId = 0;
     private ProgressDialogHandler progressDialogHandler;
@@ -91,13 +90,13 @@ public class ProductDetailsActivity extends BaseActivity {
     }
 
     private void setProductData(Product product) {
-
         if (product == null) {
             return;
         }
 
-        binding.designerName.setText("By " + product.getDesignerName());
-        binding.title.setText(product.getTitle());
+        if (product.getImages() != null) {
+            binding.viewPager.setAdapter(new ViewPagerAdapter(this, product.getImages()));
+        }
 
         if (product.getOverallRating() != 0) {
             binding.rating.setText(String.valueOf(product.getOverallRating()));
@@ -105,16 +104,15 @@ public class ProductDetailsActivity extends BaseActivity {
             binding.rating.setVisibility(View.INVISIBLE);
         }
 
-        // Materials TODO
-
-        // Product Details Occasion TODO
-
-        binding.price.setText("$" + String.valueOf(product.getPrice()));
+        binding.brandName.setText(product.getBrandName());
+        binding.title.setText(product.getTitle());
+        binding.designerName.setText("By " + product.getDesignerName());
         binding.totalLikes.setText(String.valueOf(product.getTotalLikes()) + " Likes");
+        binding.price.setText("$" + String.valueOf(product.getPrice()));
 
-        if (product.getImages() != null) {
-            binding.viewPager.setAdapter(new ViewPagerAdapter(this, product.getImages()));
-        }
+        binding.productDescription.setText(product.getDescription());
+
+        setProductMaterialsCare();
 
         setProductSizesView();
 
@@ -123,8 +121,6 @@ public class ProductDetailsActivity extends BaseActivity {
         binding.btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Log.i("-----", "Color: " + selectedColor.getId() + " Size " + selectedSize.getId());
-
                 if (product.getInventories().size() == 0) {
                     openDialog(R.string.product_not_available_message);
                     return;
@@ -151,13 +147,46 @@ public class ProductDetailsActivity extends BaseActivity {
                 }
 
                 if (isProductFound) {
-                    //openDialog(R.string.product_available_message);
                     openNextScreen();
                 } else {
                     openDialog(R.string.product_not_available_message);
                 }
             }
         });
+    }
+
+    private void setProductMaterialsCare() {
+        if (product.getMaterials().size() == 0) {
+            return;
+        }
+
+        StringBuilder material = new StringBuilder();
+        for (int i = 0; i < product.getMaterials().size(); i++) {
+            ProductMaterial productMaterial = product.getMaterials().get(i);
+            if (i == 0) {
+                material.append(productMaterial.getMaterialName());
+                material.append(" ");
+                material.append(productMaterial.getPercentage());
+                material.append("%");
+            } else {
+                material.append(", ");
+                material.append(productMaterial.getMaterialName());
+                material.append(" ");
+                material.append(productMaterial.getPercentage());
+                material.append("%");
+            }
+        }
+
+        material.append("\n");
+        if (product.getWashCare() == 0) {
+            material.append("Machine-Wash");
+        } else if (product.getWashCare() == 1) {
+            material.append("Hand-Wash");
+        } else {
+            material.append("Dry Clean");
+        }
+
+        binding.materialCare.setText(String.valueOf(material));
     }
 
     private void openNextScreen() {
@@ -170,15 +199,15 @@ public class ProductDetailsActivity extends BaseActivity {
         binding.sizeFlowLayout.removeAllViews();
 
         if (product.getSizes().size() == 0) {
-           binding.emptySizesText.setVisibility(View.VISIBLE);
-           return;
+            binding.emptySizesText.setVisibility(View.VISIBLE);
+            return;
         }
         binding.emptySizesText.setVisibility(View.GONE);
 
         selectedSizeBinding = null;
         selectedSize = null;
 
-        for (ProductSize productSize: product.getSizes()) {
+        for (ProductSize productSize : product.getSizes()) {
             RowSizeBinding sizeBinding = RowSizeBinding.inflate(getLayoutInflater());
             binding.sizeFlowLayout.addView(sizeBinding.getRoot());
             sizeBinding.sizeTextView.setText(productSize.getSizeText(this));
@@ -193,13 +222,14 @@ public class ProductDetailsActivity extends BaseActivity {
 
     private RowSizeBinding selectedSizeBinding;
     private ProductSize selectedSize = null;
+
     private void onSizeSelected(RowSizeBinding sizeBinding, ProductSize productSize) {
         if (selectedSizeBinding == sizeBinding) {
             return;
         }
 
         // another size is previously selected
-        if (selectedSizeBinding!=null) {
+        if (selectedSizeBinding != null) {
             selectedSizeBinding.sizeTextView.setBackground(ContextCompat.
                     getDrawable(this, R.drawable.bg_size_circle_view));
             selectedSizeBinding.sizeTextView.setTextColor(getResources().getColor(R.color.primary_dark));
@@ -226,7 +256,7 @@ public class ProductDetailsActivity extends BaseActivity {
         selectedSizeBinding = null;
         selectedSize = null;
 
-        for (ProductColor productColor: product.getColors()) {
+        for (ProductColor productColor : product.getColors()) {
             RowColorProductDetailBinding colorBinding = RowColorProductDetailBinding.inflate(getLayoutInflater());
             binding.colorFlowLayout.addView(colorBinding.getRoot());
             colorBinding.circleColorView.setColor(productColor.getProminentColorHexCode());
@@ -241,13 +271,14 @@ public class ProductDetailsActivity extends BaseActivity {
 
     private RowColorProductDetailBinding selectedColorBinding;
     private ProductColor selectedColor = null;
+
     private void onColorSelected(RowColorProductDetailBinding colorBinding, ProductColor productColor) {
-        if(selectedColorBinding == colorBinding) {
+        if (selectedColorBinding == colorBinding) {
             return;
         }
 
         // another color is previously selected
-        if(selectedColorBinding!=null) {
+        if (selectedColorBinding != null) {
             selectedColorBinding.checkImage.setVisibility(View.INVISIBLE);
         }
 

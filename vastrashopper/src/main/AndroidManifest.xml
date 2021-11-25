@@ -19,6 +19,7 @@
         <activity android:name=".ui.designers.CatalogueProductsActivity" />
         <activity android:name=".ui.products.ProductCartActivity" />
         <activity android:name=".ui.products.ProductPlaceOrderActivity" />
+        <activity android:name=".ui.products.ProductFullImageViewActivity" />
     </application>
 
 </manifest>

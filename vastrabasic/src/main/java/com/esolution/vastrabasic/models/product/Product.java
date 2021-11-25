@@ -15,6 +15,7 @@ public class Product implements Serializable {
 
     int designerId;
     String designerName;    // EXTRA, in get query
+    String brandName;
 
     int catalogueId;
 
@@ -43,7 +44,6 @@ public class Product implements Serializable {
     List<ProductSize> sizes;  // EXTRA
 
     List<ProductInventory> inventories;  // EXTRA
-
 
     public Product(int designerId, int catalogueId, int typeId, String title) {
         this.designerId = designerId;
@@ -106,6 +106,14 @@ public class Product implements Serializable {
 
     public ArrayList<String> getImages() {
         return images;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 
     public void setImages(ArrayList<String> images) {

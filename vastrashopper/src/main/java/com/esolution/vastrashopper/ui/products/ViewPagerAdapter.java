@@ -1,10 +1,14 @@
 package com.esolution.vastrashopper.ui.products;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
@@ -45,12 +49,26 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         //return super.instantiateItem(container, position);
-        binding = RowViewPagerBinding.inflate(layoutInflater,container,false);
+        binding = RowViewPagerBinding.inflate(layoutInflater, container, false);
         View view = binding.getRoot();
         ImageUtils.loadImageUrl(binding.myViewPagerImage, images.get(position));
         Objects.requireNonNull(container).addView(view);
+
+        binding.myViewPagerImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFullImageViewScreen(images.get(position));
+            }
+        });
         return view;
     }
+
+    private void openFullImageViewScreen(String imageURL) {
+        Intent intent = new Intent(context, ProductFullImageViewActivity.class);
+        intent.putExtra("ProductImage", imageURL);
+        context.startActivity(intent);
+    }
+
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {

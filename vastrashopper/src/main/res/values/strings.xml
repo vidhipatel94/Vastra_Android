@@ -63,6 +63,10 @@
     <string name="likes">Likes</string>
     <string name="no_size_found">No sizes available.</string>
     <string name="no_color_found">No colors available.</string>
+    <string name="no_material_found">No Material available.</string>
+    <string name="machine_wash_care">Machine-Wash</string>
+    <string name="hand_wash_care">Hand-Wash</string>
+    <string name="dry_clean_wash_care">Dry Clean</string>
     <string name="product_not_available_message">Product is not available for selected size and color.</string>
     <string name="product_available_message">Thank you for choosing product from Vastra. We will be back soon for ordering your product.</string>
     <string name="select_size_message">Please select any product size to add product into cart.</string>

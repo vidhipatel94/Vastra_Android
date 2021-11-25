@@ -61,7 +61,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:maxLines="1"
                 android:paddingTop="8dp"
-                android:text="Vastra"
+                android:text=""
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textColor="@color/text_primary_black"
                 android:textSize="14sp"
@@ -144,12 +144,12 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/productDetails"
+                android:id="@+id/productDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat_light"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
                 android:text="Blue printed casual shirt, has a mandarin collar, button placket, long sleeves, curved hem"
