@@ -15,6 +15,7 @@ import com.esolution.vastrabasic.databinding.ActivityChatBinding;
 import com.esolution.vastrabasic.models.Message;
 import com.esolution.vastrabasic.models.User;
 import com.esolution.vastrabasic.ui.BaseActivity;
+import com.esolution.vastrabasic.ui.customorder.CustomOrderActivity;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -66,6 +67,9 @@ public class ChatActivity extends BaseActivity {
 
         binding.toolbarLayout.title.setText(receiver.getFirstName() + " " + receiver.getLastName());
         binding.toolbarLayout.iconBack.setOnClickListener(v -> onBackPressed());
+        binding.toolbarLayout.title.setOnClickListener(v -> {
+            startActivity(new Intent(this, CustomOrderActivity.class));
+        });
 
         databaseReference = FirebaseDatabase.getInstance().getReference("chats").child(chatId);
 

@@ -18,5 +18,6 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.chat.ChatActivity" />
+        <activity android:name=".ui.customorder.CustomOrderActivity" />
     </application>
 </manifest>
