@@ -17,5 +17,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.chat.ChatActivity" />
     </application>
 </manifest>

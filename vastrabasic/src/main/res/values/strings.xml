@@ -16,4 +16,6 @@
     <string name="link_show_all">Show All</string>
     <string name="msg_empty_products">No products are added.</string>
     <string name="likes_count">%d likes</string>
+    <string name="send">Send</string>
+    <string name="hint_enter_message">Enter message</string>
 </resources>

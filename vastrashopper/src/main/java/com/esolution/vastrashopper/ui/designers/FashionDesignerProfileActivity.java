@@ -15,8 +15,10 @@ import com.esolution.vastrabasic.apis.request.FollowerRequest;
 import com.esolution.vastrabasic.databinding.RowCatalogueBinding;
 import com.esolution.vastrabasic.models.BasicCatalogue;
 import com.esolution.vastrabasic.models.Designer;
+import com.esolution.vastrabasic.models.User;
 import com.esolution.vastrabasic.models.product.BasicProduct;
 import com.esolution.vastrabasic.ui.BaseActivity;
+import com.esolution.vastrabasic.ui.chat.ChatActivity;
 import com.esolution.vastrabasic.ui.products.CatalogueProductsAdapter;
 import com.esolution.vastrabasic.utils.ImageUtils;
 import com.esolution.vastrashopper.R;
@@ -88,13 +90,19 @@ public class FashionDesignerProfileActivity extends BaseActivity {
         setFollowing(designer.isFollowing());
 
         binding.btnChat.setOnClickListener(v -> {
-            showMessage(binding.getRoot(), getString(R.string.not_implemented));
+            openChat();
         });
 
         binding.btnFollow.setOnClickListener(v -> {
             setFollowing(!designer.isFollowing());
             saveFollowing();
         });
+    }
+
+    private void openChat() {
+        User user = ShopperLoginPreferences.createInstance(this).getShopper();
+        startActivity(ChatActivity.createIntent(this, user, designer,
+                ChatActivity.getChatId(designer.getUserId(), user.getUserId())));
     }
 
     private void setFollowing(boolean isFollowing) {
