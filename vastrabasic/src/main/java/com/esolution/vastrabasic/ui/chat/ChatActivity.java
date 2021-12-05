@@ -9,27 +9,20 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.esolution.vastrabasic.databinding.ActivityChatBinding;
 import com.esolution.vastrabasic.models.Message;
 import com.esolution.vastrabasic.models.User;
 import com.esolution.vastrabasic.ui.BaseActivity;
-import com.esolution.vastrabasic.utils.JsonUtils;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ChatActivity extends BaseActivity {
 
@@ -173,6 +166,30 @@ public class ChatActivity extends BaseActivity {
 
         binding.messageBox.setText(null);
         closeKeyboard();
+
+        addIntoChatList();
+    }
+
+    private boolean isAddedIntoChatList = false;
+
+    private void addIntoChatList() {
+        if (isAddedIntoChatList) return;
+
+        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("chat-list");
+        databaseReference1.orderByKey().equalTo(chatId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    databaseReference1.child(chatId).setValue(chatId);
+                }
+                isAddedIntoChatList = true;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override

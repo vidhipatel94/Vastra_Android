@@ -67,6 +67,10 @@ public interface VastraAPIs {
     @GET("fd/user/list")
     Observable<APIResponse<List<Designer>>> getDesigners(@Header("token") String token);
 
+    @GET("user/list/basic")
+    Observable<APIResponse<List<User>>> getUsersBasicInfo(@Header("token") String token,
+                                                   @Query("ids") List<Integer> userIds);
+
     // ------------- Catalogue --------------
 
     @POST("catalogue")
@@ -207,7 +211,7 @@ public interface VastraAPIs {
     Observable<APIResponse<JsonElement>> addFollower(@Header("token") String token,
                                                      @Body FollowerRequest followerRequest);
 
-//    @DELETE("followers")
+    //    @DELETE("followers")
     @HTTP(method = "DELETE", path = "followers", hasBody = true)
     Observable<APIResponse<JsonElement>> removeFollower(@Header("token") String token,
                                                         @Body FollowerRequest followerRequest);
