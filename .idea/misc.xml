@@ -76,12 +76,14 @@
         <entry key="vastrashopper/src/main/res/layout/activity_designer_catalogue_products.xml" value="0.328125" />
         <entry key="vastrashopper/src/main/res/layout/activity_fashion_designer_profile.xml" value="0.328125" />
         <entry key="vastrashopper/src/main/res/layout/activity_main.xml" value="0.325" />
+        <entry key="vastrashopper/src/main/res/layout/activity_product_details.xml" value="0.1595744680851064" />
         <entry key="vastrashopper/src/main/res/layout/activity_register_designer_info.xml" value="0.325" />
         <entry key="vastrashopper/src/main/res/layout/activity_shopper_main.xml" value="0.325" />
         <entry key="vastrashopper/src/main/res/layout/fragment_designers.xml" value="0.325" />
         <entry key="vastrashopper/src/main/res/layout/fragment_home.xml" value="0.325" />
         <entry key="vastrashopper/src/main/res/layout/fragment_profile.xml" value="0.325" />
         <entry key="vastrashopper/src/main/res/layout/fragment_shopper_profile.xml" value="0.328125" />
+        <entry key="vastrashopper/src/main/res/layout/row_view_pager.xml" value="0.3115942028985507" />
         <entry key="vastrashopper/src/main/res/menu/bottom_nav_menu.xml" value="0.325" />
       </map>
     </option>
