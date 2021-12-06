@@ -94,7 +94,7 @@
                 android:id="@+id/rg_age_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <RadioButton
                     android:id="@+id/rb_baby"
@@ -108,7 +108,6 @@
                     android:id="@+id/rb_kids"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
                     android:buttonTint="@color/primary_dark"
                     android:fontFamily="@font/montserrat_light"
                     android:text="@string/kids" />
@@ -117,7 +116,6 @@
                     android:id="@+id/rb_adult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
                     android:buttonTint="@color/primary_dark"
                     android:checked="true"
                     android:fontFamily="@font/montserrat_light"

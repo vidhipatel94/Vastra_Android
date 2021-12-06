@@ -23,5 +23,6 @@ public class FashionDesignerHandler {
 
     public interface Listener {
         void onLoggedOut();
+        void restartApp();
     }
 }

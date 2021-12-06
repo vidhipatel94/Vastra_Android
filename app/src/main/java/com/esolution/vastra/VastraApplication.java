@@ -25,19 +25,31 @@ public class VastraApplication extends Application {
         FashionDesignerHandler.instance(new FashionDesignerHandler.Listener() {
             @Override
             public void onLoggedOut() {
-                Intent intent = new Intent(getApplicationContext(), SplashScreenActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                reopenApp();
+            }
+
+            @Override
+            public void restartApp() {
+                reopenApp();
             }
         });
 
         ShopperHandler.instance(new ShopperHandler.Listener() {
             @Override
             public void onLoggedOut() {
-                Intent intent = new Intent(getApplicationContext(), SplashScreenActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                reopenApp();
+            }
+
+            @Override
+            public void restartApp() {
+                reopenApp();
             }
         });
+    }
+
+    private void reopenApp() {
+        Intent intent = new Intent(getApplicationContext(), SplashScreenActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

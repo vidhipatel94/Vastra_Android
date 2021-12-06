@@ -48,7 +48,8 @@
             android:fontFamily="@font/montserrat_light"
             android:text="@string/email_confirmation_msg"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@color/text_secondary_black" />
+            android:textColor="@color/text_secondary_black"
+            android:visibility="gone" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayoutEmail"

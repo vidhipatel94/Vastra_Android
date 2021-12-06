@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vastra</string>
+    <string name="please_wait">S\'il vous plaît, attendez...</string>
+    <string name="internet_error">Problème de connexion Internet ! Réessayer.</string>
+    <string name="server_error">Quelque chose s\'est mal passé!</string>
+    <string name="one_size">Taille unique</string>
+    <string name="like">Comme</string>
+    <string name="btn_back">arrière</string>
+    <string name="title_chat">Discuter</string>
+    <string name="title_follow">Suivre</string>
+    <string name="noOfFollowers">15K</string>
+    <string name="label_followers">Suiveuses</string>
+    <string name="label_posts">Des postes</string>
+    <string name="title_profile">Profil</string>
+    <string name="link_show_all">Afficher tout</string>
+    <string name="msg_empty_products">Aucun produit n\'est ajouté.</string>
+    <string name="likes_count">%d aime</string>
+    <string name="send">Envoyer</string>
+    <string name="hint_enter_message">Entrer un message</string>
+    <string name="create_custom_order">Créer une commande personnalisée</string>
+    <string name="not_implemented">Not implemented yet.</string>
+    <string name="language_en">English</string>
+    <string name="language_fr">French</string>
+    <string name="select_language">Choisir la langue</string>
+</resources>

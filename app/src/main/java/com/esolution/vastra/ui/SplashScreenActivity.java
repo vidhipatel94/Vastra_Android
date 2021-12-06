@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.esolution.vastra.R;
 import com.esolution.vastra.ui.registration.StartupActivity;
+import com.esolution.vastrabasic.LanguageHelper;
 import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
 import com.esolution.vastrafashiondesigner.ui.MainActivity;
 import com.esolution.vastrashopper.data.ShopperLoginPreferences;
@@ -20,6 +21,9 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        String savedLng = LanguageHelper.getLanguage(getApplicationContext());
+        LanguageHelper.changeLocale(this, savedLng);
 
         new Handler().postDelayed(new Runnable() {
             @Override

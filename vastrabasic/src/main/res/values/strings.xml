@@ -20,4 +20,7 @@
     <string name="hint_enter_message">Enter message</string>
     <string name="create_custom_order">Create Custom Order</string>
     <string name="not_implemented">Not implemented yet.</string>
+    <string name="language_en">English</string>
+    <string name="language_fr">French</string>
+    <string name="select_language">Select Language</string>
 </resources>

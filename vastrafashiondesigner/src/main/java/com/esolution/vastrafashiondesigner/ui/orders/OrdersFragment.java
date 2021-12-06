@@ -15,25 +15,13 @@ import androidx.lifecycle.ViewModelProvider;
 import com.esolution.vastrafashiondesigner.databinding.FragmentOrdersBinding;
 
 public class OrdersFragment extends Fragment {
-
-    private OrdersViewModel ordersViewModel;
     private FragmentOrdersBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ordersViewModel =
-                new ViewModelProvider(this).get(OrdersViewModel.class);
-
         binding = FragmentOrdersBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.text;
-        ordersViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
         return root;
     }
 

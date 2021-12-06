@@ -23,5 +23,6 @@ public class ShopperHandler {
 
     public interface Listener {
         void onLoggedOut();
+        void restartApp();
     }
 }

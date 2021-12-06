@@ -7,11 +7,11 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
+import com.esolution.vastrabasic.LanguageHelper;
 import com.esolution.vastrabasic.ProgressDialogHandler;
 import com.esolution.vastrabasic.apis.RestUtils;
 import com.esolution.vastrabasic.databinding.LayoutToolbarMenuItemBinding;
@@ -43,7 +43,7 @@ public class ProfileFragment extends BaseFragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentProfileBinding.inflate(inflater, container, false);
-        if(getActivity() != null) {
+        if (getActivity() != null) {
             progressDialogHandler = new ProgressDialogHandler(getActivity());
         }
 
@@ -96,6 +96,12 @@ public class ProfileFragment extends BaseFragment {
         binding.linkForgotPassword.setOnClickListener((v) -> {
             showMessage(binding.getRoot(), getString(R.string.not_implemented));
         });
+
+        String savedLng = LanguageHelper.getLanguage(requireContext());
+        if (savedLng.equals("fr")) {
+            binding.languageText.setText(R.string.language_fr);
+        }
+        binding.languageLayout.setOnClickListener(v -> openLanguageDialog());
     }
 
     private void openProvinceDialog() {
@@ -188,6 +194,37 @@ public class ProfileFragment extends BaseFragment {
                     break;
                 }
             }
+        }
+    }
+
+    private void openLanguageDialog() {
+        closeKeyboard();
+
+        String[] languages = new String[2];
+        languages[0] = getString(R.string.language_en);
+        languages[1] = getString(R.string.language_fr);
+
+        String savedLng = LanguageHelper.getLanguage(requireContext());
+        int index = savedLng.equals("fr") ? 1 : 0;
+
+        new AlertDialog.Builder(requireContext())
+                .setSingleChoiceItems(languages, index, null)
+                .setTitle(R.string.select_language)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                        binding.languageText.setText(languages[selectedPosition]);
+                        changeLanguage(selectedPosition);
+                    }
+                }).show();
+    }
+
+    private void changeLanguage(int index) {
+        LanguageHelper.changeLocale(requireContext(), index == 0 ? "en" : "fr");
+        if (FashionDesignerHandler.getListener() != null) {
+            FashionDesignerHandler.getListener().restartApp();
         }
     }
 
