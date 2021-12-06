@@ -11,6 +11,7 @@
         <entry key="vastrabasic/src/main/res/drawable/bg_circle_image_filled.xml" value="0.19635416666666666" />
         <entry key="vastrabasic/src/main/res/drawable/bg_follow_icon_filled.xml" value="0.31203703703703706" />
         <entry key="vastrabasic/src/main/res/drawable/bg_followed_icon_filled.xml" value="0.31203703703703706" />
+        <entry key="vastrabasic/src/main/res/drawable/bg_profile_image_filled.xml" value="0.28055555555555556" />
         <entry key="vastrabasic/src/main/res/drawable/ic_camera_gray_500_24dp.xml" value="0.19635416666666666" />
         <entry key="vastrabasic/src/main/res/drawable/ic_down_arrow_gray_500_24.xml" value="0.19635416666666666" />
         <entry key="vastrabasic/src/main/res/drawable/ic_person_follow_gray_500_24dp.xml" value="0.31203703703703706" />
@@ -34,6 +35,7 @@
         <entry key="vastrafashiondesigner/src/main/res/drawable/ic_star_rate_white_18dp.xml" value="0.287962962962963" />
         <entry key="vastrafashiondesigner/src/main/res/drawable/ic_thumb_up_grey_500_24dp.xml" value="0.287962962962963" />
         <entry key="vastrafashiondesigner/src/main/res/drawable/ic_thumb_up_off_grey_500_24dp.xml" value="0.287962962962963" />
+        <entry key="vastrafashiondesigner/src/main/res/drawable/list_divider.xml" value="0.15052083333333333" />
         <entry key="vastrafashiondesigner/src/main/res/layout/activity_add_product_images.xml" value="0.325" />
         <entry key="vastrafashiondesigner/src/main/res/layout/activity_add_product_info_1.xml" value="0.1580547112462006" />
         <entry key="vastrafashiondesigner/src/main/res/layout/activity_add_product_info_2.xml" value="0.325" />

@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.esolution.vastrabasic.ProgressDialogHandler;
@@ -111,6 +113,10 @@ public class ChatFragment extends BaseFragment {
     }
 
     private void loadChats(List<User> shoppers) {
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL);
+        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.list_divider));
+        binding.chats.addItemDecoration(dividerItemDecoration);
+
         ShoppersAdapter shoppersAdapter = new ShoppersAdapter(designer, shoppers);
         binding.chats.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         binding.chats.setAdapter(shoppersAdapter);

@@ -43,8 +43,10 @@ public class ShoppersAdapter extends RecyclerView.Adapter<ShoppersAdapter.ViewHo
         Context context = holder.binding.getRoot().getContext();
 
         holder.binding.name.setText(shopper.getFirstName().concat(" " + shopper.getLastName()));
-        ImageUtils.loadImageUrl(holder.binding.imageProfilePic, shopper.getAvatarURL(),
-                ContextCompat.getDrawable(context, R.drawable.designer));
+        String initials = String.valueOf(shopper.getFirstName().charAt(0)) + shopper.getLastName().charAt(0);
+        holder.binding.bgImageProfilePic.setText(initials);
+//        ImageUtils.loadImageUrl(holder.binding.imageProfilePic, shopper.getAvatarURL(),
+//                ContextCompat.getDrawable(context, R.drawable.designer));
 
         holder.binding.parentLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
