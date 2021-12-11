@@ -124,7 +124,7 @@ public class CatalogueProductsActivity extends BaseActivity implements ProductAd
     @Override
     public void onClickProduct(int position) {
         Intent intent = new Intent(this, ProductDetailsActivity.class);
-        intent.putExtra("Product", products.get(position));
+        intent.putExtra("ProductId", products.get(position).getId());
         startActivity(intent);
     }
 }

@@ -1,5 +1,9 @@
 package com.esolution.vastrafashiondesigner;
 
+import android.content.Context;
+
+import com.esolution.vastrabasic.models.product.BasicProduct;
+
 // singleton
 public class FashionDesignerHandler {
 
@@ -23,6 +27,9 @@ public class FashionDesignerHandler {
 
     public interface Listener {
         void onLoggedOut();
+
         void restartApp();
+
+        void openProductDetail(Context context, BasicProduct basicProduct);
     }
 }

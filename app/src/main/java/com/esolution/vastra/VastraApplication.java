@@ -6,9 +6,11 @@ import android.content.Intent;
 
 import com.esolution.vastra.ui.SplashScreenActivity;
 import com.esolution.vastrabasic.data.VastraBasicPreferences;
+import com.esolution.vastrabasic.models.product.BasicProduct;
 import com.esolution.vastrabasic.utils.Utils;
 import com.esolution.vastrafashiondesigner.FashionDesignerHandler;
 import com.esolution.vastrashopper.ShopperHandler;
+import com.esolution.vastrashopper.ui.products.ProductDetailsActivity;
 
 public class VastraApplication extends Application {
     @Override
@@ -31,6 +33,14 @@ public class VastraApplication extends Application {
             @Override
             public void restartApp() {
                 reopenApp();
+            }
+
+            @Override
+            public void openProductDetail(Context context, BasicProduct basicProduct) {
+                Intent intent = new Intent(context, ProductDetailsActivity.class);
+                intent.putExtra("ProductId", basicProduct.getId());
+                intent.putExtra(ProductDetailsActivity.EXTRA_IS_DESIGNER, true);
+                context.startActivity(intent);
             }
         });
 

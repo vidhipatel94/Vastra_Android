@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -25,18 +24,19 @@ import com.esolution.vastrashopper.databinding.ActivityProductDetailsBinding;
 import com.esolution.vastrashopper.databinding.RowColorProductDetailBinding;
 import com.esolution.vastrashopper.databinding.RowSizeBinding;
 
-import java.util.ArrayList;
-
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ProductDetailsActivity extends BaseActivity {
 
+    public static final String EXTRA_IS_DESIGNER = "is_designer";
+
     protected CompositeDisposable subscriptions = new CompositeDisposable();
     private ActivityProductDetailsBinding binding;
     private Product product;
     private int productId = 0;
+    private boolean isDesigner = false;
     private ProgressDialogHandler progressDialogHandler;
 
     @Override
@@ -49,12 +49,18 @@ public class ProductDetailsActivity extends BaseActivity {
 
         if (getIntentData()) {
             getProductInfo();
+        } else {
+            finish();
+        }
+
+        if (isDesigner) {
+            binding.addToCartLayout.setVisibility(View.GONE);
         }
     }
 
     private boolean getIntentData() {
         Intent intent = getIntent();
-
+        isDesigner = intent.getBooleanExtra(EXTRA_IS_DESIGNER, false);
         if (intent.hasExtra("ProductId")) {
             productId = (int) intent.getSerializableExtra("ProductId");
             return true;
@@ -94,6 +100,7 @@ public class ProductDetailsActivity extends BaseActivity {
             return;
         }
 
+        Log.d("-------", "setProductData: " + JsonUtils.toJson(product.getImages()));
         if (product.getImages() != null) {
             binding.viewPager.setAdapter(new ViewPagerAdapter(this, product.getImages()));
         }

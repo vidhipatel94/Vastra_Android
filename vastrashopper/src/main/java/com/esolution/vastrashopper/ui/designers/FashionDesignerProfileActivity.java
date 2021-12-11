@@ -189,7 +189,7 @@ public class FashionDesignerProfileActivity extends BaseActivity {
 
     private void onClickProduct(BasicProduct basicProduct) {
         Intent intent = new Intent(this, ProductDetailsActivity.class);
-        intent.putExtra("Product", basicProduct);
+        intent.putExtra("ProductId", basicProduct.getId());
         startActivity(intent);
     }
 

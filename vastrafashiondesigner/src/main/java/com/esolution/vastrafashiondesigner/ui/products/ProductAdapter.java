@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.esolution.vastrabasic.models.product.BasicProduct;
 import com.esolution.vastrabasic.utils.ImageUtils;
+import com.esolution.vastrafashiondesigner.FashionDesignerHandler;
 import com.esolution.vastrafashiondesigner.R;
 import com.esolution.vastrabasic.databinding.ListProductBinding;
 
@@ -69,6 +70,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.binding.iconMenu.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onClickMenu(v, position);
+            }
+        });
+
+        holder.binding.getRoot().setOnClickListener(v -> {
+            if (FashionDesignerHandler.getListener() != null) {
+                FashionDesignerHandler.getListener().openProductDetail(context, product);
             }
         });
     }

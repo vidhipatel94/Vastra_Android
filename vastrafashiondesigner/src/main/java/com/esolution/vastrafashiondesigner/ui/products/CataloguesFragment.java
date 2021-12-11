@@ -21,6 +21,7 @@ import com.esolution.vastrabasic.models.BasicCatalogue;
 import com.esolution.vastrabasic.models.product.BasicProduct;
 import com.esolution.vastrabasic.ui.BaseFragment;
 import com.esolution.vastrabasic.ui.products.CatalogueProductsAdapter;
+import com.esolution.vastrafashiondesigner.FashionDesignerHandler;
 import com.esolution.vastrafashiondesigner.data.DesignerLoginPreferences;
 import com.esolution.vastrafashiondesigner.databinding.FragmentCataloguesBinding;
 import com.esolution.vastrabasic.databinding.RowCatalogueBinding;
@@ -117,7 +118,7 @@ public class CataloguesFragment extends BaseFragment {
                             LinearLayoutManager.HORIZONTAL, false);
                     catalogueBinding.products.setLayoutManager(layoutManager);
                     catalogueBinding.products.setAdapter(new CatalogueProductsAdapter(products, product -> {
-                        onClickProduct(product.getId());
+                        onClickProduct(product);
                     }));
 
                     isProductsEmpty = products.size() == 0;
@@ -140,8 +141,10 @@ public class CataloguesFragment extends BaseFragment {
         activityResultLauncher.launch(intent);
     }
 
-    private void onClickProduct(int id) {
-
+    private void onClickProduct(BasicProduct basicProduct) {
+        if (FashionDesignerHandler.getListener() != null) {
+            FashionDesignerHandler.getListener().openProductDetail(requireContext(), basicProduct);
+        }
     }
 
     private ActivityResultLauncher<Intent> activityResultLauncher;
